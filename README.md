@@ -2,6 +2,8 @@
 
 This repository is structured for collaborative development with a Large Language Model (LLM).
 
+`README.md` is located at the root of the project structure.
+
 The LLM should begin by reading:
 1. `prompts/contract.md`
 2. `prompts/workflow.md`

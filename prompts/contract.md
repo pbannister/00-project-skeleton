@@ -103,6 +103,10 @@ The LLM must not regenerate full output unless explicitly instructed.
 
 ## 7. File System Rules
 
+`README.md` is a permitted root-level project file and must remain at the project root.
+Root-level files may be created or modified only when the task explicitly authorizes the
+operation.
+
 All new files must be placed in the correct directory:
 
 - `prompts/` for prompt files.
@@ -119,6 +123,8 @@ Log filenames must begin with the sortable prefix
 `YYYY-MM-DD-HH-MM-SS-<description>.log`.
 
 The LLM must never create files outside the project structure.
+The project structure includes the permitted root-level file `README.md` and the
+directories listed above.
 
 Generated directories and files must follow the generated-file rules in
 `prompts/conventions.md`.
