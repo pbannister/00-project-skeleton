@@ -1,0 +1,5 @@
+dataflow.out/
+logs/
+out/
+site.out/
+.aider*
