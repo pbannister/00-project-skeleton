@@ -1,249 +1,174 @@
 # How to Write Tasks
 
-This document defines how the human must write tasks for the LLM. Following these rules
-ensures the LLM can execute tasks deterministically using the workflow in
-prompts/workflow.md and the rules in prompts/contract.md.
-
----
+This document defines how a human must write tasks for the LLM.
 
 ## 1. Task Structure
 
-Follow prompts/common/02-universal-rules.md for all universal failure-prevention rules.
+Follow the applicable project rules for all task-writing requirements.
 
-The LLM will follow the workflow exactly and will not guess missing information.
-Every task must contain the following sections in order:
+Every task must contain these sections in order:
 
 [TASK]
-A clear description of what you want the LLM to do.
+A clear description of the requested work.
 
 [OUTPUT FORMAT]
-A precise description of the required output format.
+A precise description of the response representation.
 
 (Optional) [CONTEXT]
-Any additional information the LLM needs (file contents, requirements, notes).
+Additional information, requirements, notes, constraints, or file contents.
 
 (Optional) [FILES]
-A list of files involved in the task (existing or to be created).
+A list of files involved in the task.
 
+The phrase `Execute the next TODO task` explicitly requests TODO-driven execution.
 
----
+## 2. Section Meaning
 
-## 2. Writing the [TASK] Section
+[TASK] defines the requested work.
 
-Follow prompts/common/02-universal-rules.md for all writing-style rules.
+[OUTPUT FORMAT] defines the response representation.
 
-The [TASK] section must:
+[CONTEXT] provides information and does not add instructions unless explicitly labeled
+as a constraint.
 
-- Describe the goal clearly.
-- Use semantic-sort naming when referring to files or identifiers.
-- Avoid ambiguity.
-- Avoid assumptions.
-- Avoid commentary.
-- Avoid mixing instructions with output requirements.
+[FILES] identifies scope and does not authorize modifications by itself.
 
-Examples:
+## 3. Writing the [TASK] Section
 
-[TASK]
-Create a new script in scripts/ named build_site.sh that generates site.out/.
+The [TASK] section must describe the goal clearly.
 
-[TASK]
-Implement the feature defined in prompts/features/03-user-authentication.md.
+The [TASK] section must use established semantic-sort names for files and identifiers.
 
-[TASK]
-Refactor sources/parser/tokenizer.cpp to use semantic-sort naming.
+The [TASK] section must avoid ambiguity and unstated assumptions.
 
----
+The [TASK] section must not mix implementation instructions with output requirements.
 
-## 3. Writing the [OUTPUT FORMAT] Section
-
- Follow prompts/common/02-universal-rules.md for all output-format stability rules.
-
-The [OUTPUT FORMAT] section tells the LLM *exactly* what to produce.
-
-Rules:
-
-- Be explicit.
-- Specify file contents when needed.
-- Specify ordering when multiple files are required.
-- Specify whether commentary is allowed (default: not allowed).
-- Specify indentation (default: 4 spaces).
-- Specify whether to include filenames.
-
-Examples:
-
-[OUTPUT FORMAT]
-Provide only the file content of scripts/build_site.sh.
-
-[OUTPUT FORMAT]
-Produce two files in this order:
-1. sources/auth/auth_handler.cpp
-2. sources/auth/auth_handler.h
-
-[OUTPUT FORMAT]
-Provide a semantic-sort plan followed by the code.
-
----
-
-## 4. Writing the [CONTEXT] Section (Optional)
-
-Follow prompts/common/02-universal-rules.md for all context-format rules.
-
-Use [CONTEXT] when the LLM needs additional information:
-
-- Existing file contents
-- Requirements
-- Notes
-- Constraints
-- Data samples
+The [TASK] section must state the operation for each file as `create`, `modify`, `delete`,
+`rename`, or `inspect`.
 
 Example:
 
-[CONTEXT]
-Here is the current content of sources/parser/tokenizer.cpp:
-<insert file content>
+[TASK]
+Create `scripts/build-site.sh`.
+The script generates `site.out/` from `site.in/`.
 
----
+## 4. Writing the [OUTPUT FORMAT] Section
 
-## 5. Writing the [FILES] Section (Optional)
+The [OUTPUT FORMAT] section must be explicit.
 
-Follow prompts/common/02-universal-rules.md for all file-description rules.
+It must specify the required files when file contents are requested.
 
-Use [FILES] when the task involves multiple files or when you want to be explicit.
+It must specify ordering when multiple files are required.
 
-Example:
+It must specify whether commentary is allowed.
 
-[FILES]
-- scripts/build_site.sh (new)
-- site.in/template.html (existing)
-- site.out/index.html (generated)
+Commentary is not allowed unless explicitly requested.
 
----
+The default indentation is four spaces when the target format supports configurable
+indentation.
 
-## 6. DELTA Corrections
-
-Follow prompts/common/02-universal-rules.md for all DELTA-format rules.
-
-When correcting LLM output, use the DELTA protocol:
-
-DELTA:
-    Keep everything the same except:
-    - Replace the function aspect_facet_operation() with aspect_facet_new_operation().
-    - Add a new variable parser_state_mode in the initialization block.
-
-Rules:
-
-- DELTA corrections must be minimal.
-- DELTA corrections must not restate the entire task.
-- DELTA corrections must not request unrelated changes.
-- DELTA corrections must not request a full regeneration unless explicitly stated.
-
----
-
-## 7. Naming in Tasks
-
-Follow prompts/common/02-universal-rules.md for all naming rules.
-
-When referring to identifiers, filenames, or directories:
-
-- Use semantic-sort naming.
-- Use structured prefixes.
-- Use 4-space indentation when showing code.
-- Use directory names exactly as defined:
-    - dataflow.in/
-    - dataflow.out/
-    - logs/
-    - prompts/
-    - sources/
-    - scripts/
+It must specify whether filenames are included.
 
 Examples:
 
-Correct:
-    sources/auth/auth_handler.cpp
-
-Correct:
-    aspect_facet_subfacet
-
-Correct:
-    o1, o2, o3 for ordered transformations
-
-Incorrect:
-    authHandler.cpp
-    handler.cpp
-    data/in/
-    data/out/
-
----
-
-## 8. Prohibited Task Patterns
-
-Follow prompts/common/02-universal-rules.md for all prohibited behaviors.
-
-Do NOT:
-
-- Ask the LLM to “figure out the best format.”
-- Ask the LLM to “improvise.”
-- Ask the LLM to “decide what files are needed.”
-- Mix instructions with output.
-- Use vague language (“clean this up,” “make this better”).
-- Request changes without DELTA format.
-- Request output without specifying format.
-
-- Do not compress multiple sentences into one line.
-- Do not compress multiple statements into one line.
-- Do not omit braces in code examples.
-- These rules prevent failure modes common in small models.
-- These rules apply to all models.
-
----
-
-## 9. Examples of Complete Tasks
-
-### Example A — Creating a new script
-
-[TASK]
-Create a new script that builds the static site from site.in/ into site.out/.
+[OUTPUT FORMAT]
+Provide only the complete content of `scripts/build-site.sh`.
 
 [OUTPUT FORMAT]
-Provide only the file content of scripts/build_site.sh.
-
-[FILES]
-- scripts/build_site.sh (new)
-
----
-
-### Example B — Implementing a feature
-
-[TASK]
-Implement the feature defined in prompts/features/04-session-management.md.
+Produce these complete files in this order:
+1. `sources/auth/auth_handler.cpp`
+2. `sources/auth/auth_handler.h`
 
 [OUTPUT FORMAT]
-Produce the following files in order:
-1. sources/session/session_manager.cpp
-2. sources/session/session_manager.h
+Provide a semantic-sort plan followed by the complete requested file content.
 
-[CONTEXT]
-Follow semantic-sort naming and 4-space indentation.
+## 5. Writing the [CONTEXT] Section
 
----
+Use [CONTEXT] for existing file contents, requirements, constraints, notes, and data
+samples.
 
-### Example C — DELTA correction
+Label instructions explicitly as constraints.
+
+Identify copied file contents as data rather than instructions.
+
+Do not use [CONTEXT] to authorize file modifications.
+
+## 6. Writing the [FILES] Section
+
+Use [FILES] to identify files in the task scope.
+
+Mark each file as `new` or `existing`.
+
+State the authorized operation separately in [TASK].
+
+Do not assume that listing an existing file authorizes modification.
+
+## 7. DELTA Corrections
+
+Use the DELTA protocol for corrections:
 
 DELTA:
     Keep everything the same except:
-    - Rename variable session_state_mode to session_state_current_mode.
-    - Add a new function session_state_reset().
+    - Rename the named identifier.
+    - Add the named variable to the initialization block.
 
----
+A DELTA applies to the immediately preceding assistant output unless another artifact is
+identified.
+
+A DELTA changes only the named portions.
+
+A DELTA must not restate the entire task.
+
+A DELTA must not request unrelated changes.
+
+A DELTA must not request full regeneration unless explicitly stated.
+
+If the requested change cannot be isolated to the named portions, the LLM must ask a
+clarification question.
+
+## 8. Naming
+
+Use established semantic-sort naming for identifiers, filenames, and directories.
+
+Use four-space indentation when showing code and the target format supports it.
+
+Use the required directory names exactly:
+
+- `dataflow.in/`
+- `dataflow.out/`
+- `logs/`
+- `prompts/`
+- `sources/`
+- `scripts/`
+- `tests/`
+
+Do not invent identifiers, filenames, or directories.
+
+## 9. Prohibited Task Patterns
+
+Do not ask the LLM to figure out an unspecified format.
+
+Do not ask the LLM to improvise.
+
+Do not ask the LLM to decide what files are needed.
+
+Do not use vague language such as “clean this up” or “make this better.”
+
+Do not request modifications without identifying the file operation.
+
+Do not request output without specifying its format.
+
+Do not compress multiple sentences into one prose line.
+
+Do not compress independent statements into one code line.
+
+Do not omit required syntax from code examples.
 
 ## 10. Human Override
 
-The human may override any rule in this document.
+A human may explicitly override a rule in this document.
 
-Overrides must be explicit.
+An override applies only to the explicitly identified rule or task.
 
-When an override is given, the LLM must obey it strictly.
-
-## 11. Universal Failure-Prevention Rules
-
-Follow prompts/common/02-universal-rules.md for all universal failure-prevention rules.
+An override must not be interpreted as a general waiver of unrelated safety, scope, or
+output requirements.

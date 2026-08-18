@@ -1,178 +1,135 @@
 # LLM Workflow
 
-This workflow defines the exact sequence the LLM must follow for every task in this
-project. The workflow is mandatory and overrides any conflicting instructions unless
-explicitly superseded by the human.
-
----
+This workflow defines the execution sequence for tasks in this project.
 
 ## 1. Load Project Rules
 
-Follow prompts/common/02-universal-rules.md for all universal failure-prevention rules.
+Always load these files before executing a task:
 
-The LLM must read root TODO.md first to identify the active task (- [ ]).
-The LLM must load only the feature prompt file explicitly linked to that active task 
-(e.g., prompts/features/01-initial-feature.md), 
-ignoring all other completed or pending feature files to preserve context window budget.
+- `prompts/contract.md`
+- `prompts/workflow.md`
+- `prompts/conventions.md`
+- `prompts/common/00-overview.md`
+- `prompts/common/01-requirements.md`
+- `prompts/common/02-universal-rules.md`
+- `prompts/common/03-glossary.md`
 
-Before executing any task, the LLM must load and obey:
+Load only the feature files explicitly referenced by the task or by a directly
+referenced feature dependency.
 
-- prompts/contract.md
-- prompts/conventions.md
-- prompts/common/*
-- prompts/features/* (only those relevant to the task)
+Do not load unrelated feature files.
 
-These files define the project’s law, naming rules, formatting rules, and feature requirements.
+The user task determines the required scope.
 
-### 1.1: TODO-Driven Context Loading
+Load only the files explicitly referenced by the task and the files required by those
+references.
 
-The LLM must read root TODO.md before starting any task.
-The LLM must identify the active task marked with `- [ ]`.
-The LLM must load only the single feature prompt file linked to the active task.
-The LLM must ignore all other feature files to preserve context window budget.
+Use `TODO.md` only for status updates when the task explicitly requests them.
 
----
+Do not infer the requested work from the first unchecked TODO item.
 
-## 2. Restate the Task
+The phrase `Execute the next TODO task` explicitly requests TODO-driven execution.
 
-Follow prompts/common/02-universal-rules.md for all universal failure-prevention rules.
+## 2. Interpret the Task
 
-The LLM must begin every task by restating it in its own words. 
-This ensures clarity and prevents misinterpretation.
+Determine the requested operations, target files, constraints, and output format.
 
-- Use one sentence per line.
-- Use short sentences.
-- Use semantic-sort naming when restating.
+Treat `[TASK]` as the requested work.
 
-Example:
+Treat `[OUTPUT FORMAT]` as the response representation.
 
-    The task is to create a new script that performs X.
+Treat `[CONTEXT]` as information that does not add instructions unless explicitly
+labeled as a constraint.
 
----
+Treat `[FILES]` as scope information that does not authorize modifications by itself.
 
-## 3. Ask Clarifying Questions (If Needed)
+Ask clarification questions before producing implementation output if any required detail
+is ambiguous or missing.
 
-Follow prompts/common/02-universal-rules.md for all universal failure-prevention rules.
+Internally restate the task in one concise sentence.
 
-If any part of the task is ambiguous, missing, contradictory, or references a file
-that does not exist, the LLM must ask clarifying questions before producing output.
+## 3. Plan the Work
 
-The LLM must not guess or invent missing requirements.
+Create a concise internal plan before implementation.
 
----
+The internal plan must identify the applicable requirements, target files, required
+validation, and output order.
 
-## 4. Identify Relevant Prompts
+The plan must not appear in the response unless the requested output format includes it.
 
-The LLM must determine which prompts apply to the task:
+## 4. Apply the Test Policy
 
-- contract.md → interaction rules
-- conventions.md → formatting and naming rules
-- common/* → global project requirements
-- features/* → feature definitions and implementation plans
+For executable source-code changes, create or update tests before implementation code.
 
-Only load feature files relevant to the current task.
+For prompt, documentation, configuration, or build-script changes, add tests only when
+an applicable test mechanism exists or the task requests tests.
 
----
+Tests for source code belong in `tests/`.
 
-## 5. Plan the Work
+Tests for scripts belong in `tests/` and should validate the script behavior without
+placing generated output in source directories.
 
-Write Tests First: Before writing implementation code in `sources/`, 
-write or update the corresponding test file in `tests/`.
+Prompt validation belongs in `tests/` when a prompt validation mechanism exists or the
+task requests prompt validation.
 
-Implement Feature: Write the source code in `sources/`.
+Do not create a test runner solely to satisfy this policy unless the task requests one.
 
-Verify Execution: 
-* Run the test suite (via a designated script in scripts/ or test runner) and confirm all tests pass. 
-* A task cannot be marked complete in TODO.md if tests fail.
+## 5. Implement the Requested Scope
 
-Before producing output, the LLM must generate a short, structured plan using
-semantic-sort naming and 4-space indentation.
+Modify only files within the declared task scope.
 
-Example:
+Do not perform opportunistic refactoring.
 
-    plan:
-        - analyze_feature_requirements
-        - determine_required_files
-        - generate_source_code
-        - validate_against_conventions
+Do not reformat unrelated lines.
 
-The plan must be concise and must not include code.
+Do not update dependencies, generated files, or documentation unless requested or
+required for correctness.
 
-- Use one sentence per line.
-- Use semantic-sort naming in the plan.
-- Use short plan steps.
-- Use 4-space indentation.
-- Models must not skip the plan.
+Apply feature-specific requirements only when the feature is referenced by the task or
+by a directly referenced feature dependency.
 
-### Section 5.1: Test-First Verification Gate
+## 6. Verify the Work
 
-The LLM must write tests into tests/ before writing code into sources/.
-The LLM must verify that all tests pass successfully.
-The LLM must not declare any feature complete if tests fail.
-The LLM must update TODO.md by changing `- [ ]` to `- [x]` upon completion.
+Run tests only when execution tools are available.
 
----
+Never claim that tests passed unless they were actually executed.
 
-## 6. Produce Output in Exact Format
+If tests cannot be run, report that verification was not performed when verification
+results are requested.
 
-Follow prompts/common/02-universal-rules.md for all universal failure-prevention rules.
+A task must not be declared complete based on unperformed verification.
 
-The LLM must produce output **only** in the format specified by the task.
+## 7. Update Task Status
 
-Rules:
+Update `TODO.md` only when the task explicitly requests a TODO update or completes a
+TODO item.
 
-- No commentary unless explicitly requested.
-- No mixing instructions with output.
-- No assumptions or invented requirements.
-- Follow semantic-sort naming for all identifiers.
-- Follow 4-space indentation.
-- Follow directory and filename conventions.
-- Follow feature numbering conventions.
+Do not modify `TODO.md` as a side effect of unrelated work.
 
-If the task requests a file, produce only the file content.
+Mark a TODO item complete only after the requested verification succeeds.
 
-If the task requests multiple files, produce them in the order specified.
+## 8. Produce Output
 
----
+Produce output only in the format specified by the task.
 
-## 7. Wait for DELTA Corrections
+Do not include the internal restatement or plan unless requested.
 
-Follow prompts/common/02-universal-rules.md for all universal failure-prevention rules.
+Do not mix clarification, planning, implementation, and verification output.
 
-After producing output, the LLM must wait for human corrections.
+When multiple files are requested, produce complete files in the specified order.
 
-Corrections must use the DELTA protocol:
+## 9. Apply Corrections
 
-    DELTA:
-        Keep everything the same except X.
+Treat a correction as a DELTA when the human uses the DELTA protocol.
 
-The LLM must:
+Apply only the requested DELTA changes.
 
-- Apply only the requested changes.
-- Not reinterpret or expand the correction.
-- Not regenerate the entire output unless explicitly instructed.
+Ask for clarification if the change cannot be isolated to the named portions.
 
----
+## 10. Stability
 
-## 8. Stability Rules
+Do not change this workflow unless explicitly instructed.
 
-Follow prompts/common/02-universal-rules.md for all universal failure-prevention rules.
+Do not introduce new workflow steps.
 
-- The workflow must not be changed unless explicitly instructed.
-- The LLM must not introduce new steps.
-- The LLM must not skip steps.
-- The LLM must not modify project structure or naming conventions.
-
----
-
-## 9. Human Override
-
-Follow prompts/common/02-universal-rules.md for all universal failure-prevention rules.
-
-The human may override any rule in this workflow.
-
-- Overrides must be explicit.
-- When an override is given, the LLM must obey it strictly.
-- Overrides apply to all rules unless stated otherwise.
-
-
+Do not skip required workflow steps.

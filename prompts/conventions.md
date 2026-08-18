@@ -1,151 +1,147 @@
 # Conventions
 
-These conventions define the stable rules for formatting, naming, and structuring all
-project files. All LLM-generated output must follow these conventions exactly.
+These conventions define formatting, naming, and repository structure.
 
----
+## 1. Formatting
 
-## 1. Indentation
+Use the target language, tool, or file format's required syntax and formatter.
 
-- All files (prompts, scripts, and source code) must use **4-space indentation**.
-- Tabs must not be used.
-- Alignment must be explicit; no “clever” indentation styles.
+Use four spaces for indentation when the target format supports configurable indentation.
 
-## 1.1 Writing Style (Short Sentences)
+Do not use tabs when the target format supports spaces instead.
 
-Follow prompts/common/02-universal-rules.md for all writing-style stability rules.
+Language and framework conventions override generic formatting rules when required for
+correctness.
 
-- Use short, concise sentences.
-- Use one sentence per line.
-- This applies to all prompts, documentation, and generated text.
-- This improves readability and makes git diff cleaner.
-- Avoid long paragraphs.
-- Avoid multi-sentence lines.
+Use one sentence per line for prose and documentation when practical.
 
----
+Do not apply prose sentence-per-line rules to code blocks.
 
-## 2. Directory Naming (Semantic-Sort Directories)
+Do not combine independent statements on one physical line when the target language
+supports separating them.
 
-- Directory names must follow **semantic-sort naming**: shared prefixes that ensure
-  related directories sort together naturally.
-- Required directories:
-    - prompts/
-    - sources/
-    - scripts/
-    - tests/             (unit and integration tests for source code)
-    - dataflow.in/      (input data)
-    - dataflow.out/     (generated output, not version-controlled)
-    - logs/             (generated logs, not version-controlled)
-    - site.in/          (used for static website generation)
-    - site.out/         (generated website, not version-controlled)
-- Log filenames must begin with a sortable date-time prefix:
-  `YYYY-MM-DD-HH-MM-SS-description.log`
+Always follow the target language's brace and block syntax.
 
----
+## 2. Directory Naming
+
+Use stable, semantic-sort directory names.
+
+The required directories are:
+
+- `prompts/`
+- `sources/`
+- `scripts/`
+- `tests/`
+- `dataflow.in/`
+- `dataflow.out/`
+- `logs/`
+- `site.in/`
+- `site.out/`
+
+Use `tests/` for unit tests, integration tests, script tests, and prompt validation.
+
+Use `dataflow.in/` for input data.
+
+Use `dataflow.out/` for generated data output.
+
+Use `logs/` for generated logs.
+
+Use `site.in/` for static-site input.
+
+Use `site.out/` for generated static-site output.
+
+Generated output directories are not version-controlled except for placeholder files
+required to preserve the directory structure.
+
+Log filenames must begin with
+`YYYY-MM-DD-HH-MM-SS-description.log`.
 
 ## 3. Filename Structure
 
-- Filenames must follow semantic-sort naming.
-- Related files must share a structured prefix so they sort together.
-- Patterns:
-    - Features: `01-feature-name.md`
-    - Scripts: `build-thing.sh`, `sync-site.sh`
-    - Source modules: `aspect_facet_category.ext`
-- Avoid CamelCase in filenames.
-- Use hyphens or underscores for readability.
-- Never invent naming schemes; follow the patterns defined here.
+Use semantic-sort filenames.
 
----
+Related files must share a structured prefix.
 
-## 4. Identifier Naming (Semantic-Sort Naming)
+Feature files use `01-feature-name.md`.
 
-All identifiers must follow **semantic-sort naming**, meaning names are composed of
-ordered semantic components that ensure natural alphabetical sorting and grouping.
+Scripts use names such as `build-thing.sh` and `sync-site.sh`.
 
-### 4.1 Large-Scope Identifiers
+Source modules use names such as `aspect_facet_category.ext`.
 
-Use full semantic-sort names for anything beyond a few lines of scope:
+Avoid CamelCase in filenames unless required by an external convention.
 
-- Variables: `aspect_facet_subfacet`
-- Functions: `aspect_facet_operation()`
-- Classes/types: `aspect_facet_type`
-- Modules: `aspect_facet_category`
+Use hyphens or underscores for readability.
 
-These names encode structure, improve refactoring, and preserve code intelligence.
+Do not invent naming schemes.
 
-### 4.2 Small-Scope Identifiers (few lines)
+## 4. Identifier Naming
 
-Short identifiers are permitted only when the scope is extremely small and clarity is
-improved:
+Use semantic-sort identifiers composed of ordered semantic components.
 
-- `i` for index
-- `s` for string
-- `n` for count
-- `p` for pointer
-- `o` for object
+Use the order:
 
-When two related entities exist:
+`<domain>_<role>_<purpose>_<variant>`
 
-- `i1`, `i2` for source/destination indices
-- `o1`, `o2` for source/destination objects
+Order components from broad meaning to narrow meaning.
 
-### 4.3 Ordered Transformation Pipelines
+Use the established project vocabulary.
 
-When applying a series of ordered transformations (common in web applications):
+Use descriptive names for identifiers with broad scope.
 
-- Use ordered object names: `o1`, `o2`, `o3` … `o9`
-- This makes the transformation sequence explicit.
-- It also helps detect ordering errors:
-  - `o2.name_set(o4.name_get())` is clearly out of order.
+Short identifiers such as `i`, `s`, `n`, `p`, and `o` are permitted only in very small
+scopes.
 
-### 4.4 CamelCase Exceptions
+Use `o1`, `o2`, and `o3` for ordered transformations only when the target language and
+scope make the sequence clear.
 
-CamelCase may be used only when strong community standards require
-(e.g., Python class names, Java class names).
+Preserve external names that cannot be changed.
 
-## 4.5 Writing Style in Code
+Preserve names required by a language, framework, or public API.
 
-Follow prompts/common/02-universal-rules.md for all writing-style stability rules.
+Use the target language's conventional styles for constants, booleans, classes, and
+public APIs when those styles are required for correctness or interoperability.
 
-- Use short, clear statements.
-- Use one statement per line.
-- Use semantic-sort naming for identifiers.
-- Use braces for all control-flow blocks.
-- Avoid clever formatting.
-- Avoid dense code.
-- Prefer clarity over compactness.
+## 5. Documentation
 
----
+Document public APIs, non-obvious behavior, invariants, side effects, and externally
+visible formats.
 
-## 5. Code Formatting
+Do not add comments that merely restate the code.
 
-- Use 4-space indentation.
-- Use descriptive names for large-scope identifiers.
-- Include docstrings or comments for all functions.
-- Follow semantic-sort naming rules for all identifiers.
-- Do not include commentary or explanation inside code unless explicitly requested.
+Include comments or docstrings only when requested or when they explain non-obvious
+behavior.
 
-## 5.1 Code Line Structure
+## 6. Repository Hygiene
 
-Follow prompts/common/02-universal-rules.md for all writing-style stability rules.
+Maintain `.gitignore` rules for generated output and logs.
 
-- Use one statement per line.
-- Never combine multiple statements on one line.
-- Always surround blocks with { } even when the block contains a single statement.
-- This applies to: if, else, for, while, switch, and all similar constructs.
-- Use short lines for clarity.
-- Avoid long chained expressions on one line.
-- Prefer breaking long expressions into multiple semantic-sort components.
+Preserve required empty directories with placeholder files when the repository requires
+them.
 
----
+Generated files must be identified as generated.
 
-## 6. Output Rules
+Generated files must not be edited manually unless explicitly requested.
 
-- Follow the exact output format specified in the task.
-- Never mix instructions with output.
-- Never include assumptions or invented requirements.
-- Never modify existing files unless explicitly instructed.
+Generated output must be written only to the designated output directory.
 
-## 7. Universal Failure-Prevention Rules
+Source files, prompt files, and generated files must not be mixed.
 
-Follow prompts/common/02-universal-rules.md for all writing-style stability rules.
+## 7. File Operations
+
+Every task must explicitly identify each file operation as one of:
+
+- `create`
+- `modify`
+- `delete`
+- `rename`
+- `inspect`
+
+A file listed as existing is not automatically authorized for modification.
+
+## 8. Output
+
+Follow the exact output format specified by the task.
+
+Do not include assumptions or invented requirements.
+
+Do not modify unrelated files.

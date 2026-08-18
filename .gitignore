@@ -1,5 +1,11 @@
-dataflow.out/
-logs/
-out/
-site.out/
-.aider*
+# Generated data output
+/dataflow.out/*
+!/dataflow.out/.gitkeep
+
+# Generated logs
+/logs/*
+!/logs/.gitkeep
+
+# Generated static-site output
+/site.out/*
+!/site.out/.gitkeep
