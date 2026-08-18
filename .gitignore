@@ -1,11 +1,12 @@
-# Generated data output
-/dataflow.out/*
-!/dataflow.out/.gitkeep
 
-# Generated logs
-/logs/*
-!/logs/.gitkeep
+.aider.chat.history.md
+.aider.input.history
+.aider.tags.cache.*
+dataflow.out/*
+logs/*
+site.out/*
 
-# Generated static-site output
-/site.out/*
-!/site.out/.gitkeep
+!dataflow.out/.gitkeep
+!logs/.gitkeep
+!site.out/.gitkeep
+

@@ -2,8 +2,7 @@
 
 ## Pending Tasks
 
-- [ ] Implement the initial feature in `sources/`.
-- [ ] Write the first script in `scripts/`.
+(none yet)
 
 ## Recently Completed
 
