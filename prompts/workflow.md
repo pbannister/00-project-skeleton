@@ -43,6 +43,16 @@ labeled as a constraint.
 
 Treat `[FILES]` as scope information that does not authorize modifications by itself.
 
+For every file operation, resolve the exact path before implementation.
+
+For a `create` operation, verify that the target path is authorized by the task or by an
+applicable project rule.
+
+For a `modify`, `delete`, or `rename` operation, verify that the referenced path exists
+or report that it is missing.
+
+If an exact path cannot be resolved unambiguously, stop and ask for clarification.
+
 Ask clarification questions before producing implementation output if any required detail
 is ambiguous or missing.
 
@@ -87,6 +97,13 @@ required for correctness.
 
 Apply feature-specific requirements only when the feature is referenced by the task or
 by a directly referenced feature dependency.
+
+Do not create a file merely because its directory is available.
+
+Do not create a second file to replace or supplement an existing file unless the task
+explicitly requests both files.
+
+Preserve exact casing, separators, numbering, and extensions from the resolved path.
 
 ## 6. Verify the Work
 

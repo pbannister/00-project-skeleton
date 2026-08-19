@@ -46,6 +46,9 @@ The [TASK] section must not mix implementation instructions with output requirem
 The [TASK] section must state the operation for each file as `create`, `modify`, `delete`,
 `rename`, or `inspect`.
 
+For every file operation, specify the complete repository-relative path in backticks.
+Do not identify a file only by its purpose, role, or directory.
+
 Example:
 
 [TASK]
@@ -54,7 +57,7 @@ The script generates `site.out/` from `site.in/`.
 
 ## 4. Writing the [OUTPUT FORMAT] Section
 
-The [OUTPUT FORMAT] section must be explicit.
+[OUTPUT FORMAT] must be explicit.
 
 It must specify the required files when file contents are requested.
 

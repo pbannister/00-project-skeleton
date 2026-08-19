@@ -13,6 +13,21 @@ Do not reformat unrelated lines.
 Do not update dependencies, generated files, or documentation unless requested or
 required for correctness.
 
+## Filename Rules
+
+Never invent a filename when an exact filename is not specified or determinable.
+
+Before creating a file, check the task, applicable feature requirements, existing
+directory contents, and established naming conventions.
+
+Use one canonical filename for each project concept.
+
+Do not create duplicate files with alternate spellings, abbreviations, separators,
+capitalization, singular/plural forms, or suffixes.
+
+If the filename remains ambiguous after inspection, ask a clarification question and do
+not produce implementation output.
+
 ## Clarification Rules
 
 Ask when requirements are ambiguous.

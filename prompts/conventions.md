@@ -62,7 +62,14 @@ Use semantic-sort filenames.
 
 Related files must share a structured prefix.
 
-Feature files use `01-feature-name.md`.
+Feature files use the exact pattern
+`<feature-number>-<feature-name>.md`.
+
+Feature numbers must be unique and must match the number referenced by the task, TODO
+item, or feature dependency.
+
+The feature name must be the established feature name.
+Do not invent a new feature name when creating a feature file.
 
 Scripts use names such as `build-thing.sh` and `sync-site.sh`.
 
@@ -73,6 +80,33 @@ Avoid CamelCase in filenames unless required by an external convention.
 Use hyphens or underscores for readability.
 
 Do not invent naming schemes.
+
+## 3.1 Filename Authority
+
+Use an existing filename when the task identifies an existing file.
+
+Before creating a file, inspect the relevant directory and reuse an established filename
+pattern.
+
+A filename is valid only if it is:
+
+- Explicitly named by the task.
+- Already present in the repository.
+- Required by an established language, framework, or tool convention.
+- Required by a referenced feature specification.
+
+Do not invent filenames from an informal description.
+
+Do not create synonymous, abbreviated, pluralized, or alternative filenames for an
+existing concept.
+
+If more than one filename is plausible, ask for clarification before creating a file.
+
+If the required filename cannot be determined from the task, repository, conventions, or
+feature specification, ask for the filename instead of guessing.
+
+Do not rename an existing file to satisfy a naming preference unless the task explicitly
+requests a rename.
 
 ## 4. Identifier Naming
 
@@ -137,6 +171,11 @@ Every task must explicitly identify each file operation as one of:
 - `inspect`
 
 A file listed as existing is not automatically authorized for modification.
+
+For every `create`, `rename`, or `delete` operation, the task must identify the exact
+source and target filename.
+
+A directory name alone does not authorize creating a file with an invented name.
 
 ## 8. Output
 

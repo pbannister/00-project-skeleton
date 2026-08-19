@@ -17,3 +17,19 @@ Human contributors should begin by reading:
 All project features are defined in `prompts/features/` and implemented in `sources/`.
 
 The LLM must follow the workflow defined in `prompts/workflow.md` for every task.
+
+## Canonical Files
+
+The following filenames are canonical and must not be renamed or duplicated without an
+explicit task:
+
+- `README.md`
+- `TODO.md`
+- `prompts/contract.md`
+- `prompts/conventions.md`
+- `prompts/workflow.md`
+- `prompts/how-to-write-tasks.md`
+- `prompts/common/00-overview.md`
+- `prompts/common/01-requirements.md`
+- `prompts/common/02-universal-rules.md`
+- `prompts/common/03-glossary.md`
