@@ -7,185 +7,143 @@ This document defines how a human must write tasks for the LLM.
 Follow the applicable project rules for all task-writing requirements.
 
 Every task must contain these sections in order:
-
-[TASK]
+* [TASK]
 A clear description of the requested work.
-
-[OUTPUT FORMAT]
+* [OUTPUT FORMAT]
 A precise description of the response representation.
-
-(Optional) [CONTEXT]
+* (Optional) [CONTEXT]
 Additional information, requirements, notes, constraints, or file contents.
-
-(Optional) [FILES]
+* (Optional) [FILES]
 A list of files involved in the task.
 
 The phrase `Execute the next TODO task` explicitly requests TODO-driven execution.
 
 ## 1.1 Task and Feature Workflow
 
-Use a feature for a project capability or stable behavioral requirement.
+* Use a feature for a project capability or stable behavioral requirement.
+    * Feature files define requirements; task files define executable work.
 
-Use a task for one bounded unit of work against the repository.
-
-Long-form task definitions belong in `prompts/tasks/` and must follow this document.
-
-A task must reference applicable feature files explicitly.
-
-A task may create, modify, delete, rename, or inspect files only when those operations
-are stated in its `[TASK]` section.
-
-Feature files define requirements; task files define executable work.
+* Use a task for one bounded unit of work against the repository.
+    * Long-form task definitions belong in `prompts/tasks/` and must follow this document.
+    * A task must reference applicable feature files explicitly.
+    * A task may create, modify, delete, rename, or inspect files only when those operations are stated in its `[TASK]` section.
 
 ## 2. Section Meaning
 
-[TASK] defines the requested work.
-
-[OUTPUT FORMAT] defines the response representation.
-
-[CONTEXT] provides information and does not add instructions unless explicitly labeled
+* [TASK] defines the requested work.
+* [OUTPUT FORMAT] defines the response representation.
+* [CONTEXT] provides information and does not add instructions unless explicitly labeled
 as a constraint.
-
-[FILES] identifies scope and does not authorize modifications by itself.
+* [FILES] identifies scope and does not authorize modifications by itself.
 
 ## 3. Writing the [TASK] Section
 
-The [TASK] section must describe the goal clearly.
-
-The [TASK] section must use established semantic-sort names for files and identifiers.
-
-The [TASK] section must avoid ambiguity and unstated assumptions.
-
-The [TASK] section must not mix implementation instructions with output requirements.
-
-The [TASK] section must state the operation for each file as `create`, `modify`, `delete`,
+* The [TASK] section must: 
+    * describe the goal clearly.
+    * use established semantic-sort names for files and identifiers.
+    * avoid ambiguity and unstated assumptions.
+    * state the operation for each file as `create`, `modify`, `delete`,
 `rename`, or `inspect`.
+    * For every file operation, specify the complete repository-relative path in backticks.
+    * Do not identify a file only by its purpose, role, or directory.
 
-For every file operation, specify the complete repository-relative path in backticks.
-Do not identify a file only by its purpose, role, or directory.
+* The [TASK] section must not: 
+    * mix implementation instructions with output requirements.
 
-Example:
-
+Example: 
+```ini
 [TASK]
 Create `scripts/build-site.sh`.
 The script generates `site.out/` from `site.in/`.
+```
 
 ## 4. Writing the [OUTPUT FORMAT] Section
 
 [OUTPUT FORMAT] must be explicit.
-
-It must specify the required files when file contents are requested.
-
-It must specify ordering when multiple files are required.
-
-It must specify whether commentary is allowed.
-
-Commentary is not allowed unless explicitly requested.
-
-The default indentation is four spaces when the target format supports configurable
-indentation.
-
-It must specify whether filenames are included.
+* It must specify the required files when file contents are requested.
+* It must specify ordering when multiple files are required.
+* It must specify whether commentary is allowed.
+* Commentary is not allowed unless explicitly requested.
+* It must specify whether filenames are included.
 
 Examples:
-
+```ini
 [OUTPUT FORMAT]
 Provide only the complete content of `scripts/build-site.sh`.
-
+```
+```ini
 [OUTPUT FORMAT]
 Produce these complete files in this order:
 1. `sources/auth/auth_handler.cpp`
 2. `sources/auth/auth_handler.h`
-
+```
+```ini
 [OUTPUT FORMAT]
 Provide a semantic-sort plan followed by the complete requested file content.
+```
 
 ## 5. Writing the [CONTEXT] Section
 
 Use [CONTEXT] for existing file contents, requirements, constraints, notes, and data samples.
-
-Label instructions explicitly as constraints.
-
-Identify copied file contents as data rather than instructions.
-
-Do not use [CONTEXT] to authorize file modifications.
+* Label instructions explicitly as constraints.
+* Identify copied file contents as data rather than instructions.
+* Do not use [CONTEXT] to authorize file modifications.
 
 ## 6. Writing the [FILES] Section
 
 Use [FILES] to identify files in the task scope.
-
-Mark each file as `new` or `existing`.
-
-State the authorized operation separately in [TASK].
-
-Do not assume that listing an existing file authorizes modification.
+* Mark each file as `new` or `existing`.
+* State the authorized operation separately in [TASK].
+* Do not assume that listing an existing file authorizes modification.
 
 ## 7. DELTA Corrections
 
 Use the DELTA protocol for corrections:
-
+```yml
 DELTA:
     Keep everything the same except:
     - Rename the named identifier.
     - Add the named variable to the initialization block.
+```
 
-A DELTA applies to the immediately preceding assistant output unless another artifact is
-identified.
-
-A DELTA changes only the named portions.
-
-A DELTA must not restate the entire task.
-
-A DELTA must not request unrelated changes.
-
-A DELTA must not request full regeneration unless explicitly stated.
+* A DELTA applies to the immediately preceding assistant output unless another artifact is identified.
+* A DELTA changes only the named portions.
+* A DELTA must not restate the entire task.
+* A DELTA must not request unrelated changes.
+* A DELTA must not request full regeneration unless explicitly stated.
 
 If the requested change cannot be isolated to the named portions, the LLM must ask a
 clarification question.
 
 ## 8. Naming
 
-Use established semantic-sort naming for identifiers, filenames, and directories.
-
-Use four-space indentation when showing code and the target format supports it.
-
-Use the required directory names exactly:
-
-- `dataflow.in/`
-- `dataflow.out/`
-- `logs/`
-- `prompts/`
-- `sources/`
-- `scripts/`
-- `tests/`
-
-Do not invent identifiers, filenames, or directories.
+* Use established semantic-sort naming for identifiers, filenames, and directories.
+* Do not invent identifiers, filenames, or directories.
+* Use the required directory names exactly:
+    - `dataflow.in/`
+    - `dataflow.out/`
+    - `logs/`
+    - `prompts/`
+    - `sources/`
+    - `scripts/`
+    - `tests/`
 
 ## 9. Prohibited Task Patterns
 
-Do not ask the LLM to figure out an unspecified format.
-
-Do not ask the LLM to improvise.
-
-Do not ask the LLM to decide what files are needed.
-
-Do not use vague language such as “clean this up” or “make this better.”
-
-Do not request modifications without identifying the file operation.
-
-Do not request output without specifying its format.
-
-Do not compress multiple sentences into one prose line.
-
-Do not compress independent statements into one code line.
-
-Do not omit required syntax from code examples.
+* Do not ask the LLM to:
+    * figure out an unspecified format.
+    * improvise.
+    * decide what files are needed.
+* Do not use vague language such as “clean this up” or “make this better.”
+* Do not request modifications without identifying the file operation.
+* Do not request output without specifying its format.
+* Do not compress multiple sentences into one prose line.
+* Do not compress independent statements into one code line.
+* Do not omit required syntax from code examples.
 
 ## 10. Human Override
 
-A human may explicitly override a rule in this document.
+* A human may explicitly override a rule in this document.
+* An override applies only to the explicitly identified rule or task.
+* An override must not be interpreted as a general waiver of unrelated safety, scope, or output requirements.
 
-An override applies only to the explicitly identified rule or task.
-
-An override must not be interpreted as a general waiver of unrelated safety, scope, or
-output requirements.
