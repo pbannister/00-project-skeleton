@@ -118,18 +118,15 @@ Preserve exact casing, separators, numbering, and extensions from the resolved p
 
 ## 6. Verify the Work
 
-Run tests only when execution tools are available.
+When execution tools are available, run `make test` from the repository root.
 
-Never claim that tests passed unless they were actually executed.
+Never claim that tests passed unless `make test` was actually executed successfully.
 
-If tests cannot be run, report that verification was not performed when verification results are requested.
-
-A task must not be declared complete based on unperformed verification.
+If `make test` cannot be run, report that verification was not performed when verification results are requested.
 
 ## 7. Update Task Status
 
-Update `TODO.md` only when the task explicitly requests a TODO update or completes a
-TODO item.
+Update `TODO.md` only when the task explicitly requests a TODO update or completes a TODO item.
 
 Do not modify `TODO.md` as a side effect of unrelated work.
 
