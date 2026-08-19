@@ -53,5 +53,17 @@ A semantic-sort name uses stable components in this order:
 
 ## Log Filename Rules
 
-- Log filenames must begin with the sortable prefix `YYYY-MM-DD-HH-MM-SS-<description>.log`.
+- Log filenames must begin with the sortable prefix:
+    * `YYYY-MM-DD-HH-MM-SS-<description>.log`.
+
+## Script Filename Rules
+
+* When shell scripts have a likely order in which they might be invoked, use filenames of the form:
+    * `<number>-<name>.sh`
+
+## Ordered Prompt Filename rules
+
+* When prompt files have an order in which applied, use filenames of the form:
+    * `<number>-<name>.md`
+
 
