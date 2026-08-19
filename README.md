@@ -12,8 +12,8 @@ The LLM should begin by reading:
 These define the interaction rules, workflow, and formatting conventions.
 The LLM must follow the workflow defined in `prompts/workflow.md` for every task.
 
-Human contributors should begin by reading:
-- `prompts/how-to-write-tasks.md`
+Human contributors should begin by reading this file and:
+- `prompts/README.md`
 
 All project features are defined in `prompts/features/` and implemented in `sources/`.
 
@@ -28,10 +28,10 @@ All project features are defined in `prompts/features/` and implemented in `sour
 - `scripts/` contains project scripts.
 - `tests/` contains tests and validation code.
 - `dataflow.in/` contains input data.
-- `dataflow.out/` contains generated data output.
-- `logs/` contains generated logs.
+- `dataflow.out/` contains generated data output (not version-controlled).
+- `logs/` contains generated logs (not version-controlled).
 - `site.in/` contains static-site input.
-- `site.out/` contains generated static-site output.
+- `site.out/` contains generated static-site output (not version-controlled).
 - `Makefile` is a top-level file to drive build and test.
 
 ## Canonical Files

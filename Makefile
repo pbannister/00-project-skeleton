@@ -18,3 +18,17 @@ test	: ; @echo '==== No tests yet defined'
 deploy	: ; @echo '==== No deploy yet defined'
 install	: ; @echo '==== No install yet defined'
 
+# Create possibly empty directories.
+
+dataset.in 	: ; mkdir $@
+dataset.out	: ; mkdir $@
+logs		: ; mkdir $@
+site.in		: ; mkdir $@
+site.out	: ; mkdir $@
+
+build		: dataset.in
+build		: dateset.out
+build		: logs
+build		: site.in
+build		: site.out
+
