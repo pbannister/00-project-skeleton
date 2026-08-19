@@ -3,7 +3,7 @@
 ## Pending Tasks
 
 * [ ] include a map of the prompts in `prompts/README.md` if missing
-* [ ] include top-level map of project in `README.md` if missing
+* [x] include top-level map of project in `README.md` if missing
 
 * [ ] define the workflow for "tasks" versus "features".
     * [ ] should long form tasks be in `prompts/tasks/` and follow the `prompts/how-to-write-tasks.md` guidance?

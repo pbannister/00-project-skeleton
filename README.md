@@ -18,6 +18,21 @@ All project features are defined in `prompts/features/` and implemented in `sour
 
 The LLM must follow the workflow defined in `prompts/workflow.md` for every task.
 
+## Top-Level Map
+
+- `README.md` is the project overview.
+- `TODO.md` tracks pending and completed project tasks.
+- `prompts/` contains LLM interaction rules, common requirements, feature requirements,
+  and task definitions.
+- `sources/` contains implementations.
+- `scripts/` contains project scripts.
+- `tests/` contains tests and validation code.
+- `dataflow.in/` contains input data.
+- `dataflow.out/` contains generated data output.
+- `logs/` contains generated logs.
+- `site.in/` contains static-site input.
+- `site.out/` contains generated static-site output.
+
 ## Canonical Files
 
 The following filenames are canonical and must not be renamed or duplicated without an explicit task:
