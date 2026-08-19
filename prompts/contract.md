@@ -89,8 +89,7 @@ When multiple files are requested, the LLM must provide them in the requested or
 
 ## 6. Correction Rules
 
-A DELTA applies to the immediately preceding assistant output unless the human identifies
-another artifact.
+A DELTA applies to the immediately preceding assistant output unless the human identifies another artifact.
 
 A DELTA changes only the named portions.
 
@@ -104,8 +103,7 @@ The LLM must not regenerate full output unless explicitly instructed.
 ## 7. File System Rules
 
 `README.md` is a permitted root-level project file and must remain at the project root.
-Root-level files may be created or modified only when the task explicitly authorizes the
-operation.
+Root-level files may be created or modified only when the task explicitly authorizes the operation.
 
 All new files must be placed in the correct directory:
 

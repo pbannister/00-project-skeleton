@@ -94,6 +94,7 @@ A filename is valid only if it is:
 - Already present in the repository.
 - Required by an established language, framework, or tool convention.
 - Required by a referenced feature specification.
+- Does not contain spaces or non-ASCII characters.
 
 Do not invent filenames from an informal description.
 

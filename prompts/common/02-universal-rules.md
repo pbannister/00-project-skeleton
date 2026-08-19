@@ -28,6 +28,9 @@ capitalization, singular/plural forms, or suffixes.
 If the filename remains ambiguous after inspection, ask a clarification question and do
 not produce implementation output.
 
+Do not allow filenames that contain spaces or non-ASCII characters.
+
+
 ## Clarification Rules
 
 Ask when requirements are ambiguous.
