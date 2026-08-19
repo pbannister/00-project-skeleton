@@ -42,11 +42,10 @@ as a constraint.
 
 * The [TASK] section must: 
     * describe the goal clearly.
-    * use established semantic-sort names for files and identifiers.
     * avoid ambiguity and unstated assumptions.
     * state the operation for each file as `create`, `modify`, `delete`,
 `rename`, or `inspect`.
-    * For every file operation, specify the complete repository-relative path in backticks.
+    * For every file operation, specify the complete repository-relative path in `backticks`.
     * Do not identify a file only by its purpose, role, or directory.
 
 * The [TASK] section must not: 

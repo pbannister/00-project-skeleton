@@ -36,8 +36,7 @@ This rule does not apply to code blocks.
 
 ## One-statement-per-line
 
-Independent statements must not be combined on one physical line when the target
-language supports separating them.
+Independent statements must not be combined on one physical line when the target language supports separating them.
 
 The target language formatter and syntax rules take precedence.
 
@@ -55,10 +54,6 @@ dependency.
 ## Plan block
 
 A block listing ordered steps.
-
-A plan block uses semantic-sort naming where applicable.
-
-A plan block precedes implementation only when requested by the output format.
 
 ## Output block
 
@@ -78,18 +73,11 @@ A context block does not add instructions unless explicitly labeled as a constra
 
 ## Scope-based identifier length
 
-Short identifiers exist only in small scopes.
-
-Large-scope identifiers require descriptive semantic-sort naming.
-
-Scope determines identifier length.
+The amount of identifier detail appropriate to the identifier's scope.
 
 ## Ordered transformation pipeline
 
-An ordered transformation pipeline uses names such as `o1`, `o2`, and `o3` when the
-target language and scope make the sequence clear.
-
-The sequence encodes transformation order.
+A sequence of transformations applied in a defined order.
 
 ## Generated file
 

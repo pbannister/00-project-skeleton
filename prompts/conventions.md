@@ -51,9 +51,6 @@ Use `site.out/` for generated static-site output.
 Generated output directories are not version-controlled except for placeholder files
 required to preserve the directory structure.
 
-Log filenames must begin with
-`YYYY-MM-DD-HH-MM-SS-description.log`.
-
 ## 3. Filename Structure
 
 Feature numbers must be unique and must match the number referenced by the task, TODO
@@ -65,8 +62,6 @@ Do not invent a new feature name when creating a feature file.
 Scripts use names such as `build-thing.sh` and `sync-site.sh`.
 
 Source modules use names such as `aspect_facet_category.ext`.
-
-Avoid CamelCase in filenames unless required by an external convention.
 
 ## 3.1 Filename Authority
 
@@ -99,11 +94,6 @@ requests a rename.
 ## 4. Identifier Naming
 
 Apply the rules in `prompts/flavors/semantic-sort-naming.md`.
-
-Preserve external names that cannot be changed.
-
-Preserve names required by a language, framework, or public API when changing them would
-harm correctness or interoperability.
 
 ## 5. Documentation
 
