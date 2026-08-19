@@ -2,9 +2,9 @@
 
 ## Pending Tasks
 
-* [ ] define the workflow for "tasks" versus "features".
-    * [ ] should long form tasks be in `prompts/tasks/` and follow the `prompts/how-to-write-tasks.md` guidance?
-    * [ ] should there be guidance for how to write features in `prompts/how-to-write-features.md`?
+* [x] define the workflow for "tasks" versus "features".
+    * [x] should long form tasks be in `prompts/tasks/` and follow the `prompts/how-to-write-tasks.md` guidance?
+    * [x] should there be guidance for how to write features in `prompts/how-to-write-features.md`?
 
 ## Recently Completed
 

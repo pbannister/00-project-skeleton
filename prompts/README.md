@@ -5,6 +5,7 @@
 - `workflow.md` defines the execution sequence for tasks.
 - `conventions.md` defines formatting, naming, repository structure, and file operations.
 - `how-to-write-tasks.md` defines the format and rules for human-authored tasks.
+- `how-to-write-features.md` defines the format and rules for human-authored features.
 - `common/00-overview.md` describes the purpose of shared prompt files.
 - `common/01-requirements.md` defines requirements that apply globally.
 - `common/02-universal-rules.md` defines scope, clarification, safety, anti-hallucination,
@@ -28,6 +29,7 @@ The following filenames are canonical and must not be renamed or duplicated with
 - `conventions.md`
 - `workflow.md`
 - `how-to-write-tasks.md`
+- `how-to-write-features.md`
 - `common/00-overview.md`
 - `common/01-requirements.md`
 - `common/02-universal-rules.md`

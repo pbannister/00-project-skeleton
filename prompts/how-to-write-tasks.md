@@ -22,6 +22,21 @@ A list of files involved in the task.
 
 The phrase `Execute the next TODO task` explicitly requests TODO-driven execution.
 
+## 1.1 Task and Feature Workflow
+
+Use a feature for a project capability or stable behavioral requirement.
+
+Use a task for one bounded unit of work against the repository.
+
+Long-form task definitions belong in `prompts/tasks/` and must follow this document.
+
+A task must reference applicable feature files explicitly.
+
+A task may create, modify, delete, rename, or inspect files only when those operations
+are stated in its `[TASK]` section.
+
+Feature files define requirements; task files define executable work.
+
 ## 2. Section Meaning
 
 [TASK] defines the requested work.
@@ -87,8 +102,7 @@ Provide a semantic-sort plan followed by the complete requested file content.
 
 ## 5. Writing the [CONTEXT] Section
 
-Use [CONTEXT] for existing file contents, requirements, constraints, notes, and data
-samples.
+Use [CONTEXT] for existing file contents, requirements, constraints, notes, and data samples.
 
 Label instructions explicitly as constraints.
 

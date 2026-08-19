@@ -19,8 +19,6 @@ referenced feature dependency.
 
 Do not load unrelated feature files.
 
-The user task determines the required scope.
-
 Load only the files explicitly referenced by the task and the files required by those
 references.
 
@@ -57,6 +55,19 @@ Ask clarification questions before producing implementation output if any requir
 is ambiguous or missing.
 
 Internally restate the task in one concise sentence.
+
+## 2.1 Apply Feature and Task Scope
+
+Treat a referenced feature file as authoritative requirements for the current task.
+
+Do not apply unreferenced feature files.
+
+Treat a task file as a detailed task description and apply its `[TASK]`,
+`[OUTPUT FORMAT]`, `[CONTEXT]`, and `[FILES]` sections according to
+`prompts/how-to-write-tasks.md`.
+
+When a task conflicts with a referenced feature, ask for clarification unless the task
+explicitly overrides the feature requirement.
 
 ## 3. Plan the Work
 
@@ -111,8 +122,7 @@ Run tests only when execution tools are available.
 
 Never claim that tests passed unless they were actually executed.
 
-If tests cannot be run, report that verification was not performed when verification
-results are requested.
+If tests cannot be run, report that verification was not performed when verification results are requested.
 
 A task must not be declared complete based on unperformed verification.
 
