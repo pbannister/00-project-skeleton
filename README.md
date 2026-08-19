@@ -10,13 +10,13 @@ The LLM should begin by reading:
 3. `prompts/conventions.md`
 
 These define the interaction rules, workflow, and formatting conventions.
+The LLM must follow the workflow defined in `prompts/workflow.md` for every task.
 
 Human contributors should begin by reading:
 - `prompts/how-to-write-tasks.md`
 
 All project features are defined in `prompts/features/` and implemented in `sources/`.
 
-The LLM must follow the workflow defined in `prompts/workflow.md` for every task.
 
 ## Top-Level Map
 
@@ -32,6 +32,7 @@ The LLM must follow the workflow defined in `prompts/workflow.md` for every task
 - `logs/` contains generated logs.
 - `site.in/` contains static-site input.
 - `site.out/` contains generated static-site output.
+- `Makefile` is a top-level file to drive build and test.
 
 ## Canonical Files
 
@@ -39,3 +40,5 @@ The following filenames are canonical and must not be renamed or duplicated with
 
 - `README.md`
 - `TODO.md`
+- `Makefile`
+
