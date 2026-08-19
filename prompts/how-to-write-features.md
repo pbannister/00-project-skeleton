@@ -2,6 +2,8 @@
 
 This document defines how a human must write feature requirements for the LLM.
 
+Apply naming rules from `prompts/flavors/semantic-sort-naming.md`.
+
 ## 1. Feature Purpose
 
 * A feature defines a project capability, its behavior, and its requirements.
@@ -11,8 +13,6 @@ This document defines how a human must write feature requirements for the LLM.
 ## 2. Feature File Location and Naming
 
 * Feature requirements belong in `prompts/features/`.
-* Use the exact filename pattern:
-* `<feature-number>-<feature-name>.md`
 * Feature numbers must be unique.
 * Use the established feature name.
 * Do not invent a feature name when an existing project name applies.

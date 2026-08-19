@@ -24,8 +24,6 @@ Always follow the target language's brace and block syntax.
 
 ## 2. Directory Naming
 
-Use stable, semantic-sort directory names.
-
 The required directories are:
 
 - `prompts/`
@@ -58,13 +56,6 @@ Log filenames must begin with
 
 ## 3. Filename Structure
 
-Use semantic-sort filenames.
-
-Related files must share a structured prefix.
-
-Feature files use the exact pattern
-`<feature-number>-<feature-name>.md`.
-
 Feature numbers must be unique and must match the number referenced by the task, TODO
 item, or feature dependency.
 
@@ -76,10 +67,6 @@ Scripts use names such as `build-thing.sh` and `sync-site.sh`.
 Source modules use names such as `aspect_facet_category.ext`.
 
 Avoid CamelCase in filenames unless required by an external convention.
-
-Use hyphens or underscores for readability.
-
-Do not invent naming schemes.
 
 ## 3.1 Filename Authority
 
@@ -111,30 +98,12 @@ requests a rename.
 
 ## 4. Identifier Naming
 
-Use semantic-sort identifiers composed of ordered semantic components.
-
-Use the order:
-
-`<domain>_<role>_<purpose>_<variant>`
-
-Order components from broad meaning to narrow meaning.
-
-Use the established project vocabulary.
-
-Use descriptive names for identifiers with broad scope.
-
-Short identifiers such as `i`, `s`, `n`, `p`, and `o` are permitted only in very small
-scopes.
-
-Use `o1`, `o2`, and `o3` for ordered transformations only when the target language and
-scope make the sequence clear.
+Apply the rules in `prompts/flavors/semantic-sort-naming.md`.
 
 Preserve external names that cannot be changed.
 
-Preserve names required by a language, framework, or public API.
-
-Use the target language's conventional styles for constants, booleans, classes, and
-public APIs when those styles are required for correctness or interoperability.
+Preserve names required by a language, framework, or public API when changing them would
+harm correctness or interoperability.
 
 ## 5. Documentation
 

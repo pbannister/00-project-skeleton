@@ -26,13 +26,14 @@ An override applies only to the explicitly identified rule or task.
 The following files define the project rules:
 
 - `prompts/contract.md` defines authority, precedence, interaction phases, and safety.
-- `prompts/workflow.md` defines the execution sequence.
+- `prompts/workflow.md` defines the execution sequence for tasks.
 - `prompts/conventions.md` defines formatting, naming, and repository structure.
 - `prompts/common/00-overview.md` defines the common prompt directory.
 - `prompts/common/01-requirements.md` defines global project requirements.
 - `prompts/common/02-universal-rules.md` defines rules that apply across supported
   languages, tools, and file formats.
 - `prompts/common/03-glossary.md` defines project terminology.
+- `prompts/flavors/semantic-sort-naming.md` defines semantic-sort naming rules.
 - `prompts/features/*.md` defines feature-specific requirements.
 
 Only feature files explicitly referenced by the current task or by a directly referenced

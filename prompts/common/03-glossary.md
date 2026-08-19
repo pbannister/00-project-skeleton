@@ -2,39 +2,8 @@
 
 ## Semantic-sort naming
 
-A semantic-sort name uses stable components in this order:
-
-`<domain>_<role>_<purpose>_<variant>`
-
-Components are ordered from broad meaning to narrow meaning.
-
-Components are separated by underscores for identifiers.
-
-Missing components are omitted.
-
-Names must use the established vocabulary for the project.
-
-Acronyms use the established project spelling.
-
-If no project spelling exists, use uppercase only when the target language or external
-API convention requires it.
-
-Plural names describe collections or multiple values.
-
-Singular names describe one entity, value, or operation target.
-
-Boolean names use an established predicate prefix such as `is`, `has`, `can`, or `should`
-when the target language permits it.
-
-Constants use the target language's conventional constant style.
-
-Public API names follow the naming required by the target language, framework, or
-external API.
-
-External names that cannot be changed are preserved.
-
-Names required by a language or framework are preserved when changing them would harm
-correctness or interoperability.
+The complete semantic-sort naming rules are defined in
+`prompts/flavors/semantic-sort-naming.md`.
 
 ## DELTA protocol
 
@@ -118,7 +87,7 @@ Scope determines identifier length.
 ## Ordered transformation pipeline
 
 An ordered transformation pipeline uses names such as `o1`, `o2`, and `o3` when the
-target language and scope make those names clear.
+target language and scope make the sequence clear.
 
 The sequence encodes transformation order.
 

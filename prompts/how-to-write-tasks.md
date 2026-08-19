@@ -2,6 +2,8 @@
 
 This document defines how a human must write tasks for the LLM.
 
+Apply naming rules from `prompts/flavors/semantic-sort-naming.md`.
+
 ## 1. Task Structure
 
 Follow the applicable project rules for all task-writing requirements.
@@ -96,39 +98,7 @@ Use [FILES] to identify files in the task scope.
 * State the authorized operation separately in [TASK].
 * Do not assume that listing an existing file authorizes modification.
 
-## 7. DELTA Corrections
-
-Use the DELTA protocol for corrections:
-```yml
-DELTA:
-    Keep everything the same except:
-    - Rename the named identifier.
-    - Add the named variable to the initialization block.
-```
-
-* A DELTA applies to the immediately preceding assistant output unless another artifact is identified.
-* A DELTA changes only the named portions.
-* A DELTA must not restate the entire task.
-* A DELTA must not request unrelated changes.
-* A DELTA must not request full regeneration unless explicitly stated.
-
-If the requested change cannot be isolated to the named portions, the LLM must ask a
-clarification question.
-
-## 8. Naming
-
-* Use established semantic-sort naming for identifiers, filenames, and directories.
-* Do not invent identifiers, filenames, or directories.
-* Use the required directory names exactly:
-    - `dataflow.in/`
-    - `dataflow.out/`
-    - `logs/`
-    - `prompts/`
-    - `sources/`
-    - `scripts/`
-    - `tests/`
-
-## 9. Prohibited Task Patterns
+## 7. Prohibited Task Patterns
 
 * Do not ask the LLM to:
     * figure out an unspecified format.
@@ -141,9 +111,8 @@ clarification question.
 * Do not compress independent statements into one code line.
 * Do not omit required syntax from code examples.
 
-## 10. Human Override
+## 8. Human Override
 
 * A human may explicitly override a rule in this document.
 * An override applies only to the explicitly identified rule or task.
 * An override must not be interpreted as a general waiver of unrelated safety, scope, or output requirements.
-

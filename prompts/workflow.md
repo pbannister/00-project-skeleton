@@ -13,6 +13,7 @@ Always load these files before executing a task:
 - `prompts/common/01-requirements.md`
 - `prompts/common/02-universal-rules.md`
 - `prompts/common/03-glossary.md`
+- `prompts/flavors/semantic-sort-naming.md`
 
 Load only the feature files explicitly referenced by the task or by a directly
 referenced feature dependency.
@@ -82,8 +83,8 @@ The plan must not appear in the response unless the requested output format incl
 
 For executable source-code changes, create or update tests before implementation code.
 
-For prompt, documentation, configuration, or build-script changes, add tests only when
-an applicable test mechanism exists or the task requests tests.
+For prompt, documentation, configuration, or build-script changes, add tests only when an
+applicable test mechanism exists or the task requests tests.
 
 Tests for source code belong in `tests/`.
 

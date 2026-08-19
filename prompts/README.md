@@ -11,6 +11,7 @@
 - `common/02-universal-rules.md` defines scope, clarification, safety, anti-hallucination,
   and output rules.
 - `common/03-glossary.md` defines project terminology and protocol concepts.
+- `flavors/semantic-sort-naming.md` defines the canonical semantic-sort naming rules.
 - `features/` contains feature-specific requirements.
 - `tasks/` contains task-specific prompt definitions.
 
@@ -34,4 +35,5 @@ The following filenames are canonical and must not be renamed or duplicated with
 - `common/01-requirements.md`
 - `common/02-universal-rules.md`
 - `common/03-glossary.md`
+- `flavors/semantic-sort-naming.md`
 
