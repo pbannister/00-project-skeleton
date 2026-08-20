@@ -1,34 +1,28 @@
 #
-#	Makefile to provide guidance.
+#	Makefile for the project skeleton.
 #
-# 	For CMake driven builds, this will:
-#		* Invoke CMake to create the build directories
-#		* Invoke CMake to do the build
-#
-#	For npm driven builds, this will invoke npm.
+#	build: generate the static site in site.out/ from site.in/.
+#	clean: remove generated output.
+#	test:  run every test in tests/ in order; stop at the first failure.
+#	deploy, install: reserved; not yet defined.
 #
 
-build:	# default rule
+build:
+	sh scripts/build-site.sh
+
+clean:
+	rm -f dataflow.out/* site.out/* logs/*
+
+test:
+	@for test in tests/*.sh; do \
+		echo "=== $$test"; \
+		sh "$$test" || exit 1; \
+	done
+
+deploy:
+	@echo '==== No deploy yet defined'
+
+install:
+	@echo '==== No install yet defined'
 
 .PHONY: build clean test deploy install
-
-build	: ; @echo '==== No build yet defined'
-clean	: ; @echo '==== No clean yet defined'
-test	: ; @echo '==== No tests yet defined'
-deploy	: ; @echo '==== No deploy yet defined'
-install	: ; @echo '==== No install yet defined'
-
-# Create possibly empty directories.
-
-dataset.in 	: ; mkdir $@
-dataset.out	: ; mkdir $@
-logs		: ; mkdir $@
-site.in		: ; mkdir $@
-site.out	: ; mkdir $@
-
-build		: dataset.in
-build		: dateset.out
-build		: logs
-build		: site.in
-build		: site.out
-
