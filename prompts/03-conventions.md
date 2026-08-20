@@ -27,7 +27,7 @@ The required directories are:
 - `logs/`
 - `site.in/`
 - `site.out/`
-- `docs/`
+- `documents/`
 - `records/`
 
 - Use `tests/` for unit, integration, script, and prompt-validation tests.
@@ -36,7 +36,7 @@ The required directories are:
 - Use `logs/` for generated logs.
 - Use `site.in/` for static-site input.
 - Use `site.out/` for generated static-site output.
-- Use `docs/` for human-consumption documents.
+- Use `documents/` for human-consumption documents.
 - Use `records/` for version-controlled episode outcome records.
 - Generated output directories are not version-controlled.
 
@@ -45,6 +45,8 @@ The required directories are:
 - Feature numbers must be unique and must match the task, TODO item, or feature dependency.
 - Use the established feature name.
 - Do not invent a new feature name.
+- Use whole words in directory and filenames.
+- Do not use abbreviations in directory and filenames.
 - Scripts use semantic-sort names such as `site-build.sh` and `site-sync.sh`.
 - Script names order components from broad meaning to narrow meaning: `<domain>-<role>.sh`.
 - Source modules use names such as `aspect_facet_category.ext`.

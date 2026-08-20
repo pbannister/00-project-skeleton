@@ -17,7 +17,7 @@ The LLM must follow the workflow defined in `prompts/02-workflow.md` for every t
 Human contributors should begin by reading:
 
 - `prompts/README.md`
-- `docs/README.md`
+- `documents/README.md`
 
 Note there are rules meant only to constrain Aider behavior:
 
@@ -30,7 +30,7 @@ All project features are defined in `prompts/features/` and implemented in `sour
 - `README.md` is the project overview.
 - `TODO.md` tracks pending and completed project tasks.
 - `prompts/` contains LLM interaction rules, common requirements, feature requirements, task definitions, and episode work orders.
-- `docs/` contains human-consumption documents: the interaction pattern, worked examples, and tool notes.
+- `documents/` contains human-consumption documents: the interaction pattern, worked examples, and tool notes.
 - `records/` contains version-controlled episode outcome records.
 - `tools/` contains tool-specific rules.
 - `tools/aider-rules.md` is used only with Aider.

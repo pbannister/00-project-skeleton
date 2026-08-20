@@ -3,12 +3,12 @@
 ## Pending Tasks
 
 * [x] study `prompts/flavors/01-semantic-sort-naming.md` and remove similar naming rules from other prompts.
-* [x] capture the interaction-pattern conversation in `docs/00-pattern-of-interaction.md`.
-* [x] add the async-worktree worked example in `docs/01-async-worktree.md`.
-* [x] add the tool-universe survey in `docs/02-tool-universe.md`.
+* [x] capture the interaction-pattern conversation in `documents/00-pattern-of-interaction.md`.
+* [x] add the async-worktree worked example in `documents/01-async-worktree.md`.
+* [x] add the tool-universe survey in `documents/02-tool-universe.md`.
 * [x] add `prompts/how-to-write-episodes.md` and `prompts/episodes/01-episode-template.md`.
 * [x] establish the intent/record separation with `records/README.md`.
-* [x] register `docs/` and `records/` in the contract, conventions, README map, and skeleton test.
+* [x] register `documents/` and `records/` in the contract, conventions, README map, and skeleton test.
 
 ## Recently Completed
 

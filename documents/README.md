@@ -1,4 +1,4 @@
-# README for docs
+# README for documents
 
 Human-consumption documents live here.
 
