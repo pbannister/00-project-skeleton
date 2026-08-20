@@ -13,8 +13,10 @@ marks the load order):
 These define the interaction rules, workflow, and formatting conventions.
 The LLM must follow the workflow defined in `prompts/02-workflow.md` for every task.
 
-Human contributors should begin by reading this file and:
+Human contributors should begin by reading:
 - `prompts/README.md`
+
+Note there are rules meant only to constrain Aider behavior:
 - `tools/aider-rules.md` (Aider users only)
 
 All project features are defined in `prompts/features/` and implemented in `sources/`.
