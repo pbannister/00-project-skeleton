@@ -10,6 +10,7 @@
 * [x] establish the intent/record separation with `records/README.md`.
 * [x] register `documents/` and `records/` in the contract, conventions, README map, and skeleton test.
 * [x] extract the site-build HTML structure into `site.in/template.html`.
+* [x] use UPPERCASE names for constant shell variables in scripts and tests.
 
 ## Open Questions
 

@@ -4,10 +4,10 @@
 # Invoked by `npm test`, which the top-level Makefile calls via `make test`.
 set -eu
 
-script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-repo_root=$(CDPATH= cd -- "$script_dir/.." && pwd)
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+REPO_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 
-for test_file in "$repo_root"/tests/*.sh; do
+for test_file in "$REPO_ROOT"/tests/*.sh; do
     echo "=== $(basename "$test_file")"
     sh "$test_file" || {
         echo "tests-run: FAILED: $(basename "$test_file")" >&2
