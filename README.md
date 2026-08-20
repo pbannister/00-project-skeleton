@@ -4,32 +4,33 @@ This repository is structured for collaborative development with a Large Languag
 
 This file `README.md` is located at the root of the project structure.
 
-The LLM should begin by reading these files in this order (the numeric prefix
-marks the load order):
+The LLM should begin by reading these files in this order (the numeric prefix marks the load order):
+
 1. `prompts/01-contract.md`
 2. `prompts/02-workflow.md`
 3. `prompts/03-conventions.md`
 
 These define the interaction rules, workflow, and formatting conventions.
+
 The LLM must follow the workflow defined in `prompts/02-workflow.md` for every task.
 
 Human contributors should begin by reading:
+
 - `prompts/README.md`
 
 Note there are rules meant only to constrain Aider behavior:
+
 - `tools/aider-rules.md` (Aider users only)
 
 All project features are defined in `prompts/features/` and implemented in `sources/`.
-
 
 ## Top-Level Map
 
 - `README.md` is the project overview.
 - `TODO.md` tracks pending and completed project tasks.
-- `prompts/` contains LLM interaction rules, common requirements, feature requirements,
-  and task definitions.
-- `tools/` contains tool-specific rules; currently `tools/aider-rules.md`, used only
-  with Aider.
+- `prompts/` contains LLM interaction rules, common requirements, feature requirements, and task definitions.
+- `tools/` contains tool-specific rules.
+- `tools/aider-rules.md` is used only with Aider.
 - `sources/` contains implementations.
 - `scripts/` contains project scripts.
 - `tests/` contains tests and validation code.
@@ -38,8 +39,7 @@ All project features are defined in `prompts/features/` and implemented in `sour
 - `logs/` contains generated logs (not version-controlled).
 - `site.in/` contains static-site input.
 - `site.out/` contains generated static-site output (not version-controlled).
-- `Makefile` drives the build (`make build`), the tests (`make test`), and cleanup
-  (`make clean`).
+- `Makefile` drives the build (`make build`), the tests (`make test`), and cleanup (`make clean`).
 
 ## Worked Example
 
@@ -60,4 +60,3 @@ The following filenames are canonical and must not be renamed or duplicated with
 - `README.md`
 - `TODO.md`
 - `Makefile`
-

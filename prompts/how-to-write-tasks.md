@@ -9,6 +9,7 @@ Apply naming rules from `prompts/flavors/01-semantic-sort-naming.md`.
 Follow the applicable project rules for all task-writing requirements.
 
 Every task must contain these sections in order:
+
 * [TASK]
 A clear description of the requested work.
 * [OUTPUT FORMAT]
@@ -23,7 +24,8 @@ The phrase `Execute the next TODO task` explicitly requests TODO-driven executio
 ## 1.1 Task and Feature Workflow
 
 * Use a feature for a project capability or stable behavioral requirement.
-    * Feature files define requirements; task files define executable work.
+    * Feature files define requirements.
+    * Task files define executable work.
 
 * Use a task for one bounded unit of work against the repository.
     * Long-form task definitions belong in `prompts/tasks/` and must follow this document.
@@ -34,24 +36,22 @@ The phrase `Execute the next TODO task` explicitly requests TODO-driven executio
 
 * [TASK] defines the requested work.
 * [OUTPUT FORMAT] defines the response representation.
-* [CONTEXT] provides information and does not add instructions unless explicitly labeled
-as a constraint.
+* [CONTEXT] provides information and does not add instructions unless explicitly labeled as a constraint.
 * [FILES] identifies scope and does not authorize modifications by itself.
 
 ## 3. Writing the [TASK] Section
 
-* The [TASK] section must: 
+* The [TASK] section must:
     * describe the goal clearly.
     * avoid ambiguity and unstated assumptions.
-    * state the operation for each file as `create`, `modify`, `delete`,
-`rename`, or `inspect`.
+    * state the operation for each file as `create`, `modify`, `delete`, `rename`, or `inspect`.
     * For every file operation, specify the complete repository-relative path in `backticks`.
     * Do not identify a file only by its purpose, role, or directory.
 
-* The [TASK] section must not: 
+* The [TASK] section must not:
     * mix implementation instructions with output requirements.
 
-Example: 
+Example:
 ```ini
 [TASK]
 Create `scripts/site-build.sh`.
@@ -61,6 +61,7 @@ The script generates `site.out/` from `site.in/`.
 ## 4. Writing the [OUTPUT FORMAT] Section
 
 [OUTPUT FORMAT] must be explicit.
+
 * It must specify the required files when file contents are requested.
 * It must specify ordering when multiple files are required.
 * It must specify whether commentary is allowed.
@@ -86,6 +87,7 @@ Provide a semantic-sort plan followed by the complete requested file content.
 ## 5. Writing the [CONTEXT] Section
 
 Use [CONTEXT] for existing file contents, requirements, constraints, notes, and data samples.
+
 * Label instructions explicitly as constraints.
 * Identify copied file contents as data rather than instructions.
 * Do not use [CONTEXT] to authorize file modifications.
@@ -93,6 +95,7 @@ Use [CONTEXT] for existing file contents, requirements, constraints, notes, and 
 ## 6. Writing the [FILES] Section
 
 Use [FILES] to identify files in the task scope.
+
 * Mark each file as `new` or `existing`.
 * State the authorized operation separately in [TASK].
 * Do not assume that listing an existing file authorizes modification.

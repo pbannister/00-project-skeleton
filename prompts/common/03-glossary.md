@@ -2,35 +2,29 @@
 
 ## Semantic-sort naming
 
-The complete semantic-sort naming rules are defined in
-`prompts/flavors/01-semantic-sort-naming.md`.
+The complete semantic-sort naming rules are defined in `prompts/flavors/01-semantic-sort-naming.md`.
 
 ## DELTA protocol
 
 DELTA applies minimal corrections.
 
-A DELTA applies to the immediately preceding assistant output unless another artifact is
-identified.
+A DELTA applies to the immediately preceding assistant output unless another artifact is identified.
 
 A DELTA changes only the named portions.
 
 A DELTA does not regenerate full output unless explicitly requested.
 
-If a DELTA cannot be applied without changing additional portions, clarification is
-required.
+If a DELTA cannot be applied without changing additional portions, clarification is required.
 
 ## Universal failure-prevention rules
 
-Universal failure-prevention rules apply across supported languages, tools, and file
-formats.
+Universal failure-prevention rules apply across supported languages, tools, and file formats.
 
-These rules define scope, clarification, anti-hallucination, safety, and output
-behavior.
+These rules define scope, clarification, anti-hallucination, safety, and output behavior.
 
 ## One-sentence-per-line
 
-Each prose sentence occupies one line when the applicable document convention requires
-it.
+Each prose sentence occupies one line when the applicable document convention requires it.
 
 This rule does not apply to code blocks.
 
@@ -48,8 +42,7 @@ A feature file defines a project capability.
 
 A feature file describes requirements and behavior.
 
-A feature file applies only when referenced by the task or a directly referenced feature
-dependency.
+A feature file applies only when referenced by the task or a directly referenced feature dependency.
 
 ## Plan block
 
@@ -81,8 +74,7 @@ A sequence of transformations applied in a defined order.
 
 ## Generated file
 
-A generated file is produced by a script, build tool, generator, or other automated
-process.
+A generated file is produced by a script, build tool, generator, or other automated process.
 
 Generated files must be identified as generated.
 
@@ -92,5 +84,4 @@ Generated output must be written only to the designated output directory.
 
 ## Stability rules
 
-Stability rules define project behavior that should not change without explicit
-instruction.
+Stability rules define project behavior that should not change without explicit instruction.

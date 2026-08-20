@@ -15,13 +15,11 @@ Always load these files in this order before executing a task:
 - `prompts/common/03-glossary.md`
 - `prompts/flavors/01-semantic-sort-naming.md`
 
-Load only the feature files explicitly referenced by the task or by a directly
-referenced feature dependency.
+Load only the feature files explicitly referenced by the task or by a directly referenced feature dependency.
 
 Do not load unrelated feature files.
 
-Load only the files explicitly referenced by the task and the files required by those
-references.
+Load only the files explicitly referenced by the task and the files required by those references.
 
 Use `TODO.md` only for status updates when the task explicitly requests them.
 
@@ -37,23 +35,19 @@ Treat `[TASK]` as the requested work.
 
 Treat `[OUTPUT FORMAT]` as the response representation.
 
-Treat `[CONTEXT]` as information that does not add instructions unless explicitly
-labeled as a constraint.
+Treat `[CONTEXT]` as information that does not add instructions unless explicitly labeled as a constraint.
 
 Treat `[FILES]` as scope information that does not authorize modifications by itself.
 
 For every file operation, resolve the exact path before implementation.
 
-For a `create` operation, verify that the target path is authorized by the task or by an
-applicable project rule.
+For a `create` operation, verify that the target path is authorized by the task or by an applicable project rule.
 
-For a `modify`, `delete`, or `rename` operation, verify that the referenced path exists
-or report that it is missing.
+For a `modify`, `delete`, or `rename` operation, verify that the referenced path exists or report that it is missing.
 
 If an exact path cannot be resolved unambiguously, stop and ask for clarification.
 
-Ask clarification questions before producing implementation output if any required detail
-is ambiguous or missing.
+Ask clarification questions before producing implementation output if any required detail is ambiguous or missing.
 
 Internally restate the task in one concise sentence.
 
@@ -63,19 +57,15 @@ Treat a referenced feature file as authoritative requirements for the current ta
 
 Do not apply unreferenced feature files.
 
-Treat a task file as a detailed task description and apply its `[TASK]`,
-`[OUTPUT FORMAT]`, `[CONTEXT]`, and `[FILES]` sections according to
-`prompts/how-to-write-tasks.md`.
+Treat a task file as a detailed task description and apply its `[TASK]`, `[OUTPUT FORMAT]`, `[CONTEXT]`, and `[FILES]` sections according to `prompts/how-to-write-tasks.md`.
 
-When a task conflicts with a referenced feature, ask for clarification unless the task
-explicitly overrides the feature requirement.
+When a task conflicts with a referenced feature, ask for clarification unless the task explicitly overrides the feature requirement.
 
 ## 3. Plan the Work
 
 Create a concise internal plan before implementation.
 
-The internal plan must identify the applicable requirements, target files, required
-validation, and output order.
+The internal plan must identify the applicable requirements, target files, required validation, and output order.
 
 The plan must not appear in the response unless the requested output format includes it.
 
@@ -83,16 +73,13 @@ The plan must not appear in the response unless the requested output format incl
 
 For executable source-code changes, create or update tests before implementation code.
 
-For prompt, documentation, configuration, or build-script changes, add tests only when an
-applicable test mechanism exists or the task requests tests.
+For prompt, documentation, configuration, or build-script changes, add tests only when an applicable test mechanism exists or the task requests tests.
 
 Tests for source code belong in `tests/`.
 
-Tests for scripts belong in `tests/` and should validate the script behavior without
-placing generated output in source directories.
+Tests for scripts belong in `tests/` and should validate the script behavior without placing generated output in source directories.
 
-Prompt validation belongs in `tests/` when a prompt validation mechanism exists or the
-task requests prompt validation.
+Prompt validation belongs in `tests/` when a prompt validation mechanism exists or the task requests prompt validation.
 
 Do not create a test runner solely to satisfy this policy unless the task requests one.
 
@@ -104,16 +91,13 @@ Do not perform opportunistic refactoring.
 
 Do not reformat unrelated lines.
 
-Do not update dependencies, generated files, or documentation unless requested or
-required for correctness.
+Do not update dependencies, generated files, or documentation unless requested or required for correctness.
 
-Apply feature-specific requirements only when the feature is referenced by the task or
-by a directly referenced feature dependency.
+Apply feature-specific requirements only when the feature is referenced by the task or by a directly referenced feature dependency.
 
 Do not create a file merely because its directory is available.
 
-Do not create a second file to replace or supplement an existing file unless the task
-explicitly requests both files.
+Do not create a second file to replace or supplement an existing file unless the task explicitly requests both files.
 
 Preserve exact casing, separators, numbering, and extensions from the resolved path.
 
@@ -125,11 +109,9 @@ Never claim that tests passed unless `make test` was actually executed successfu
 
 If `make test` cannot be run, report that verification was not performed when verification results are requested.
 
-If `make test` fails, correct the failure within task scope and run `make test`
-again.
+If `make test` fails, correct the failure within task scope and run `make test` again.
 
-If the failure cannot be corrected within task scope, stop, report the failure,
-and do not claim completion.
+If the failure cannot be corrected within task scope, stop, report the failure, and do not claim completion.
 
 ## 7. Update Task Status
 
@@ -141,11 +123,9 @@ Mark a TODO item complete only after the requested verification succeeds.
 
 ## 7.1 Commit Completed Work
 
-When the task changed files and verification succeeds, commit the completed
-work with git.
+When the task changed files and verification succeeds, commit the completed work with git.
 
-Create one commit containing only the task's files and any TODO update made for
-the task.
+Create one commit containing only the task's files and any TODO update made for the task.
 
 Use the commit-message conventions in `prompts/03-conventions.md`.
 
