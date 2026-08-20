@@ -52,6 +52,8 @@ Only feature files explicitly referenced by the current task or by a directly re
 
 Unreferenced feature files do not apply automatically.
 
+Tool-specific rule files under `tools/` apply only when the corresponding tool is used.
+
 ## 3. Task Execution Rules
 
 Every task must follow `prompts/02-workflow.md`.
