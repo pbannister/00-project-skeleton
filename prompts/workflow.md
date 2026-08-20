@@ -125,6 +125,12 @@ Never claim that tests passed unless `make test` was actually executed successfu
 
 If `make test` cannot be run, report that verification was not performed when verification results are requested.
 
+If `make test` fails, correct the failure within task scope and run `make test`
+again.
+
+If the failure cannot be corrected within task scope, stop, report the failure,
+and do not claim completion.
+
 ## 7. Update Task Status
 
 Update `TODO.md` only when the task explicitly requests a TODO update or completes a TODO item.
@@ -132,6 +138,30 @@ Update `TODO.md` only when the task explicitly requests a TODO update or complet
 Do not modify `TODO.md` as a side effect of unrelated work.
 
 Mark a TODO item complete only after the requested verification succeeds.
+
+## 7.1 Commit Completed Work
+
+When the task changed files and verification succeeds, commit the completed
+work with git.
+
+Create one commit containing only the task's files and any TODO update made for
+the task.
+
+Use the commit-message conventions in `prompts/conventions.md`.
+
+Do not commit generated output, logs, or unrelated files.
+
+Skip this step when the task changed no files.
+
+## 7.2 Definition of Done
+
+A task is complete only when every applicable item is satisfied:
+
+- The requested scope is implemented with no out-of-scope changes.
+- `make test` executed successfully.
+- `TODO.md` is updated when the task requires a status update.
+- Completed work is committed when the task changed files.
+- Output is produced in the requested format.
 
 ## 8. Produce Output
 

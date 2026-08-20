@@ -45,6 +45,9 @@ Unreferenced feature files do not apply automatically.
 
 Every task must follow `prompts/workflow.md`.
 
+A task is complete only when the Definition of Done in `prompts/workflow.md` is
+satisfied.
+
 The user task determines the required scope.
 
 The LLM must not infer the requested work from `TODO.md`.

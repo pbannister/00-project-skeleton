@@ -6,6 +6,9 @@
 
 ## Recently Completed
 
+* [x] repair skeleton inconsistencies: `logs/`, `.gitkeep` files, `make test` wiring.
+* [x] add worked example: Build Site feature, task, script, input, and tests.
+* [x] harden the workflow: Definition of Done, git commit step, verification-failure loop.
 * [x] define the workflow for "tasks" versus "features".
     * [x] should long form tasks be in `prompts/tasks/` and follow the `prompts/how-to-write-tasks.md` guidance?
     * [x] should there be guidance for how to write features in `prompts/how-to-write-features.md`?

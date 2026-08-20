@@ -120,6 +120,14 @@ Generated output must be written only to the designated output directory.
 
 Source files, prompt files, and generated files must not be mixed.
 
+Commit messages use one line in imperative mood with a conventional prefix
+(`feat:`, `fix:`, `docs:`, `test:`, `chore:`, `refactor:`) followed by a short
+summary.
+
+A commit contains only the files of one completed task.
+
+Generated output and logs are never committed.
+
 ## 7. File Operations
 
 Every task must explicitly identify each file operation as one of:

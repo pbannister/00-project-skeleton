@@ -32,7 +32,20 @@ All project features are defined in `prompts/features/` and implemented in `sour
 - `logs/` contains generated logs (not version-controlled).
 - `site.in/` contains static-site input.
 - `site.out/` contains generated static-site output (not version-controlled).
-- `Makefile` is a top-level file to drive build and test.
+- `Makefile` drives the build (`make build`), the tests (`make test`), and cleanup
+  (`make clean`).
+
+## Worked Example
+
+The repository includes one worked example that exercises the whole workflow:
+
+- Feature: `prompts/features/01-build-site.md`
+- Task: `prompts/tasks/01-implement-build-site.md`
+- Script: `scripts/build-site.sh` generates `site.out/` from `site.in/`.
+- Tests: `tests/00-skeleton.sh` and `tests/01-build-site.sh`
+- Input: `site.in/hello.txt`
+
+Run `make build` to generate the site and `make test` to run the tests.
 
 ## Canonical Files
 
