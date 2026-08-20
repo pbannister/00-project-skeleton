@@ -1,0 +1,2 @@
+Hello from the project skeleton example.
+This file is input data for the Build Site example feature.
