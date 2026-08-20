@@ -43,7 +43,6 @@ venv/
 *.gz
 
 # Ignore Aider internal files
-.aider.conf.json
 .aiderignore
 
 # Ignore anything outside the project skeleton
