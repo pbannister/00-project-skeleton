@@ -41,7 +41,7 @@ The repository includes one worked example that exercises the whole workflow:
 
 - Feature: `prompts/features/01-build-site.md`
 - Task: `prompts/tasks/01-implement-build-site.md`
-- Script: `scripts/build-site.sh` generates `site.out/` from `site.in/`.
+- Script: `scripts/site-build.sh` generates `site.out/` from `site.in/`.
 - Tests: `tests/00-skeleton.sh` and `tests/01-build-site.sh`
 - Input: `site.in/hello.txt`
 

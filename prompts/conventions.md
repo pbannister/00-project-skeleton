@@ -59,7 +59,11 @@ item, or feature dependency.
 The feature name must be the established feature name.
 Do not invent a new feature name when creating a feature file.
 
-Scripts use names such as `build-thing.sh` and `sync-site.sh`.
+Scripts use semantic-sort names such as `site-build.sh` and `site-sync.sh`.
+A script name orders components from broad meaning to narrow meaning:
+`<domain>-<role>.sh`.
+For example, the script that builds the site is `site-build.sh`, not
+`build-site.sh`.
 
 Source modules use names such as `aspect_facet_category.ext`.
 

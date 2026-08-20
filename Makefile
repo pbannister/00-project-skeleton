@@ -3,14 +3,14 @@
 #
 #	This Makefile is the human-facing driver.
 #	Each rule calls the appropriate tool instead of reimplementing work:
-#		build:  sh scripts/build-site.sh
+#		build:  sh scripts/site-build.sh
 #		clean:  rm generated output
 #		test:   npm test
 #		deploy, install: reserved; not yet defined.
 #
 
 build:
-	sh scripts/build-site.sh
+	sh scripts/site-build.sh
 
 clean:
 	rm -f dataflow.out/* site.out/* logs/*

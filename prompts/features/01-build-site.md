@@ -10,7 +10,7 @@ The Build Site feature provides the script that converts `site.in/` into
 
 ## Requirements
 
-- `scripts/build-site.sh` must generate the static site in `site.out/` from the
+- `scripts/site-build.sh` must generate the static site in `site.out/` from the
   input in `site.in/`.
 - Each `site.in/*.txt` input file must produce `site.out/<name>.html`.
 - Generated output must be identified as generated.

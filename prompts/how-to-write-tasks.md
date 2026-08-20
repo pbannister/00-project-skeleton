@@ -54,7 +54,7 @@ as a constraint.
 Example: 
 ```ini
 [TASK]
-Create `scripts/build-site.sh`.
+Create `scripts/site-build.sh`.
 The script generates `site.out/` from `site.in/`.
 ```
 
@@ -70,7 +70,7 @@ The script generates `site.out/` from `site.in/`.
 Examples:
 ```ini
 [OUTPUT FORMAT]
-Provide only the complete content of `scripts/build-site.sh`.
+Provide only the complete content of `scripts/site-build.sh`.
 ```
 ```ini
 [OUTPUT FORMAT]

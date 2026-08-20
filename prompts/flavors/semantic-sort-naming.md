@@ -60,6 +60,12 @@ A semantic-sort name uses stable components in this order:
 
 * When shell scripts have a likely order in which they might be invoked, use filenames of the form:
     * `<number>-<name>.sh`
+* Script names use semantic-sort component order, from broad meaning to narrow meaning:
+    * `<domain>-<role>.sh`
+* Ordered script names combine both patterns:
+    * `<number>-<domain>-<role>.sh`
+* For example, the script that builds the site is `site-build.sh`, not `build-site.sh`.
+* For example, the script that syncs the site is `site-sync.sh`, not `sync-site.sh`.
 
 ## Ordered Prompt Filename rules
 
