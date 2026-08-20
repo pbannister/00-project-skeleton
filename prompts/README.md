@@ -12,8 +12,6 @@
   and output rules.
 - `common/03-glossary.md` defines project terminology and protocol concepts.
 - `flavors/01-semantic-sort-naming.md` defines the canonical semantic-sort naming rules.
-- `tools/aider-rules.md` defines Aider-only rules that regulate Aider behavior.
-  These rules apply only when the model is used via Aider.
 - `features/` contains feature-specific requirements.
 - `tasks/` contains task-specific prompt definitions.
 
@@ -22,9 +20,6 @@
 Always load the authoritative project-rule files listed in `02-workflow.md`.
 
 The numeric prefixes in the filenames mark the load order defined there.
-
-`tools/aider-rules.md` is loaded only by Aider and is not part of the general
-load set.
 
 Load only feature or task files explicitly referenced by the current task or by a
 directly referenced dependency.
@@ -43,5 +38,4 @@ The following filenames are canonical and must not be renamed or duplicated with
 - `common/02-universal-rules.md`
 - `common/03-glossary.md`
 - `flavors/01-semantic-sort-naming.md`
-- `tools/aider-rules.md`
 

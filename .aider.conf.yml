@@ -11,4 +11,4 @@ read:
   - prompts/common/02-universal-rules.md
   - prompts/common/03-glossary.md
   - prompts/flavors/01-semantic-sort-naming.md
-  - prompts/tools/aider-rules.md
+  - tools/aider-rules.md
