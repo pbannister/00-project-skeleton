@@ -1,3 +1,3 @@
 # Feature Index
 
-- `01-build-site.md` — Build Site: generates `site.out/` from `site.in/`.
+- `01-site-build.md` — Site Build: generates `site.out/` from `site.in/`.

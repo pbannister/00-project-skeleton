@@ -1,11 +1,11 @@
-# Feature: Build Site
+# Feature: Site Build
 
 ## Purpose
 
 The project contains a static-site input directory (`site.in/`) and a generated
 static-site output directory (`site.out/`).
 
-The Build Site feature provides the script that converts `site.in/` into
+The Site Build feature provides the script that converts `site.in/` into
 `site.out/`.
 
 ## Requirements

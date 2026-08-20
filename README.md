@@ -39,10 +39,10 @@ All project features are defined in `prompts/features/` and implemented in `sour
 
 The repository includes one worked example that exercises the whole workflow:
 
-- Feature: `prompts/features/01-build-site.md`
-- Task: `prompts/tasks/01-implement-build-site.md`
+- Feature: `prompts/features/01-site-build.md`
+- Task: `prompts/tasks/01-site-build-implement.md`
 - Script: `scripts/site-build.sh` generates `site.out/` from `site.in/`.
-- Tests: `tests/00-skeleton.sh` and `tests/01-build-site.sh`
+- Tests: `tests/00-skeleton.sh` and `tests/01-site-build.sh`
 - Input: `site.in/hello.txt`
 
 Run `make build` to generate the site and `make test` to run the tests.

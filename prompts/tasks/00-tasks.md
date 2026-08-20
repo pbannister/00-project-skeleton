@@ -1,3 +1,3 @@
 # Task Index
 
-- `01-implement-build-site.md` — Implement the Build Site feature.
+- `01-site-build-implement.md` — Implement the Site Build feature.

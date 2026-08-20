@@ -2,7 +2,7 @@
 #
 # site-build.sh: generate the static site in site.out/ from site.in/.
 #
-# Feature: prompts/features/01-build-site.md
+# Feature: prompts/features/01-site-build.md
 #
 # Usage: site-build.sh [INPUT_DIR] [OUTPUT_DIR]
 #
