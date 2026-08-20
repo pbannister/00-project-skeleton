@@ -117,6 +117,8 @@ All new files must be placed in the correct directory:
 - `logs/` for generated logs.
 - `site.in/` for static-site input.
 - `site.out/` for generated static-site output.
+- `docs/` for human-consumption documents.
+- `records/` for episode outcome records.
 
 Log filenames must begin with the sortable prefix `YYYY-MM-DD-HH-MM-SS-<description>.log`.
 

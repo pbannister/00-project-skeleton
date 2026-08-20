@@ -27,6 +27,8 @@ The required directories are:
 - `logs/`
 - `site.in/`
 - `site.out/`
+- `docs/`
+- `records/`
 
 - Use `tests/` for unit, integration, script, and prompt-validation tests.
 - Use `dataflow.in/` for input data.
@@ -34,6 +36,8 @@ The required directories are:
 - Use `logs/` for generated logs.
 - Use `site.in/` for static-site input.
 - Use `site.out/` for generated static-site output.
+- Use `docs/` for human-consumption documents.
+- Use `records/` for version-controlled episode outcome records.
 - Generated output directories are not version-controlled.
 
 ## 3. Filename Structure

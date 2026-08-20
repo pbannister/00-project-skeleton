@@ -5,6 +5,7 @@
 - `03-conventions.md` defines formatting, naming, repository structure, and file operations.
 - `how-to-write-tasks.md` defines the format and rules for human-authored tasks.
 - `how-to-write-features.md` defines the format and rules for human-authored features.
+- `how-to-write-episodes.md` defines the format and rules for human-authored episodes.
 - `common/00-overview.md` describes the purpose of shared prompt files.
 - `common/01-requirements.md` defines requirements that apply globally.
 - `common/02-universal-rules.md` defines scope, clarification, safety, anti-hallucination, and output rules.
@@ -13,6 +14,7 @@
 - `flavors/02-cpp-conventions.md` applies naming and compilation rules when project targets C++.
 - `features/` contains feature-specific requirements.
 - `tasks/` contains task-specific prompt definitions.
+- `episodes/` contains episode work orders.
 
 ## Loading Rules
 
@@ -31,6 +33,7 @@ The following filenames are canonical and must not be renamed or duplicated with
 - `03-conventions.md`
 - `how-to-write-tasks.md`
 - `how-to-write-features.md`
+- `how-to-write-episodes.md`
 - `common/00-overview.md`
 - `common/01-requirements.md`
 - `common/02-universal-rules.md`
