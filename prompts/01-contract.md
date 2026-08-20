@@ -30,7 +30,7 @@ Instruction precedence, from highest to lowest, is:
 7. Conventions.
 8. Examples and descriptive documentation.
 
-A higher-priority instruction overrides a lower-priority instruction only when the instructions conflict.
+A higher-priority instruction overrides a lower-priority one only when they conflict.
 
 An override applies only to the explicitly identified rule or task.
 
@@ -48,7 +48,7 @@ The following files define the project rules:
 - `prompts/flavors/01-semantic-sort-naming.md` defines semantic-sort naming rules.
 - `prompts/features/*.md` defines feature-specific requirements.
 
-Only feature files explicitly referenced by the current task or by a directly referenced feature dependency apply to that task.
+Only feature files explicitly referenced by the task or a directly referenced feature dependency apply.
 
 Unreferenced feature files do not apply automatically.
 
@@ -104,7 +104,7 @@ Required for response:
 
 `README.md` is a permitted root-level project file and must remain at the project root.
 
-Root-level files may be created or modified only when the task explicitly authorizes the operation.
+Root-level files may change only when the task explicitly authorizes the operation.
 
 All new files must be placed in the correct directory:
 
