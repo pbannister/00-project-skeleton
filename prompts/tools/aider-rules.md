@@ -1,8 +1,9 @@
 # Aider Integration Rules
 
 These rules apply only when the model is used via Aider.
-These rules constrain Aider’s editing behavior.
+These rules constrain Aider's editing behavior.
 These rules do not apply to other tools or direct model use.
+This file is loaded by Aider at launch through `.aider.conf.yml`.
 
 ## Authority
 
@@ -65,6 +66,19 @@ Aider must not invent plan steps.
 Aider must not skip plan steps.
 Aider must not merge plan steps.
 Aider must not reorder plan steps.
+
+## Verification
+
+Aider must run `make test` before reporting completion.
+Aider must not claim tests passed unless `make test` succeeded.
+Aider must report when verification could not be performed.
+
+## Commit Safety
+
+Aider must not auto-commit partial or unverified work.
+Aider must commit completed work only after verification succeeds.
+Aider must create one commit per completed task.
+Aider must not commit generated output, logs, or unrelated files.
 
 ## Version Control and Error Recovery
 
