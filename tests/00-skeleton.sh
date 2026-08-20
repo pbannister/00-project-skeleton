@@ -2,7 +2,7 @@
 #
 # Skeleton sanity test.
 # Verifies that every required repository directory and canonical root file
-# exists, as defined in prompts/conventions.md and README.md.
+# exists, as defined in prompts/03-conventions.md and README.md.
 set -eu
 
 repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)

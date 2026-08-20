@@ -6,9 +6,9 @@ These rules do not apply to other tools or direct model use.
 
 ## Authority
 
-Aider must follow prompts/contract.md.
-Aider must follow prompts/workflow.md.
-Aider must follow prompts/conventions.md.
+Aider must follow prompts/01-contract.md.
+Aider must follow prompts/02-workflow.md.
+Aider must follow prompts/03-conventions.md.
 Aider must follow prompts/common/02-universal-rules.md.
 
 ## File Boundary Enforcement
@@ -60,7 +60,7 @@ Aider must not infer naming patterns.
 
 ## Plan Mode Safety
 
-Aider must follow prompts/workflow.md when generating plans.
+Aider must follow prompts/02-workflow.md when generating plans.
 Aider must not invent plan steps.
 Aider must not skip plan steps.
 Aider must not merge plan steps.

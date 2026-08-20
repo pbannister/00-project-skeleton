@@ -25,15 +25,15 @@ An override applies only to the explicitly identified rule or task.
 
 The following files define the project rules:
 
-- `prompts/contract.md` defines authority, precedence, interaction phases, and safety.
-- `prompts/workflow.md` defines the execution sequence for tasks.
-- `prompts/conventions.md` defines formatting, naming, and repository structure.
+- `prompts/01-contract.md` defines authority, precedence, interaction phases, and safety.
+- `prompts/02-workflow.md` defines the execution sequence for tasks.
+- `prompts/03-conventions.md` defines formatting, naming, and repository structure.
 - `prompts/common/00-overview.md` defines the common prompt directory.
 - `prompts/common/01-requirements.md` defines global project requirements.
 - `prompts/common/02-universal-rules.md` defines rules that apply across supported
   languages, tools, and file formats.
 - `prompts/common/03-glossary.md` defines project terminology.
-- `prompts/flavors/semantic-sort-naming.md` defines semantic-sort naming rules.
+- `prompts/flavors/01-semantic-sort-naming.md` defines semantic-sort naming rules.
 - `prompts/features/*.md` defines feature-specific requirements.
 
 Only feature files explicitly referenced by the current task or by a directly referenced
@@ -43,9 +43,9 @@ Unreferenced feature files do not apply automatically.
 
 ## 3. Task Execution Rules
 
-Every task must follow `prompts/workflow.md`.
+Every task must follow `prompts/02-workflow.md`.
 
-A task is complete only when the Definition of Done in `prompts/workflow.md` is
+A task is complete only when the Definition of Done in `prompts/02-workflow.md` is
 satisfied.
 
 The user task determines the required scope.
@@ -128,7 +128,7 @@ The project structure includes the permitted root-level file `README.md` and the
 directories listed above.
 
 Generated directories and files must follow the generated-file rules in
-`prompts/conventions.md`.
+`prompts/03-conventions.md`.
 
 ## 8. Safety Rules
 

@@ -4,13 +4,14 @@ This repository is structured for collaborative development with a Large Languag
 
 This file `README.md` is located at the root of the project structure.
 
-The LLM should begin by reading:
-1. `prompts/contract.md`
-2. `prompts/workflow.md`
-3. `prompts/conventions.md`
+The LLM should begin by reading these files in this order (the numeric prefix
+marks the load order):
+1. `prompts/01-contract.md`
+2. `prompts/02-workflow.md`
+3. `prompts/03-conventions.md`
 
 These define the interaction rules, workflow, and formatting conventions.
-The LLM must follow the workflow defined in `prompts/workflow.md` for every task.
+The LLM must follow the workflow defined in `prompts/02-workflow.md` for every task.
 
 Human contributors should begin by reading this file and:
 - `prompts/README.md`

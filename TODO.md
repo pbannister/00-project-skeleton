@@ -2,7 +2,7 @@
 
 ## Pending Tasks
 
-* [x] study `prompts/flavors/semantic-sort-naming.md` and remove similar naming rules from other prompts.
+* [x] study `prompts/flavors/01-semantic-sort-naming.md` and remove similar naming rules from other prompts.
 
 ## Recently Completed
 

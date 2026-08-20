@@ -97,7 +97,7 @@ requests a rename.
 
 ## 4. Identifier Naming
 
-Apply the rules in `prompts/flavors/semantic-sort-naming.md`.
+Apply the rules in `prompts/flavors/01-semantic-sort-naming.md`.
 
 ## 5. Documentation
 

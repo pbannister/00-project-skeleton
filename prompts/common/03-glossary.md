@@ -3,7 +3,7 @@
 ## Semantic-sort naming
 
 The complete semantic-sort naming rules are defined in
-`prompts/flavors/semantic-sort-naming.md`.
+`prompts/flavors/01-semantic-sort-naming.md`.
 
 ## DELTA protocol
 

@@ -4,16 +4,16 @@ This workflow defines the execution sequence for tasks in this project.
 
 ## 1. Load Project Rules
 
-Always load these files before executing a task:
+Always load these files in this order before executing a task:
 
-- `prompts/contract.md`
-- `prompts/workflow.md`
-- `prompts/conventions.md`
+- `prompts/01-contract.md`
+- `prompts/02-workflow.md`
+- `prompts/03-conventions.md`
 - `prompts/common/00-overview.md`
 - `prompts/common/01-requirements.md`
 - `prompts/common/02-universal-rules.md`
 - `prompts/common/03-glossary.md`
-- `prompts/flavors/semantic-sort-naming.md`
+- `prompts/flavors/01-semantic-sort-naming.md`
 
 Load only the feature files explicitly referenced by the task or by a directly
 referenced feature dependency.
@@ -147,7 +147,7 @@ work with git.
 Create one commit containing only the task's files and any TODO update made for
 the task.
 
-Use the commit-message conventions in `prompts/conventions.md`.
+Use the commit-message conventions in `prompts/03-conventions.md`.
 
 Do not commit generated output, logs, or unrelated files.
 

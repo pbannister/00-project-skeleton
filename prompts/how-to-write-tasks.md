@@ -2,7 +2,7 @@
 
 This document defines how a human must write tasks for the LLM.
 
-Apply naming rules from `prompts/flavors/semantic-sort-naming.md`.
+Apply naming rules from `prompts/flavors/01-semantic-sort-naming.md`.
 
 ## 1. Task Structure
 

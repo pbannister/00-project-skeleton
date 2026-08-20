@@ -12,7 +12,7 @@ Report the created files and the result of `make test`.
 
 [CONTEXT]
 Feature requirements: `prompts/features/01-site-build.md`.
-Conventions: `prompts/conventions.md`.
+Conventions: `prompts/03-conventions.md`.
 This task is the worked example for the project skeleton.
 
 [FILES]
