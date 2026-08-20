@@ -5,9 +5,9 @@
 # exists, as defined in prompts/03-conventions.md and README.md.
 set -eu
 
-REPO_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+REPOSITORY_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 
-REQUIRED_DIRS='
+DIRECTORIES_REQUIRED='
 prompts
 sources
 scripts
@@ -21,17 +21,17 @@ documents
 records
 '
 
-REQUIRED_FILES='README.md TODO.md Makefile'
+FILES_REQUIRED='README.md TODO.md Makefile'
 
-for dir in $REQUIRED_DIRS; do
-    if [ ! -d "$REPO_ROOT/$dir" ]; then
+for dir in $DIRECTORIES_REQUIRED; do
+    if [ ! -d "$REPOSITORY_ROOT/$dir" ]; then
         echo "00-skeleton: missing required directory: $dir" >&2
         exit 1
     fi
 done
 
-for file in $REQUIRED_FILES; do
-    if [ ! -f "$REPO_ROOT/$file" ]; then
+for file in $FILES_REQUIRED; do
+    if [ ! -f "$REPOSITORY_ROOT/$file" ]; then
         echo "00-skeleton: missing required root file: $file" >&2
         exit 1
     fi
