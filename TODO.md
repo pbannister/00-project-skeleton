@@ -10,6 +10,15 @@
 * [x] establish the intent/record separation with `records/README.md`.
 * [x] register `documents/` and `records/` in the contract, conventions, README map, and skeleton test.
 
+## Open Questions
+
+* [ ] play with Jupyter and decide where it fits in the work pattern.
+* [ ] decide whether the skeleton should adopt a static-site generator such as 11ty.
+* [ ] decide the fate of the DELTA correction protocol.
+* [ ] work through the async-worktree example in `documents/01-async-worktree.md`.
+* [ ] improve the human-oriented documents in `documents/`.
+* [ ] read the tool-universe sources in `documents/02-tool-universe.md`.
+
 ## Recently Completed
 
 * [x] repair skeleton inconsistencies: `logs/`, `.gitkeep` files, `make test` wiring.
