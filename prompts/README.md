@@ -10,6 +10,8 @@
 - `common/02-universal-rules.md` defines scope, clarification, safety, anti-hallucination, and output rules.
 - `common/03-glossary.md` defines project terminology and protocol concepts.
 - `flavors/01-semantic-sort-naming.md` defines the canonical semantic-sort naming rules.
+- `flavors/02-cpp-conventions.md` defines C++ naming and compilation rules.
+  It applies only when the project targets C++.
 - `features/` contains feature-specific requirements.
 - `tasks/` contains task-specific prompt definitions.
 
@@ -35,3 +37,4 @@ The following filenames are canonical and must not be renamed or duplicated with
 - `common/02-universal-rules.md`
 - `common/03-glossary.md`
 - `flavors/01-semantic-sort-naming.md`
+- `flavors/02-cpp-conventions.md`

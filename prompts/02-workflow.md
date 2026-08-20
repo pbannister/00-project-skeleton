@@ -19,6 +19,8 @@ Load only the feature files explicitly referenced by the task or by a directly r
 
 Do not load unrelated feature files.
 
+Load a language-specific flavor file only when the task targets that language.
+
 Load only the files explicitly referenced by the task and the files required by those references.
 
 Use `TODO.md` only for status updates when the task explicitly requests them.
