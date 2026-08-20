@@ -1,10 +1,12 @@
 #
 #	Makefile for the project skeleton.
 #
-#	build: generate the static site in site.out/ from site.in/.
-#	clean: remove generated output.
-#	test:  run every test in tests/ in order; stop at the first failure.
-#	deploy, install: reserved; not yet defined.
+#	This Makefile is the human-facing driver.
+#	Each rule calls the appropriate tool instead of reimplementing work:
+#		build:  sh scripts/build-site.sh
+#		clean:  rm generated output
+#		test:   npm test
+#		deploy, install: reserved; not yet defined.
 #
 
 build:
@@ -14,10 +16,7 @@ clean:
 	rm -f dataflow.out/* site.out/* logs/*
 
 test:
-	@for test in tests/*.sh; do \
-		echo "=== $$test"; \
-		sh "$$test" || exit 1; \
-	done
+	npm test
 
 deploy:
 	@echo '==== No deploy yet defined'
