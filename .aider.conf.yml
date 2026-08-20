@@ -1,0 +1,9 @@
+# Aider configuration specific to this project.
+#
+# Inject your rule/prompt instruction files as read-only context on launch
+read:
+  - prompts/contract.md
+  - prompts/conventions.md
+  - prompts/workflow.md
+  - prompts/common/02-universal-rules.md
+  - tools/aider/aider-rules.md
