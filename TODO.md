@@ -9,6 +9,7 @@
 * [x] add `prompts/how-to-write-episodes.md` and `prompts/episodes/01-episode-template.md`.
 * [x] establish the intent/record separation with `records/README.md`.
 * [x] register `documents/` and `records/` in the contract, conventions, README map, and skeleton test.
+* [x] extract the site-build HTML structure into `site.in/template.html`.
 
 ## Open Questions
 

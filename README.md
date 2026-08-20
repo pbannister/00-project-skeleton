@@ -53,6 +53,7 @@ The repository includes one worked example that exercises the whole workflow:
 - Script: `scripts/site-build.sh` generates `site.out/` from `site.in/`.
 - Tests: `tests/00-skeleton.sh` and `tests/01-site-build.sh`
 - Input: `site.in/hello.txt`
+- Template: `site.in/template.html` provides the HTML page structure.
 
 Run `make build` to generate the site and `make test` to run the tests.
 

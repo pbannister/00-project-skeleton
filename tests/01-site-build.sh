@@ -9,11 +9,17 @@ script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 repo_root=$(CDPATH= cd -- "$script_dir/.." && pwd)
 build_script="$repo_root/scripts/site-build.sh"
 
+if grep -q '<html>' "$build_script"; then
+    echo '01-site-build: build script embeds HTML structure' >&2
+    exit 1
+fi
+
 tmp_dir=$(mktemp -d)
 trap 'rm -rf "$tmp_dir"' EXIT HUP INT TERM
 
 mkdir -p "$tmp_dir/in"
 printf '%s\n' 'Hello from the site-build test.' > "$tmp_dir/in/hello.txt"
+cp "$repo_root/site.in/template.html" "$tmp_dir/in/template.html"
 
 sh "$build_script" "$tmp_dir/in" "$tmp_dir/out" >/dev/null
 
