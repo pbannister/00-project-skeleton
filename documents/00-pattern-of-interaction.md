@@ -189,3 +189,13 @@ Notebooks have hidden state, non-linear execution, and noisy diffs.
 Use notebooks for exploration.
 
 Keep work items as version-controlled text.
+
+## Open Question: the DELTA Protocol
+
+The DELTA correction protocol was suggested in a prior LLM conversation.
+
+It is defined in `prompts/01-contract.md` and `prompts/common/02-universal-rules.md`.
+
+Its merit is not yet established.
+
+Whether to keep, change, or remove it is open.

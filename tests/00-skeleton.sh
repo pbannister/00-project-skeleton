@@ -7,7 +7,19 @@ set -eu
 
 repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 
-required_dirs='prompts sources scripts tests dataflow.in dataflow.out logs site.in site.out documents records'
+required_dirs='
+prompts
+sources
+scripts
+tests
+dataflow.in
+dataflow.out
+logs
+site.in
+site.out
+documents
+records
+'
 required_files='README.md TODO.md Makefile'
 
 for dir in $required_dirs; do
