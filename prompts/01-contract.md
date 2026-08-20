@@ -3,6 +3,21 @@
 This contract defines the authority, safety, interaction, and output rules for tasks in
 this project.
 
+## Contents
+
+This contract has ten sections:
+
+1. Instruction Precedence — how conflicting instructions are ordered.
+2. Authoritative Project Rules — which files define the project rules.
+3. Task Execution Rules — how the LLM must execute tasks.
+4. Response Phases — which output phase applies to each task state.
+5. Output Rules — how output must be formatted.
+6. Correction Rules — how DELTA corrections are applied.
+7. File System Rules — where files may be created and modified.
+8. Safety Rules — how untrusted content is handled.
+9. Consistency Rules — how terminology and rules stay consistent.
+10. Human Override — how the human may override a project rule.
+
 ## 1. Instruction Precedence
 
 Instruction precedence, from highest to lowest, is:
