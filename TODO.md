@@ -12,6 +12,7 @@
 * [x] extract the site-build HTML structure into `site.in/template.html`.
 * [x] use UPPERCASE names for constant shell variables in scripts and tests.
 * [x] apply semantic-sort naming to shell constant variables.
+* [x] apply type-prefix naming to shell variable names.
 
 ## Open Questions
 

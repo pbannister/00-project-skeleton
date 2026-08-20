@@ -7,10 +7,10 @@ set -eu
 DIRECTORY_SCRIPT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 REPOSITORY_ROOT=$(CDPATH= cd -- "$DIRECTORY_SCRIPT/.." && pwd)
 
-for test_file in "$REPOSITORY_ROOT"/tests/*.sh; do
-    echo "=== $(basename "$test_file")"
-    sh "$test_file" || {
-        echo "tests-run: FAILED: $(basename "$test_file")" >&2
+for file_test in "$REPOSITORY_ROOT"/tests/*.sh; do
+    echo "=== $(basename "$file_test")"
+    sh "$file_test" || {
+        echo "tests-run: FAILED: $(basename "$file_test")" >&2
         exit 1
     }
 done
