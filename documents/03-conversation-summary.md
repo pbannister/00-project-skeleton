@@ -70,6 +70,10 @@ A hand-rolled transformer owns escaping, code fences, and Mermaid blocks.
 
 Mermaid can render client-side in the browser, keeping the host rsync-only.
 
+The client-side Mermaid rendering choice is accepted.
+
+A Markdown-to-HTML transformation still needs a parser, which is a build-time dependency.
+
 Near-literal output serves developer readers.
 
 Non-developer readers want styling and navigation, which is SSG territory.

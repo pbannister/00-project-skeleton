@@ -13,7 +13,7 @@
 ## Open Questions
 
 * [ ] play with Jupyter and decide where it fits in the work pattern.
-* [ ] decide the site-build approach: literal text-to-HTML, Markdown-to-HTML, or a static-site generator such as 11ty.
+* [ ] decide the site-build approach: literal text-to-HTML, Markdown-to-HTML, or a static-site generator such as 11ty. (Mermaid rendering: client-side JavaScript, accepted)
 * [ ] decide the fate of the DELTA correction protocol.
 * [ ] work through the async-worktree example in `documents/01-async-worktree.md`.
 * [ ] improve the human-oriented documents in `documents/`.
