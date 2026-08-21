@@ -1,18 +1,14 @@
 # README for records
 
-The record of each episode lives here.
-
-A record is the outcome: what was done, what was decided, and where the work lives.
-
-A record is version-controlled.
-
-A record is written after the episode settles and the human reviews.
+- The record of each episode lives here.
+- A record is the outcome: what was done, what was decided, and where the work lives.
+- A record is version-controlled.
+- A record is written after the episode settles and the human reviews.
 
 ## Record File
 
-One file per episode.
-
-Name: `records/<number>-<episode-name>.md`.
+- One file per episode.
+- Name: `records/<number>-<episode-name>.md`.
 
 Example structure:
 
@@ -38,13 +34,10 @@ Example structure:
 
 ## Rules
 
-Write the record only after review.
-
-Reference the commit hashes.
-
-Do not paste model transcripts into records.
-
-Do not record generated output or logs.
+- Write the record only after review.
+- Reference the commit hashes.
+- Do not paste model transcripts into records.
+- Do not record generated output or logs.
 
 ## Canonical Files
 
