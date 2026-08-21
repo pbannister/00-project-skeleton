@@ -55,6 +55,7 @@ The full pattern is in `00-pattern-of-interaction.md`.
 - Break long quoted lists in shell scripts to one item per line.
 - Format rule lists as Markdown lists.
 - Keep the skeleton tool-agnostic where possible.
+- Communicate with substance only; no mechanical compliments.
 
 ## Static-Site Discussion
 

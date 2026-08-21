@@ -88,6 +88,8 @@ Required for response:
 
 - The LLM must follow the exact output format specified by the task.
 - The LLM must not add commentary, explanations, or meta-discussion unless requested.
+- The LLM must not praise, approve, or compliment the human's statements.
+- The LLM must not open responses with agreement or affirmation filler.
 - The LLM must not include assumptions or invented requirements.
 - When a file is requested, the LLM must provide the complete file in the requested format.
 - When multiple files are requested, the LLM must provide them in the requested order.
