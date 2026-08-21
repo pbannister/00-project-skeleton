@@ -15,6 +15,8 @@ Always load these files in this order before executing a task:
 - `prompts/common/03-glossary.md`
 - `prompts/flavors/01-semantic-sort-naming.md`
 
+Also:
+
 - Load only the feature files explicitly referenced by the task or by a directly referenced feature dependency.
 - Do not load unrelated feature files.
 - Load a language-specific flavor file only when the task targets that language.

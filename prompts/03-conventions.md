@@ -105,6 +105,8 @@ Every task must identify each file operation as one of:
 - `rename`
 - `inspect`
 
+Also:
+
 - A file listed as existing is not automatically authorized for modification.
 - For every `create`, `rename`, or `delete` operation, the task must identify the exact source and target filename.
 - A directory name alone does not authorize creating a file with an invented name.

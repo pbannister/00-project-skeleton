@@ -1,12 +1,9 @@
 # How to Write Episodes
 
 This document defines how a human must write episodes for the LLM.
-
-An episode is a bounded unit of strongly related work with one goal and one acceptance.
-
-An episode groups what would otherwise be several small items into a single work order.
-
-Apply naming rules from `prompts/flavors/01-semantic-sort-naming.md`.
+* An episode is a bounded unit of strongly related work with one goal and one acceptance.
+* An episode groups what would otherwise be several small items into a single work order.
+* Apply naming rules from `prompts/flavors/01-semantic-sort-naming.md`.
 
 ## 1. Episode Purpose
 
