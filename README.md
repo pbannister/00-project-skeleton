@@ -31,7 +31,7 @@ All project features are defined in `prompts/features/` and implemented in `sour
 - `TODO.md` tracks pending and completed project tasks.
 - `prompts/` contains LLM interaction rules, common requirements, feature requirements, task definitions, and episode work orders.
 - `documents/` contains human-consumption documents: the interaction pattern, worked examples, and tool notes.
-- `records/` contains version-controlled episode outcome records.
+- `records/` contains version-controlled outcome, incident, and handoff records.
 - `tools/` contains tool-specific rules.
 - `tools/aider-rules.md` is used only with Aider.
 - `sources/` contains implementations.
@@ -56,6 +56,20 @@ The repository includes one worked example that exercises the whole workflow:
 - Template: `site.in/template.html` provides the HTML page structure.
 
 Run `make build` to generate the site and `make test` to run the tests.
+
+The bundled feature is a worked example, not a requirement.
+
+A new project keeps, trims, or repurposes it; real sites have used a static-site generator instead.
+
+## Starting a New Project from this Skeleton
+
+- Copy the repository, then decide what to keep, trim, or repurpose.
+- Review `prompts/features/` and trim features the project does not need.
+- Declare owner privacy boundaries (off-limits content) in the README or a dedicated document; the LLM treats them as authoritative scope exclusions.
+- Adopt the test tiers in `prompts/02-workflow.md`; declare live-state tests and their prerequisites.
+- Use records for outcomes, incidents, and handoffs; see `records/README.md`.
+- Choose the concurrency model: git worktrees for parallel multi-thread development, checkpoint and handoff records for serial work against live systems.
+- See `documents/04-lessons-from-homelab.md` for the lessons that shaped these rules.
 
 ## Canonical Files
 

@@ -5,7 +5,11 @@
 - A record is version-controlled.
 - A record is written after the episode settles and the human reviews.
 
-## Record File
+## Record Types
+
+Three record forms have proven their worth in practice.
+
+### Outcome record
 
 - One file per episode.
 - Name: `records/<number>-<episode-name>.md`.
@@ -25,9 +29,76 @@ Example structure:
 
 ## Verification
 
-<What tests or checks passed.>
+<What tests or checks passed, with dates.>
 
 ## Commits
+
+- `<commit hash>` <commit message>
+```
+
+### Incident record
+
+- One file per incident.
+- Written after an incident settles, before moving on.
+- Captures root cause and lessons while the detail is fresh.
+
+Example structure:
+
+```markdown
+# Record: <incident name> — <date>
+
+## What happened
+
+<What was attempted and what broke.>
+
+## Root cause
+
+<The underlying cause, not the symptom.>
+
+## Fix (applied, verified)
+
+<What restored the system, and how it was verified.>
+
+## Lesson
+
+- <One lesson per bullet, phrased so a future session can act on it>.
+
+## Safeguards for any retry
+
+- <Non-negotiable preconditions for trying again>.
+
+## Current state / next steps
+
+<What remains, in order.>
+
+## Commits
+
+- `<commit hash>` <commit message>
+```
+
+### Handoff record
+
+- Written at a session boundary.
+- Purpose: a fresh session resumes the work without the prior conversation's memory.
+- Lists the verified current state, then the next tasks in order.
+
+Example structure:
+
+```markdown
+# Record: <area> handoff — <date>
+
+> Written so a fresh session can resume without this conversation's memory.
+
+## Current state (verified <date>)
+
+- <Fact per bullet, each verified and dated>.
+
+## Next tasks (in order)
+
+1. <One ordered increment>.
+2. <One ordered increment>.
+
+## Commits (this session)
 
 - `<commit hash>` <commit message>
 ```
@@ -38,6 +109,12 @@ Example structure:
 - Reference the commit hashes.
 - Do not paste model transcripts into records.
 - Do not record generated output or logs.
+- Mark every verification with its date: `verified 2026-08-22`.
+- When a later session finds facts stale, append a correction with the new fact and date; do not silently rewrite the old record.
+- Live-state facts belong in generated documents or in records with verification dates, never in unmarked prose.
+- Prefer generated documents over hand-written ones for anything that reflects live state; see `prompts/03-conventions.md`.
+- After an incident, write the incident record with root cause and lessons before starting new work.
+- A handoff record warns the next session that earlier facts may be stale; include a drift table when addresses or states changed.
 
 ## Canonical Files
 

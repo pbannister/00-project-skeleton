@@ -10,6 +10,7 @@ The LLM does not load these files as project rules.
 - `01-async-worktree.md` — worked example: run the LLM in its own git worktree and merge when the episode settles.
 - `02-tool-universe.md` — a survey of LLM tools through the async and attention lens.
 - `03-conversation-summary.md` — a summary of the conversation that produced these documents.
+- `04-lessons-from-homelab.md` — lessons from the first real application of the skeleton.
 
 ## Canonical Files
 
@@ -19,3 +20,4 @@ The following filenames are canonical and must not be renamed or duplicated with
 - `01-async-worktree.md`
 - `02-tool-universe.md`
 - `03-conversation-summary.md`
+- `04-lessons-from-homelab.md`

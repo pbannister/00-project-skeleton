@@ -61,6 +61,21 @@ Also:
 - Prompt validation belongs in `tests/` when a prompt validation mechanism exists or the task requests prompt validation.
 - Do not create a test runner solely to satisfy this policy unless the task requests one.
 
+### 4.1 Test Tiers
+
+Classify every test into one tier:
+
+- **Portable** — runs anywhere the repository is checked out; belongs in `tests/` and runs under `make test`.
+- **Tool-gated** — needs a prerequisite tool or dependency; skips cleanly with a message when the prerequisite is absent.
+- **Live-state** — verifies a documented model against live reality (a network, devices, a running system); requires declared access (hosts, keys, credentials); reports PASS/WARN/FAIL and exits nonzero only on failure.
+
+Rules:
+
+- A live-state test declares its prerequisites in its header comment, including where it must run and which keys or access it needs.
+- A live-state test belongs in `tests/` only when the repository lives in the target environment; otherwise it is run by an explicit mechanism outside `make test`.
+- A live-state test must not pass silently when it could not check anything; it reports WARN or FAIL.
+- Use PASS/WARN/FAIL classification: WARN for environment-dependent conditions, FAIL for broken invariants.
+
 ## 5. Implement the Requested Scope
 
 - Modify only files within the declared task scope.

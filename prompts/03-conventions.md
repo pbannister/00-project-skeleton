@@ -94,6 +94,19 @@ The required directories are:
 - Commit messages use one line in imperative mood with a conventional prefix (`feat:`, `fix:`, `docs:`, `test:`, `chore:`, `refactor:`) and a short summary.
 - A commit contains only the files of one completed task.
 - Never commit generated output or logs.
+- Live-state facts in hand-written documents carry a verification date: `verified 2026-08-22`.
+- Prefer generated documents over hand-written ones for anything that reflects live state.
+
+## 6.1 Generated Documentation
+
+A project whose documents reflect live or derived state should keep a single source of truth and generate the documents from it:
+
+- The model lives in `sources/`, for example `sources/<area>-model.yaml`.
+- A generator script in `scripts/` produces the human documents from the model.
+- The generator provides a validation mode that checks the model and exits nonzero on errors.
+- Every generated document carries a provenance header: `Generated from <model> by <script> — do not edit by hand.`
+- The documents index (`documents/README.md`) marks generated documents as generated.
+- The generator's validation mode runs under `make test` when the project defines it.
 
 ## 7. File Operations
 

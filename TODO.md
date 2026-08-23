@@ -13,13 +13,27 @@
 * [x] use UPPERCASE names for constant shell variables in scripts and tests.
 * [x] apply semantic-sort naming to shell constant variables.
 * [x] apply type-prefix naming to shell variable names.
+* [x] incorporate the homelab lessons into the skeleton (2026-08-23):
+    * [x] add outcome, incident, and handoff record forms to `records/README.md`.
+    * [x] add risky-operations and privacy-boundary rules to `prompts/common/02-universal-rules.md`.
+    * [x] add test tiers (portable, tool-gated, live-state) to `prompts/02-workflow.md` §4.1.
+    * [x] add generated-documentation and live-state-verification conventions to `prompts/03-conventions.md`.
+    * [x] add skeleton-startup guidance and privacy-boundary note to `README.md`.
+    * [x] add the worktrees-versus-records section to `documents/00-pattern-of-interaction.md`.
+    * [x] add `documents/04-lessons-from-homelab.md` and register it in `documents/README.md`.
+    * [x] note in `prompts/features/00-features.md` that bundled features are examples.
 
 ## Open Questions
 
 * [ ] play with Jupyter and decide where it fits in the work pattern.
-* [ ] decide the site-build approach: literal text-to-HTML, Markdown-to-HTML, or a static-site generator such as 11ty. (Mermaid rendering: client-side JavaScript, accepted)
+* [x] decide the site-build approach: literal text-to-HTML, Markdown-to-HTML, or a static-site generator such as 11ty.
+      — **Decided 2026-08-23 by the homelab exercise**: the literal text-to-HTML site-build is kept as the minimal
+      worked example; a real site used Eleventy (a static-site generator); model-driven documents use a custom
+      generator with a provenance header. Encoded in `prompts/03-conventions.md` §6.1.
 * [ ] decide the fate of the DELTA correction protocol.
-* [ ] work through the async-worktree example in `documents/01-async-worktree.md`.
+* [ ] work through the async-worktree example in `documents/01-async-worktree.md` on a multi-thread development project.
+      — The homelab exercise was single-threaded (hardware), so it used checkpoint and handoff records instead;
+      worktrees remain the pattern for parallel, file-isolated development (see `documents/00-pattern-of-interaction.md`).
 * [ ] improve the human-oriented documents in `documents/`.
 * [ ] read the tool-universe sources in `documents/02-tool-universe.md`.
 

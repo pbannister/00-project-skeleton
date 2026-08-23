@@ -8,7 +8,7 @@
 - `how-to-write-episodes.md` defines the format and rules for human-authored episodes.
 - `common/00-overview.md` describes the purpose of shared prompt files.
 - `common/01-requirements.md` defines requirements that apply globally.
-- `common/02-universal-rules.md` defines scope, clarification, safety, anti-hallucination, and output rules.
+- `common/02-universal-rules.md` defines scope, clarification, safety, anti-hallucination, privacy-boundary, risky-operations, and output rules.
 - `common/03-glossary.md` defines project terminology and protocol concepts.
 - `flavors/01-semantic-sort-naming.md` defines the canonical semantic-sort naming rules.
 - `flavors/02-cpp-conventions.md` applies naming and compilation rules when project targets C++.

@@ -166,6 +166,26 @@ Run the LLM in its own worktree on its own branch.
 
 See `01-async-worktree.md` for the worked example.
 
+## Worktrees versus Records
+
+Worktrees and checkpoint records solve different concurrency problems.
+
+Git worktrees isolate concurrent streams of work.
+
+They suit general development: parallel features, independent files, several LLM sessions at once.
+
+Checkpoint records suit serial work against one shared live system.
+
+Hardware and operations work is single-threaded by nature; concurrent changes against physical devices are usually bad.
+
+The homelab exercise ran that way: every change touched the same switches, hosts, and cables, so the pattern that worked was a checkpoint or handoff record per session, not parallel worktrees.
+
+Choose by the work, not by habit:
+
+- Parallel, file-isolated development: worktree per episode.
+- Serial work against one live system: checkpoint and handoff records per session.
+- Both remain valid; the same project may use both for different threads.
+
 ## Intent and Record
 
 A work order is intent.

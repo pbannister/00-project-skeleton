@@ -15,7 +15,7 @@
 ## Universal failure-prevention rules
 
 - Universal failure-prevention rules apply across supported languages, tools, and file formats.
-- These rules define scope, clarification, anti-hallucination, safety, and output behavior.
+- These rules define scope, clarification, anti-hallucination, safety, privacy-boundary, risky-operations, and output behavior.
 
 ## One-sentence-per-line
 
@@ -64,6 +64,27 @@
 - Generated files must be identified as generated.
 - Generated files must not be edited manually unless explicitly requested.
 - Generated output must be written only to the designated output directory.
+
+## Incident record
+
+- A record of an incident: what happened, root cause, fix, lessons, and safeguards for a retry.
+- An incident record is written after the incident settles and before new work starts.
+
+## Handoff record
+
+- A record written at a session boundary so a fresh session resumes without the prior conversation's memory.
+- A handoff record lists the verified current state and the next tasks in order.
+
+## Live-state test
+
+- A test that verifies a documented model against live reality.
+- A live-state test requires declared access and reports PASS/WARN/FAIL.
+- Live-state tests form one tier of the test policy in `prompts/02-workflow.md`.
+
+## Privacy boundary
+
+- Owner-declared content that is off-limits to the LLM.
+- Privacy boundaries are authoritative scope exclusions.
 
 ## Stability rules
 
