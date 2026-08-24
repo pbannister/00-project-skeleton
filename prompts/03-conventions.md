@@ -19,6 +19,16 @@ These conventions define formatting, naming, and repository structure.
 - Follow the target language's brace and block syntax.
 - Language and framework conventions override generic rules when required for correctness.
 
+## 1.1 Comparison Conventions
+
+- Compare constants first, on the left: write `5 == a`, never `a == 5`.
+- An assignment where a comparison was intended becomes `5 = a`, which the compiler flags as an error.
+- Write relational comparisons lesser-to-greater: write `5 < a`, never `a > 5`.
+- Reading comparisons in one consistent order makes a reversed operator harder to miss.
+- Combine both conventions when the constant is the lesser value: write `5 < a`, never `a > 5`.
+- When the variable is the lesser value, keep it on the left: write `a < 5`, never `5 > a`.
+- Use `<=` and `>=` only when the strict form is wrong; apply the same lesser-on-the-left order.
+
 ## 2. Directory Naming
 
 The required directories are:
@@ -108,6 +118,29 @@ A project whose documents reflect live or derived state should keep a single sou
 - The documents index (`documents/README.md`) marks generated documents as generated.
 - The generator's validation mode runs under `make test` when the project defines it.
 
+## 6.2 Version Information
+
+A program version is a build-time fact, not a source literal.
+
+- Derive the version from git state: `date-branch-hash` or `date-branch-tag-hash`.
+- `date` is the build date in `YYYY-MM-DD` form.
+- `branch` is the current git branch.
+- `tag` is appended only when all sources are committed and the current commit is tagged.
+- `hash` is the short git commit hash; it disambiguates builds from different commits, directories, and developers.
+- Suffix the hash with `-changes` when the working tree has uncommitted changes.
+- A build-time script generates a header that contains the version components and a build counter.
+- The build counter increments on each build; it is not checked in.
+- Keep the version-reporting function in a separate compilation unit, so a version change recompiles one unit instead of the whole program.
+- The generated header carries a provenance header and is not edited by hand.
+- The generated header is written to the build output directory, not into `sources/`.
+- Example: `2026-08-24-master-a1b2c3d` or `2026-08-24-master-v1.0.0-a1b2c3d` or `2026-08-24-master-a1b2c3d-changes`.
+- The canonical generator name is `scripts/version-generate.sh`.
+- The canonical version header is `version_info.h`.
+- The canonical version functions are `version_string()` and `version_build_counter()`.
+
+Decided 2026-08-24: the git hash disambiguates builds, so the build counter
+policy is settled. Keep the local counter gitignored; never check it in.
+
 ## 7. File Operations
 
 Every task must identify each file operation as one of:
@@ -129,3 +162,7 @@ Also:
 - Follow the exact output format specified by the task.
 - Do not include assumptions or invented requirements.
 - Do not modify unrelated files.
+- Do not praise, approve, or compliment the human's statements.
+- Do not open responses with agreement or affirmation filler.
+- Compliments raise confidence, and an over-confident engineer makes errors.
+- Treat praise as a bug: it is not informative and it distorts judgment.

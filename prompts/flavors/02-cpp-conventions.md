@@ -2,6 +2,12 @@
 
 This flavor applies when the project targets C++.
 
+## Comparison Conventions
+
+- Apply the comparison conventions from `prompts/03-conventions.md` section 1.1.
+- Compare constants first: write `if (0 == result)`, never `if (result == 0)`.
+- Write relational comparisons lesser-to-greater: write `if (5 < value)`, never `if (value > 5)`.
+
 ## Naming
 
 These rules do not apply to external names (API, sysfs, command-line, and CMake-defined names).
