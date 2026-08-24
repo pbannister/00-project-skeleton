@@ -22,6 +22,15 @@
     * [x] add the worktrees-versus-records section to `documents/00-pattern-of-interaction.md`.
     * [x] add `documents/04-lessons-from-homelab.md` and register it in `documents/README.md`.
     * [x] note in `prompts/features/00-features.md` that bundled features are examples.
+* [ ] capture the MI25 fan-service project process lessons (2026-08-24):
+    * [ ] encode the record-update rule: when a task changes a status, update the
+          referenced record in the same commit (the MI25 record `09-project-site.md`
+          said "not yet implemented" after the deployment was live).
+    * [ ] document that generated build trees are path-bound: clean them when the
+          repository is reached through a different path (SSHFS vs native mount; a
+          stale CMakeCache broke the MI25 build after the mount path changed).
+    * [ ] add timestamped test-run logging to `scripts/tests-run.sh` (the MI25
+          project writes `logs/YYYY-MM-DD-HH-MM-SS-test-run.log`).
 
 ## Open Questions
 
