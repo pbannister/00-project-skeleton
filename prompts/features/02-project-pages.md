@@ -25,6 +25,9 @@ does not push to the web server itself.
     one-line purposes — never full contents).
 - Every page must use the shared template `site.in/template.html` (standard
   5-page relative nav, `<style>`, footer, `<!-- SITE-CONTENT -->` marker).
+- The nav must carry the marker `<!-- HOMELAB-HOME-LINK -->`; the homelab
+  replaces it with a link back to the labs home at publish time. The project
+  must not hardcode the labs site URL.
 - All links must be relative so the pages work at any depth under
   `/projects/<id>/`.
 - Generated pages must begin with

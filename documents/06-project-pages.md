@@ -36,6 +36,11 @@ Rules:
   conventions doc for the exact rules).
 - **Relative links only**, so the pages work at any depth under
   `/projects/<id>/`.
+- **The nav carries a link back to the labs home**, injected by the homelab
+  at publish time: the template's nav includes the marker
+  `<!-- HOMELAB-HOME-LINK -->`, which the homelab replaces with the actual
+  home link when it fetches the tree. Projects never hardcode the labs site
+  URL.
 - Pages are self-contained (their own `<style>`/nav); the reference template
   is `site.in/template.html`.
 - Recommended: a footer line linking back to `../` and naming the project.
