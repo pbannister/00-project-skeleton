@@ -11,19 +11,13 @@ The lens asks four questions about a tool:
 
 ## Terminal Code Agents
 
-Aider is a terminal code agent that edits files and commits with git.
-
-Aider is git-native.
-
-Every Aider change is a diff to review.
-
-Aider refreshes its repo map and warns about externally edited files.
-
-Aider mitigates stale context but does not isolate it.
-
-Claude Code is a terminal agent with background modes.
-
-Background agents run and notify on completion.
+- Aider is a terminal code agent that edits files and commits with git.
+- Aider is git-native.
+- Every Aider change is a diff to review.
+- Aider refreshes its repo map and warns about externally edited files.
+- Aider mitigates stale context but does not isolate it.
+- Claude Code is a terminal agent with background modes.
+- Background agents run and notify on completion.
 
 ## IDE-Integrated Agents
 
@@ -33,61 +27,44 @@ Copilot has a background-agents pattern built on git worktrees.
 
 ## Worktree Multiplexers
 
-dmux runs parallel coding agents, each in its own worktree.
-
-gwt runs AI coding sessions per worktree.
-
-gtr is a git worktree runner.
-
-rove runs coding agents on parallel tasks with isolated worktrees.
-
-These tools exist because the worktree pattern is real practice.
+- dmux runs parallel coding agents, each in its own worktree.
+- gwt runs AI coding sessions per worktree.
+- gtr is a git worktree runner.
+- rove runs coding agents on parallel tasks with isolated worktrees.
+- These tools exist because the worktree pattern is real practice.
 
 ## Harness Environments
 
-Agent harnesses orchestrate LLM work at scale.
-
-Harnesses dispatch work to subagents and notify on completion.
-
-Harnesses can serialize access so the human and the model never write concurrently.
-
-The environment hosting this conversation is such a harness.
+- Agent harnesses orchestrate LLM work at scale.
+- Harnesses dispatch work to subagents and notify on completion.
+- Harnesses can serialize access so the human and the model never write concurrently.
+- The environment hosting this conversation is such a harness.
 
 ## CI and PR-Based Agents
 
-OpenHands and similar agents take an issue and produce a pull request.
-
-The PR is the envelope.
-
-The platform review and merge queue are the async mechanics.
+- OpenHands and similar agents take an issue and produce a pull request.
+- The PR is the envelope.
+- The platform review and merge queue are the async mechanics.
 
 ## Notebooks
 
-Jupyter notebooks are a thinking medium.
-
-Notebooks keep state, re-run cells, and mix text with results.
-
-Notebooks have hidden state and noisy diffs.
+- Jupyter notebooks are a thinking medium.
+- Notebooks keep state, re-run cells, and mix text with results.
+- Notebooks have hidden state and noisy diffs.
 
 ## Plain API and Scripting
 
-The model API can be driven directly.
-
-A queue of prompts can run as a batch job.
-
-Results land in files for later review.
-
-This is the email pattern with minimal tooling.
+- The model API can be driven directly.
+- A queue of prompts can run as a batch job.
+- Results land in files for later review.
+- This is the email pattern with minimal tooling.
 
 ## Mapping to This Project
 
-Aider fits the review-surface pattern.
-
-A worktree gives Aider isolation.
-
-An episode file is the work order.
-
-A record file is the outcome.
+- Aider fits the review-surface pattern.
+- A worktree gives Aider isolation.
+- An episode file is the work order.
+- A record file is the outcome.
 
 ## Sources
 

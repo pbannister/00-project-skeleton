@@ -1,8 +1,7 @@
 # Project Overview
 
-This repository is structured for collaborative development with a Large Language Model (LLM).
-
-This file `README.md` is located at the root of the project structure.
+- This repository is structured for collaborative development with a Large Language Model (LLM).
+- This file `README.md` is located at the root of the project structure.
 
 The LLM should begin by reading these files in this order (the numeric prefix marks the load order):
 
@@ -10,9 +9,8 @@ The LLM should begin by reading these files in this order (the numeric prefix ma
 2. `prompts/02-workflow.md`
 3. `prompts/03-conventions.md`
 
-These define the interaction rules, workflow, and formatting conventions.
-
-The LLM must follow the workflow defined in `prompts/02-workflow.md` for every task.
+- These define the interaction rules, workflow, and formatting conventions.
+- The LLM must follow the workflow defined in `prompts/02-workflow.md` for every task.
 
 Human contributors should begin by reading:
 
@@ -55,11 +53,9 @@ The repository includes one worked example that exercises the whole workflow:
 - Input: `site.in/hello.txt`
 - Template: `site.in/template.html` provides the HTML page structure.
 
-Run `make build` to generate the site and `make test` to run the tests.
-
-The bundled feature is a worked example, not a requirement.
-
-A new project keeps, trims, or repurposes it; real sites have used a static-site generator instead.
+- Run `make build` to generate the site and `make test` to run the tests.
+- The bundled feature is a worked example, not a requirement.
+- A new project keeps, trims, or repurposes it; real sites have used a static-site generator instead.
 
 ## Starting a New Project from this Skeleton
 

@@ -1,10 +1,8 @@
 # Lessons from the MI25 Fan-Service Project
 
-This document records the process lessons from the MI25 fan-service project.
-
-The MI25 work surfaced three lessons: a record must track the live state, generated build trees are path-bound, and test runs deserve a timestamped log.
-
-Each lesson names where the skeleton now encodes it.
+- This document records the process lessons from the MI25 fan-service project.
+- The MI25 work surfaced three lessons: a record must track the live state, generated build trees are path-bound, and test runs deserve a timestamped log.
+- Each lesson names where the skeleton now encodes it.
 
 ## 1. A record must track the live state
 

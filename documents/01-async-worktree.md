@@ -1,26 +1,18 @@
 # Async Work with Git Worktrees
 
-This document is the worked example for running an LLM asynchronously.
-
-The LLM works in its own worktree on its own branch.
-
-The human works in the main checkout.
-
-Git is the message channel.
+- This document is the worked example for running an LLM asynchronously.
+- The LLM works in its own worktree on its own branch.
+- The human works in the main checkout.
+- Git is the message channel.
 
 ## The Problem
 
-The model's context is a snapshot of the files as it last saw them.
-
-When the human edits a file the model has read, the model's next write is stale.
-
-The model can clobber the human change or build on an outdated version.
-
-A branch alone does not isolate anything.
-
-All branches in one checkout share one working tree.
-
-A git worktree is a separate directory with its own checkout.
+- The model's context is a snapshot of the files as it last saw them.
+- When the human edits a file the model has read, the model's next write is stale.
+- The model can clobber the human change or build on an outdated version.
+- A branch alone does not isolate anything.
+- All branches in one checkout share one working tree.
+- A git worktree is a separate directory with its own checkout.
 
 ## The Pattern
 
@@ -60,11 +52,9 @@ Verified output:
 
 ### 3. Parallel work
 
-The LLM commits inside `llm-work`.
-
-The human commits in the main checkout.
-
-Neither interferes with the other.
+- The LLM commits inside `llm-work`.
+- The human commits in the main checkout.
+- Neither interferes with the other.
 
 Verified output:
 
@@ -124,15 +114,11 @@ git worktree remove ../llm-work
 
 ## Automation
 
-The merge can be automated along a spectrum.
-
-Level 1: run the merge command when the episode settles.
-
-Level 2: a small script or alias that tests, merges, and reports.
-
-Level 3: CI with a merge queue that merges on green.
-
-Automation must not silently eat the review gate.
+- The merge can be automated along a spectrum.
+- Level 1: run the merge command when the episode settles.
+- Level 2: a small script or alias that tests, merges, and reports.
+- Level 3: CI with a merge queue that merges on green.
+- Automation must not silently eat the review gate.
 
 Two safe designs:
 
@@ -145,16 +131,12 @@ A conflict forces a human decision where the two streams intersect.
 
 ## Alternatives
 
-Patch exchange: the model writes a diff and the human applies it when ready.
-
-Fork and pull request: the model pushes and opens a PR and the platform reviews.
-
-Serialized access: the environment prevents concurrent writes instead of isolating trees.
+- Patch exchange: the model writes a diff and the human applies it when ready.
+- Fork and pull request: the model pushes and opens a PR and the platform reviews.
+- Serialized access: the environment prevents concurrent writes instead of isolating trees.
 
 ## Practice
 
-This pattern is used in practice.
-
-Tools built on it include dmux, gwt, gtr, and rove.
-
-Sources are listed in `02-tool-universe.md`.
+- This pattern is used in practice.
+- Tools built on it include dmux, gwt, gtr, and rove.
+- Sources are listed in `02-tool-universe.md`.

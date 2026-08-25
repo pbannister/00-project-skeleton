@@ -1,12 +1,9 @@
 # Episode Template
 
-Copy this file into `prompts/episodes/` with the next free number.
-
-Replace every `<placeholder>` with concrete content.
-
-Remove the Filled Example section before dispatching the episode.
-
-Follow `prompts/how-to-write-episodes.md`.
+- Copy this file into `prompts/episodes/` with the next free number.
+- Replace every `<placeholder>` with concrete content.
+- Remove the Filled Example section before dispatching the episode.
+- Follow `prompts/how-to-write-episodes.md`.
 
 [EPISODE]
 <One sentence stating the single goal of the episode.>

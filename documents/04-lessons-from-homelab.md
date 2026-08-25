@@ -1,10 +1,8 @@
 # Lessons from the Homelab Exercise
 
-This document records what the first real application of this skeleton taught us.
-
-The homelab project (74 commits over three days) applied the skeleton to a live network: inventory, two incidents, recovery, handoff sessions, live-state verification tests, and code-generated documentation.
-
-Each lesson names where the skeleton now encodes it.
+- This document records what the first real application of this skeleton taught us.
+- The homelab project (74 commits over three days) applied the skeleton to a live network: inventory, two incidents, recovery, handoff sessions, live-state verification tests, and code-generated documentation.
+- Each lesson names where the skeleton now encodes it.
 
 ## 1. Bundled features are examples, not requirements
 

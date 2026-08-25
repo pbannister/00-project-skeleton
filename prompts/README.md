@@ -18,11 +18,9 @@
 
 ## Loading Rules
 
-Always load the authoritative project-rule files listed in `02-workflow.md`.
-
-The numeric prefixes in the filenames mark the load order defined there.
-
-Load only feature or task files explicitly referenced by the current task or by a directly referenced dependency.
+- Always load the authoritative project-rule files listed in `02-workflow.md`.
+- The numeric prefixes in the filenames mark the load order defined there.
+- Load only feature or task files explicitly referenced by the current task or by a directly referenced dependency.
 
 ## Canonical Files
 
