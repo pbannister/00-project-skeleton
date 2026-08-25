@@ -50,12 +50,24 @@ The repository includes one worked example that exercises the whole workflow:
 - Task: `prompts/tasks/01-site-build-implement.md`
 - Script: `scripts/site-build.sh` generates `site.out/` from `site.in/`.
 - Tests: `tests/00-skeleton.sh` and `tests/01-site-build.sh`
-- Input: `site.in/hello.txt`
+- Input: `site.in/index.txt` (status page) and `site.in/dashboard.txt`
 - Template: `site.in/template.html` provides the HTML page structure.
 
 - Run `make build` to generate the site and `make test` to run the tests.
 - The bundled feature is a worked example, not a requirement.
 - A new project keeps, trims, or repurposes it; real sites have used a static-site generator instead.
+
+## Project Pages (publishing conventions)
+
+- A project derived from this skeleton publishes the standard page set
+  (status, dashboard, condensed todo/prompts/documents) per
+  `prompts/features/02-project-pages.md` and
+  `documents/06-project-pages.md`.
+- `make site` builds the full set (`scripts/site-build.sh` +
+  `scripts/site-condense.sh`).
+- Publishing goes through the homelab project (homelab-publish): the project
+  registers once via `pages_source` and does not push to the web server
+  itself — `make deploy` is retired.
 
 ## Starting a New Project from this Skeleton
 

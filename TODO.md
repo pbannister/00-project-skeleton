@@ -44,6 +44,14 @@
     * [x] add the worktrees-versus-records section to `documents/00-pattern-of-interaction.md`.
     * [x] add `documents/04-lessons-from-homelab.md` and register it in `documents/README.md`.
     * [x] note in `prompts/features/00-features.md` that bundled features are examples.
+* [x] incorporate the homelab project-pages publishing conventions (2026-08-25):
+    * [x] standard page set: rename `hello.txt` to `index.txt` (status page), add
+          `dashboard.txt`, standard 5-page nav in `site.in/template.html`.
+    * [x] add `scripts/site-condense.sh` (todo/prompts/documents generator, from the
+          MI25 fan-service) and wire `make site` (`site-build.sh` + `site-condense.sh`).
+    * [x] retire `make deploy` — publishing goes through the homelab (homelab-publish).
+    * [x] add `documents/06-project-pages.md` (conventions summary) and
+          `prompts/features/02-project-pages.md` (feature).
 * [x] capture the MI25 fan-service project process lessons (2026-08-24):
     * [x] encode the record-update rule: when a task changes a status, update the
           referenced record in the same commit (the MI25 record `09-project-site.md`

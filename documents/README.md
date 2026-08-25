@@ -12,6 +12,7 @@ The LLM does not load these files as project rules.
 - `03-conversation-summary.md` — a summary of the conversation that produced these documents.
 - `04-lessons-from-homelab.md` — lessons from the first real application of the skeleton.
 - `05-lessons-from-MI25.md` — lessons from the MI25 fan-service project.
+- `06-project-pages.md` — project-pages publishing conventions (summary; canonical version in the homelab).
 
 ## Canonical Files
 
@@ -23,3 +24,4 @@ The following filenames are canonical and must not be renamed or duplicated with
 - `03-conversation-summary.md`
 - `04-lessons-from-homelab.md`
 - `05-lessons-from-MI25.md`
+- `06-project-pages.md`
