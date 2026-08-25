@@ -105,6 +105,7 @@ Rules:
 
 - When the task changed files and verification succeeds, commit the completed work with git.
 - Create one commit containing only the task's files and any TODO update made for the task.
+- When the task changes a status, update the referenced record in the same commit.
 - Use the commit-message conventions in `prompts/03-conventions.md`.
 - Do not commit generated output, logs, or unrelated files.
 - Skip this step when the task changed no files.

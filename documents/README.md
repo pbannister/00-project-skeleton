@@ -11,6 +11,7 @@ The LLM does not load these files as project rules.
 - `02-tool-universe.md` — a survey of LLM tools through the async and attention lens.
 - `03-conversation-summary.md` — a summary of the conversation that produced these documents.
 - `04-lessons-from-homelab.md` — lessons from the first real application of the skeleton.
+- `05-lessons-from-MI25.md` — lessons from the MI25 fan-service project.
 
 ## Canonical Files
 
@@ -21,3 +22,4 @@ The following filenames are canonical and must not be renamed or duplicated with
 - `02-tool-universe.md`
 - `03-conversation-summary.md`
 - `04-lessons-from-homelab.md`
+- `05-lessons-from-MI25.md`

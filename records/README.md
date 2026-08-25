@@ -106,6 +106,7 @@ Example structure:
 ## Rules
 
 - Write the record only after review.
+- When a task changes a status, update the referenced record in the same commit (see `prompts/02-workflow.md` §7.1).
 - Reference the commit hashes.
 - Do not paste model transcripts into records.
 - Do not record generated output or logs.

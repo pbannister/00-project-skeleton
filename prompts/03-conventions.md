@@ -100,6 +100,7 @@ The required directories are:
 - Generated files must be identified as generated.
 - Do not edit generated files manually unless explicitly requested.
 - Write generated output only to the designated output directory.
+- Generated build trees are path-bound: clean them when the repository is reached through a different path.
 - Do not mix source, prompt, and generated files.
 - Commit messages use one line in imperative mood with a conventional prefix (`feat:`, `fix:`, `docs:`, `test:`, `chore:`, `refactor:`) and a short summary.
 - A commit contains only the files of one completed task.
