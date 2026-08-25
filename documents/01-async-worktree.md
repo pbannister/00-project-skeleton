@@ -1,9 +1,12 @@
 # Async Work with Git Worktrees
 
-- This document is the worked example for running an LLM asynchronously.
-- The LLM works in its own worktree on its own branch.
-- The human works in the main checkout.
-- Git is the message channel.
+This document is the worked example for running an LLM asynchronously.
+
+The LLM works in its own worktree on its own branch.
+
+The human works in the main checkout.
+
+Git is the message channel.
 
 ## The Problem
 

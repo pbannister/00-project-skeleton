@@ -1,8 +1,10 @@
 # Pattern of Interaction with an LLM
 
-- This document captures a conversation about how to interact with an LLM.
-- The conversation compared old patterns of human work with LLM work.
-- The analogies are strong.
+This document captures a conversation about how to interact with an LLM.
+
+The conversation compared old patterns of human work with LLM work.
+
+The analogies are strong.
 
 ## The Core Idea
 

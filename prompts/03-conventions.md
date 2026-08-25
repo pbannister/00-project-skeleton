@@ -7,7 +7,8 @@ These conventions define formatting, naming, and repository structure.
 - Use 4-space indents in code and Markdown when the format supports configurable indentation.
 - Do not use tabs when the format supports spaces.
 - Use one sentence per line in Markdown, so `git diff` is easier to read.
-- Render any series of more than two one-sentence paragraphs as an unordered list.
+- Render a series of more than two one-sentence paragraphs as an unordered list when the sentences are parallel points that could be reordered.
+- Keep prose for narrative progression, introductions, and sentences that lead into a following list.
 - Break long quoted lists in shell scripts to one item per line, so `git diff` is easier to read.
 - Use UPPERCASE names for shell variables that stay constant once defined.
 - Use whole words in shell variable names; do not abbreviate.

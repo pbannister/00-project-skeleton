@@ -1,8 +1,10 @@
 # Conversation Summary
 
-- This document summarizes a conversation about working with an LLM.
-- The conversation started as a question about interaction patterns.
-- It ended with changes to this skeleton.
+This document summarizes a conversation about working with an LLM.
+
+The conversation started as a question about interaction patterns.
+
+It ended with changes to this skeleton.
 
 ## The Pattern
 
