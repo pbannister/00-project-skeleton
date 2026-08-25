@@ -29,7 +29,7 @@
     * [ ] document that generated build trees are path-bound: clean them when the
           repository is reached through a different path (SSHFS vs native mount; a
           stale CMakeCache broke the MI25 build after the mount path changed).
-    * [ ] add timestamped test-run logging to `scripts/tests-run.sh` (the MI25
+    * [x] add timestamped test-run logging to `scripts/tests-run.sh` (the MI25
           project writes `logs/YYYY-MM-DD-HH-MM-SS-test-run.log`).
 
 ## Open Questions
