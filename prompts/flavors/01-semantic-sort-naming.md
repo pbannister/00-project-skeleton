@@ -47,6 +47,13 @@ A semantic-sort name uses stable components in this order:
 * Preserve names required by a language, framework, or public API.
 * Use the target language's conventional styles for constants, booleans, classes, and public APIs when those styles are required for correctness or interoperability.
 
+## Type Alias Naming
+
+* When a type is complex, nested, or structural (a template, a collection of collections, or a multi-layered container), do not define it inline.
+* Use a type alias (`using` in C++, `typedef` in C) to give the type a semantic, nominal name.
+* The alias must follow the `<domain>_<role>_<purpose>_<variant>` pattern.
+* A named identity improves code scannability, reduces cognitive load, and communicates intent.
+
 ## Plan Block Naming
 
 * A plan block uses semantic-sort naming where applicable.
