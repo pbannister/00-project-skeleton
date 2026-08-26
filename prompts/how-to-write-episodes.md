@@ -68,20 +68,33 @@ Every episode must contain these sections in order:
 - Feature files in `prompts/features/` define stable requirements.
 - An episode must reference applicable feature files explicitly.
 
-## 9. Relationship to the Queue
+## 9. Relationship to Phases
+
+- A **phase** is a project milestone that groups one or more episodes.
+- An episode is the reviewable work unit *inside* a phase: an episode has one
+  goal and one acceptance and is reviewed in one sitting; a phase is
+  complete when its episodes are done and its milestone is met.
+- Episodes may declare the phase they advance with an optional `[PHASE]`
+  line (e.g. `phase 2`). Do not invent phase numbers; use the project's
+  phase plan (its README, TODO, or registry entry).
+- Project status is tracked at phase granularity ("phase 1 complete",
+  "phase 2 started") — see the homelab project-pages conventions
+  (`documents/09-project-pages-conventions.md` §6).
+
+## 10. Relationship to the Queue
 
 - `TODO.md` holds episodes.
 - A checked episode item records the outcome.
 - Carry, defer, or drop episodes in the weekly grooming.
 
-## 10. Intent and Record
+## 11. Intent and Record
 
 - The episode file is intent.
 - Intent is written before dispatch.
 - The record is the outcome.
 - After review, record the outcome in `records/` and reference the commit.
 
-## 11. Prohibited Episode Patterns
+## 12. Prohibited Episode Patterns
 
 - Do not phrase a goal as a vague wish.
 - Do not omit acceptance criteria.
@@ -89,7 +102,7 @@ Every episode must contain these sections in order:
 - Do not create an episode so large that review requires multiple sittings.
 - Do not duplicate a task that already exists in `prompts/tasks/`.
 
-## 12. Human Override
+## 13. Human Override
 
 - A human may explicitly override a rule in this document.
 - An override applies only to the explicitly identified rule or task.

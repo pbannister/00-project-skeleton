@@ -8,6 +8,10 @@
 [EPISODE]
 <One sentence stating the single goal of the episode.>
 
+[PHASE]
+<Optional: the project phase this episode advances, e.g. "phase 2". A phase
+is a milestone grouping one or more episodes; see prompts/how-to-write-episodes.md.>
+
 [ACCEPTANCE]
 - <Is the first criterion satisfied?>
 - <Is the second criterion satisfied?>
