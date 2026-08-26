@@ -57,6 +57,13 @@ Rules:
 - The project **registers once** in the homelab project's
   `sources/projects.yaml` (fields: `id`, `title`, `summary`, `status`,
   `visibility`, `self_published: true`, `pages_source`).
+- **Activity vs phase** (owner 2026-08-26): the registry `status`
+  (active/planned/deferred/complete) is the human-declared **activity**,
+  in the single common homelab. The project's **phase** belongs to this
+  project: declare it in `PHASES.md` (`Current: phase N — state`), change
+  it only when committing the project, and let `scripts/site-condense.sh`
+  emit `site.out/phase.txt` so the homelab can show "active · phase N
+  started" on the projects page.
 - `pages_source` tells the homelab how to read the project's generated tree:
   a path (`site.out/`, local or SSHFS) or an ssh command that streams the
   tree.
