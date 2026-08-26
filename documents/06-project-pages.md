@@ -23,17 +23,23 @@ consistent relative nav. Every page is required:
 | `index.html` | **Status**: what the project is, its current status, how it works. |
 | `dashboard.html` | **Dashboard**: live state (point-in-time values from the owning host). |
 | `todo.html` | **Condensed TODO**: open work items. |
-| `prompts.html` | **Condensed prompts map**: every file in `prompts/` with a one-line purpose. |
-| `documents.html` | **Condensed documents map**: every file in `documents/` with a one-line purpose. |
+| `prompts.html` | **Prompts index**: the entire `prompts/` tree, grouped by directory, linking to full-text pages. |
+| `documents.html` | **Documents index**: every file in `documents/`, linking to full-text pages. |
+| `records.html` | **Records index**: every file in `records/`, linking to full-text pages. |
 
 Rules:
 
-- The condensed pages (`todo.html`, `prompts.html`, `documents.html`) are
-  **generated at build time** from the project's own files — never
-  hand-maintained. The generator is `scripts/site-condense.sh`, wired into
-  `make site` alongside `scripts/site-build.sh`.
-- Condensation means index/summary, not full text (see the homelab
-  conventions doc for the exact rules).
+- The generated pages (`todo.html`, `prompts.html`, `documents.html`,
+  `records.html`) are **generated at build time** from the project's own
+  files — never hand-maintained. The generator is `scripts/site-condense.sh`,
+  wired into `make site` alongside `scripts/site-build.sh`.
+- **Every `.md` file under `prompts/` (the entire tree), `documents/`, and
+  `records/` is published as its own full-text page** (e.g.
+  `prompts-common-02-universal-rules.html`), linked from the index pages.
+  Markdown is rendered with pandoc when available (minimal fallback
+  otherwise).
+- `todo.html` stays condensed: open items with their continuation text,
+  completed items summarized as a count.
 - **Relative links only**, so the pages work at any depth under
   `/projects/<id>/`.
 - **The nav carries a link back to the labs home**, injected by the homelab
@@ -85,5 +91,5 @@ homelab (`scripts/labs-deploy.sh`, `tests/03-labs-site.sh`,
 ## Live example
 
 - `amd-mi25-fan-service` (SSHFS at `~/remote/beast.lan/work/...`) and
-  `model-elevation-earth` (`/home/preston/work/01-model-elevation-earth/`)
+  `model-elevation-earth` (`~/work/01-model-elevation-earth/`)
   are live at `labs.bannister.us/projects/<id>/` using exactly this pattern.
