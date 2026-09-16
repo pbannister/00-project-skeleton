@@ -42,13 +42,18 @@ Rules:
   completed items summarized as a count.
 - **Relative links only**, so the pages work at any depth under
   `/projects/<id>/`.
-- **The nav carries a link back to the labs home**, injected by the homelab
-  at publish time: the template's nav includes the marker
-  `<!-- HOMELAB-HOME-LINK -->`, which the homelab replaces with the actual
-  home link when it fetches the tree. Projects never hardcode the labs site
-  URL.
-- Pages are self-contained (their own `<style>`/nav); the reference template
-  is `site.in/template.html`.
+- **The homelab owns the one navigation bar.** The template marks where it
+  belongs with `<!-- HOMELAB-NAV -->` and must not contain a `<nav>` of its
+  own; the homelab injects the bar (graphic, breadcrumb, and the project's
+  page links) at publish time, and removes any project-authored `<nav>`.
+  Projects never hardcode the labs site URL.
+- **The page set is declared** in `site.in/pages.nav` (optional), an ordered
+  `href|Label` list that must contain the standard set; `make site` writes
+  `site.out/pages.txt` for the homelab (the standard set when there is no
+  file). Extra pages are listed there and appear in the one nav.
+- Pages are self-contained (their own `<style>`); the reference template is
+  `site.in/template.html`.
+- The `<title>` of every page must be a real title, never the bare file name.
 - Recommended: a footer line linking back to `../` and naming the project.
 - Generated output (`site.out/`) is gitignored; only `site.in/` is authored.
 
