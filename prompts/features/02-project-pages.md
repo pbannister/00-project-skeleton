@@ -61,6 +61,11 @@ does not push to the web server itself.
   private LAN IPs, usernames, home paths, or private-key material) — full
   text of prompts/documents/records is published, so the source files must
   themselves be sanitized.
+- The project must run its own gate, `scripts/leak-gate.sh`, over `site.out/`
+  before publishing; the patterns have a single source in
+  `scripts/sensitive-patterns.sh` and are never inlined elsewhere.
+- A record or document that describes the gate must not quote the refused
+  patterns verbatim, or it refuses itself.
 - `make deploy` must not push to the web server: it is retired and only
   points at the homelab publish flow.
 

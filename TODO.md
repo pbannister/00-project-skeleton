@@ -12,6 +12,11 @@
 
 ## Recently Completed
 
+* [x] add the sanitization gate the conventions required but the skeleton did not ship (2026-09-24; Tier 1 from the recent-project lessons):
+    * [x] `scripts/sensitive-patterns.sh` is the single source of the publish patterns; never inline them elsewhere.
+    * [x] `scripts/leak-gate.sh` refuses leaks over a file or tree and prints the first matches.
+    * [x] `tests/03-leak-gate.sh` covers clean content (public IPs, `## 10.` headings), refused content, a missing path, and single-source drift.
+    * [x] encode the rule in `prompts/03-conventions.md` §6, `prompts/features/02-project-pages.md`, and `documents/06-project-pages.md`.
 * [x] add the live-state mechanism the project-pages conventions already named (2026-09-24; Tier 1 from the recent-project lessons):
     * [x] `scripts/site-state-fetch.sh` (`make state`) writes `dataflow.out/site-state.txt` as `KEY=value` lines, sanitized at capture.
     * [x] `scripts/site-build.sh` substitutes `__KEY__` placeholders from the state file; a key with no value renders as `unavailable`.

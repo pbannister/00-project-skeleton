@@ -94,6 +94,15 @@ home paths, or private-key material. The exact gate patterns live in the
 homelab (`scripts/labs-deploy.sh`, `tests/03-labs-site.sh`,
 `tests/06-project-pages.sh`); the homelab re-runs the gate at publish time.
 
+The project runs its own gate first: `scripts/leak-gate.sh` over `site.out/`,
+reading the patterns from `scripts/sensitive-patterns.sh` — their single
+source. Do not inline the patterns in another script or test; a duplicated
+pattern has already drifted once. A record or document that describes the
+gate must not quote the refused patterns verbatim (that version refuses
+itself). Fix a false positive by tightening the pattern, not by suppressing
+the check: match private addresses only as dotted quads, so a numbered
+heading such as `## 10. Human Override` still passes.
+
 ## Conformance checklist
 
 1. Read the canonical conventions doc in the homelab.

@@ -100,6 +100,8 @@ Generated output directories are not version-controlled.
 - Never commit generated output or logs.
 - Live-state facts in hand-written documents carry a verification date: `verified 2026-08-22`.
 - Prefer generated documents over hand-written ones for anything that reflects live state.
+- Run the publish sanitization gate (`scripts/leak-gate.sh`) over generated output before publishing.
+- Keep the sanitization patterns in one source (`scripts/sensitive-patterns.sh`) and never inline them in another script or test.
 
 ## 6.1 Generated Documentation
 
