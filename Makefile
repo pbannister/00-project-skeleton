@@ -3,6 +3,7 @@
 #
 #	This Makefile is the human-facing driver.
 #	Each rule calls the appropriate tool instead of reimplementing work:
+#		all:    the project's primary artifact (a cheap no-op when current)
 #		build:  sh scripts/site-build.sh
 #		site:   sh scripts/site-build.sh + sh scripts/site-condense.sh
 #		        (the standard page set; see prompts/features/02-project-pages.md)
@@ -16,6 +17,13 @@
 #		        only reminds you of that; use the homelab's make deploy.
 #		install: reserved; not yet defined.
 #
+#	A data pipeline names each rule for the file it produces, adds an `all`
+#	target that is a cheap no-op when current, keeps work products unless
+#	`--refresh` is asked for, and preserves raw caches; see
+#	prompts/03-conventions.md 6.3.
+#
+
+all: build
 
 build:
 	sh scripts/site-build.sh
@@ -41,4 +49,4 @@ deploy:
 install:
 	@echo '==== No install yet defined'
 
-.PHONY: build site state clean test deploy install
+.PHONY: all build site state clean test deploy install

@@ -12,6 +12,8 @@
 
 ## Recently Completed
 
+* [x] add the generated-data-product conventions (2026-09-24; Tier 2 from the recent-project lessons): `prompts/03-conventions.md` §6.3 encodes numbered stages and work products, reuse/`--refresh`/`--retry-failed`, file-named make rules, the no-dead-placeholder rule, a cheap `all` target, raw caches with provenance, `manifest.json`, `check`/`--check`, manual `clean` for expensive outputs, independent verification, and units in exchange formats.
+    * [x] model the `all` target in the skeleton `Makefile` (defaults to `build`).
 * [x] preserve nested lists in the condensed `todo.html` (2026-09-24; Tier 1 from the recent-project lessons): the old renderer flattened them and counted only lowercase, top-level completed items.
     * [x] `scripts/site-condense.sh` renders nesting with an indentation stack; completed items (`[x]` or `[X]`) are counted, never listed.
     * [x] `tests/06-todo-condense.sh` (tool-gated on python3) covers nesting, continuation lines, the counts, and balanced markup.
