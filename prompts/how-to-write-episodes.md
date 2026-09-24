@@ -80,6 +80,9 @@ Every episode must contain these sections in order:
 - Project status is tracked at phase granularity ("phase 1 complete",
   "phase 2 started") — see the homelab project-pages conventions
   (`documents/09-project-pages-conventions.md` §6).
+- The project's suggested breakdown lives in
+  `prompts/episodes/02-episode-plan.md`: a plan, not a queue, with episodes
+  named by phase and letter so renumbering at dispatch cannot invalidate it.
 
 ## 10. Relationship to the Queue
 
