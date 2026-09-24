@@ -12,6 +12,9 @@
 
 ## Recently Completed
 
+* [x] ship `scripts/version-generate.sh` (2026-09-24; Tier 1 from the recent-project lessons): `prompts/03-conventions.md` §6.2 names it canonical, but the skeleton shipped no implementation.
+    * [x] generalized from the gnome-appimage-integration implementation; writes `dataflow.out/build/generated/version_info.h` and the gitignored build counter.
+    * [x] `tests/05-version-generate.sh` (tool-gated on git) checks the `date-branch-hash` shape, the tag and `-changes` suffixes, and the counter.
 * [x] register `PHASES.md` as a required root file (2026-09-24; Tier 1 from the recent-project lessons): the project-pages conventions depend on it, but the README map, the Canonical Files list, and the skeleton test omitted it.
     * [x] add it to the `README.md` top-level map and Canonical Files.
     * [x] require it in `tests/00-skeleton.sh`.
