@@ -12,6 +12,10 @@
 
 ## Recently Completed
 
+* [x] make the `PHASES.md` parser tolerant and validating (2026-09-24; Tier 1 from the recent-project lessons):
+    * [x] `scripts/site-condense.sh` now takes the state as the last dash field, so `Current: phase N — <description> — state` parses (gnome's line did not, and lost its phase silently).
+    * [x] an unknown state leaves `phase.txt` unwritten with a warning instead of emitting a wrong phase.
+    * [x] `tests/04-phase-parse.sh` covers the descriptive form, the short form, and the invalid state.
 * [x] add the sanitization gate the conventions required but the skeleton did not ship (2026-09-24; Tier 1 from the recent-project lessons):
     * [x] `scripts/sensitive-patterns.sh` is the single source of the publish patterns; never inline them elsewhere.
     * [x] `scripts/leak-gate.sh` refuses leaks over a file or tree and prints the first matches.

@@ -284,20 +284,33 @@ map_tree 'Records' "$REPOSITORY_ROOT/records" "$DIRECTORY_OUTPUT/records.html"
 publish_tree "$REPOSITORY_ROOT/records"
 
 # --- phase.txt (machine-readable project phase for the homelab index) ------
-# Reads PHASES.md ("Current: phase N — state") and writes site.out/phase.txt
-# as KEY=VALUE lines (PHASE=N, PHASE_STATE=state). The homelab fetch stages
-# this file and the site merges it with the registry activity status.
+# Reads PHASES.md ("Current: phase N — <description> — state") and writes
+# site.out/phase.txt as KEY=VALUE lines (PHASE=N, PHASE_STATE=state). The state
+# is the last dash-separated field and must be one of the three allowed values;
+# a description in the middle is for people. A line that does not fit leaves
+# phase.txt unwritten, and the homelab index simply shows the activity without
+# a phase. The homelab fetch stages this file and the site merges it with the
+# registry activity status.
 FILE_PHASES="$REPOSITORY_ROOT/PHASES.md"
 if [ -f "$FILE_PHASES" ]; then
-    phase_current=$(sed -n 's/^Current: phase \([0-9][0-9]*\) *— *\([a-z-]*\)$/\1 \2/p' "$FILE_PHASES" | head -1)
-    if [ -n "$phase_current" ]; then
-        phase_num=${phase_current% *}
-        phase_state=${phase_current#* }
+    phase_line=$(grep -m1 '^Current: phase ' "$FILE_PHASES" || true)
+    phase_num=$(printf '%s' "$phase_line" | sed -n 's/^Current: phase \([0-9][0-9]*\).*/\1/p')
+    phase_state=$(printf '%s' "$phase_line" | awk -F'—' 'NF > 1 { state = $NF; gsub(/^[ \t]+|[ \t]+$/, "", state); print state }')
+    case "$phase_state" in
+        not-started | started | complete)
+            ;;
+        *)
+            phase_state=""
+            ;;
+    esac
+    if [ -n "$phase_num" ] && [ -n "$phase_state" ]; then
         {
             echo "PHASE=$phase_num"
             echo "PHASE_STATE=$phase_state"
         } > "$DIRECTORY_OUTPUT/phase.txt"
         echo "site-condense: wrote phase.txt (phase $phase_num, $phase_state)"
+    else
+        echo "site-condense: PHASES.md has no 'Current: phase N — state' line; phase.txt not written" >&2
     fi
 fi
 
