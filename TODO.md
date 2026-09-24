@@ -12,6 +12,12 @@
 
 ## Recently Completed
 
+* [x] encode the publishing lessons (2026-09-24; Tier 2 from the recent-project lessons):
+    * [x] the shared nav must be depth-adjusted (`../` per level) for a page below the project root, applied to the nav block only.
+    * [x] replace the skeleton's placeholder `index.txt`/`dashboard.txt` before registering; a placeholder publishes a project that does not exist.
+    * [x] generate the dashboard from live state, never hand-typed values.
+    * [x] every served asset URL carries a content token, including transitive imports; the build fails when the stamp misses.
+    * [x] landed in `prompts/features/01-site-build.md`, `prompts/features/02-project-pages.md`, `documents/06-project-pages.md`, and `prompts/03-conventions.md` §6.
 * [x] add the research and decision-record guidance (2026-09-24; Tier 2 from the recent-project lessons): `prompts/how-to-write-research.md` defines one criteria file with a changelog, one study per candidate with fixed headings and evidence rules, the fan-out-then-synthesize method, the durable survey index, and the dated options-ladder decision record; registered in `prompts/README.md`.
 * [x] ship the suggested episode plan (2026-09-24; Tier 2 from the recent-project lessons): `prompts/episodes/02-episode-plan.md` breaks `PHASES.md` into suggested episodes, named by phase and letter so dispatch-time renumbering cannot invalidate it; registered in `prompts/episodes/00-episodes.md` and referenced from `prompts/how-to-write-episodes.md` §9.
 * [x] encode the record-keeping lessons (2026-09-24; Tier 2 from the recent-project lessons): `records/README.md` gains the two-commit rule for a record's own hash, the fails-against-old-code regression rule, the do-not-quote-the-gate rule, date-prefixed filenames, unattributable-drift handling, and "unexplained is a result"; `prompts/02-workflow.md` §7.1/§7.2 and `prompts/common/02-universal-rules.md` carry the matching rules.

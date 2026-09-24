@@ -51,6 +51,20 @@ does not push to the web server itself.
   nav links and the labs-home link at publish time.
 - All links must be relative so the pages work at any depth under
   `/projects/<id>/`.
+- **A page below the project root must climb out with `../`.** The shared nav
+  is written for a page at the project root; a page one directory down (a
+  detail page under `blocks/` or `probes/`) must reach the root with one `../`
+  per level. Apply the prefix to the nav block only, never to the page's own
+  relative links. A nav bug at depth is invisible at the root, so a test must
+  assert both shapes.
+- **Replace the placeholder pages.** The skeleton's `index.txt` and
+  `dashboard.txt` describe the skeleton, not the project; a project that
+  publishes them publishes a project that does not exist. Rewrite both before
+  registering for publishing.
+- **Generate the dashboard from live state, never maintain it by hand.** A
+  value the project can read at build time (the state file, the tool's own
+  output, the build manifest) is substituted as a placeholder; a hand-typed
+  live value drifts.
 - Every page's `<title>` must be a real title, not the bare file name
   (`page_title` in `scripts/site-build.sh`).
 - Generated pages must begin with

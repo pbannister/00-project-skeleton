@@ -13,6 +13,7 @@ The Site Build feature provides the script that converts `site.in/` into `site.o
 - Every non-`.txt`, non-`template.html` file under `site.in/` (authored assets such as scripts, styles, and images) must be copied verbatim into `site.out/`, so a page can reference it by relative path. `site.in/pages.nav` is input for the page set, not a published asset, and must not be copied.
 - A page may contain `__KEY__` placeholders for live state; values come from the state file (`dataflow.out/site-state.txt` by default, overridable with `SITE_STATE_FILE`), written by `scripts/site-state-fetch.sh`. When the state file is absent, remaining placeholders render as `unavailable`, so the build stays portable.
 - Generated pipeline artifacts the project publishes must be copied from `dataflow.out/` into `site.out/` when present, so the published tree is self-contained and does not depend on the pipeline output still existing on the serving host.
+- A served asset that a page loads by URL must carry a content version. Derive one token from the contents of the interdependent asset set and append it to every URL in the module graph, including transitive imports; a cached asset must then be requested under a new URL when its bytes change. The build must fail when the stamp does not land, rather than publish an unversioned URL.
 - Generated output must be identified as generated.
 - The script must start from an empty output directory, so a renamed or
   removed page cannot linger in `site.out/` as a published orphan.

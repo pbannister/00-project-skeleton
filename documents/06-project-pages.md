@@ -42,6 +42,18 @@ Rules:
   completed items summarized as a count.
 - **Relative links only**, so the pages work at any depth under
   `/projects/<id>/`.
+- **A page below the project root climbs out with `../`** — one level per
+  directory. Apply the prefix to the nav block only, never to a page's own
+  relative links; a nav bug at depth is invisible at the root, so test both
+  shapes.
+- **Replace the skeleton's placeholder `index.txt`/`dashboard.txt`** before
+  registering: a published placeholder describes a project that does not
+  exist.
+- **Generate the dashboard from live state** (the state file, the tool's own
+  output, or the build manifest) rather than maintaining live values by hand.
+- A served asset that a page loads (script, style, image, model) carries a
+  content version in its URL, including transitive imports, so a long-cached
+  asset is re-requested when its bytes change.
 - **The homelab owns the one navigation bar.** The template marks where it
   belongs with `<!-- HOMELAB-NAV -->` and must not contain a `<nav>` of its
   own; the homelab injects the bar (graphic, breadcrumb, and the project's
