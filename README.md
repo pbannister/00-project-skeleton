@@ -27,6 +27,7 @@ All project features are defined in `prompts/features/` and implemented in `sour
 
 - `README.md` is the project overview.
 - `TODO.md` tracks pending and completed project tasks.
+- `PHASES.md` names the project's phases and the current phase (see `documents/06-project-pages.md`).
 - `prompts/` contains LLM interaction rules, common requirements, feature requirements, task definitions, and episode work orders.
 - `documents/` contains human-consumption documents: the interaction pattern, worked examples, and tool notes.
 - `records/` contains version-controlled outcome, incident, and handoff records.
@@ -85,4 +86,5 @@ The following filenames are canonical and must not be renamed or duplicated with
 
 - `README.md`
 - `TODO.md`
+- `PHASES.md`
 - `Makefile`

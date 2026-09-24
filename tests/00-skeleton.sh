@@ -21,7 +21,7 @@ documents
 records
 '
 
-FILES_REQUIRED='README.md TODO.md Makefile'
+FILES_REQUIRED='README.md TODO.md PHASES.md Makefile'
 
 for dir in $DIRECTORIES_REQUIRED; do
     if [ ! -d "$REPOSITORY_ROOT/$dir" ]; then

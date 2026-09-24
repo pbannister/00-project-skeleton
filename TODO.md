@@ -12,6 +12,10 @@
 
 ## Recently Completed
 
+* [x] register `PHASES.md` as a required root file (2026-09-24; Tier 1 from the recent-project lessons): the project-pages conventions depend on it, but the README map, the Canonical Files list, and the skeleton test omitted it.
+    * [x] add it to the `README.md` top-level map and Canonical Files.
+    * [x] require it in `tests/00-skeleton.sh`.
+    * [x] add the keep-it-current rule to `prompts/03-conventions.md` §6.
 * [x] build hygiene: start the site build from an empty output tree, and make `clean` remove directories (2026-09-24; Tier 1 from the recent-project lessons):
     * [x] `scripts/site-build.sh` clears `site.out/` first (keeping `.gitkeep`), so a renamed or removed page cannot linger as a published orphan.
     * [x] `make clean` uses `rm -rf`, so a pipeline's output subdirectories are actually removed (the old `rm -f` failed on a directory).
