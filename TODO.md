@@ -12,6 +12,7 @@
 
 ## Recently Completed
 
+* [x] add the research and decision-record guidance (2026-09-24; Tier 2 from the recent-project lessons): `prompts/how-to-write-research.md` defines one criteria file with a changelog, one study per candidate with fixed headings and evidence rules, the fan-out-then-synthesize method, the durable survey index, and the dated options-ladder decision record; registered in `prompts/README.md`.
 * [x] ship the suggested episode plan (2026-09-24; Tier 2 from the recent-project lessons): `prompts/episodes/02-episode-plan.md` breaks `PHASES.md` into suggested episodes, named by phase and letter so dispatch-time renumbering cannot invalidate it; registered in `prompts/episodes/00-episodes.md` and referenced from `prompts/how-to-write-episodes.md` §9.
 * [x] encode the record-keeping lessons (2026-09-24; Tier 2 from the recent-project lessons): `records/README.md` gains the two-commit rule for a record's own hash, the fails-against-old-code regression rule, the do-not-quote-the-gate rule, date-prefixed filenames, unattributable-drift handling, and "unexplained is a result"; `prompts/02-workflow.md` §7.1/§7.2 and `prompts/common/02-universal-rules.md` carry the matching rules.
 * [x] organize the test suite (2026-09-24; Tier 2 from the recent-project lessons):
