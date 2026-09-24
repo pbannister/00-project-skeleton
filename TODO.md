@@ -12,6 +12,8 @@
 
 ## Recently Completed
 
+* [x] add the release and pinned-dependency conventions (2026-09-24; Tier 2 from the recent-project lessons): `prompts/03-conventions.md` §6.4 encodes publish gating, deterministic packing, versionless asset names, checksums/version/notes, installer rules, atomic install, and re-runnable publishing; §6.5 covers pinning a dependency to a tag and asserting the pin.
+    * [x] ship `scripts/release-gate.sh` (refuses a dirty tree, a `-changes` version, and a version that does not name HEAD) and `tests/07-release-gate.sh`.
 * [x] add the generated-data-product conventions (2026-09-24; Tier 2 from the recent-project lessons): `prompts/03-conventions.md` §6.3 encodes numbered stages and work products, reuse/`--refresh`/`--retry-failed`, file-named make rules, the no-dead-placeholder rule, a cheap `all` target, raw caches with provenance, `manifest.json`, `check`/`--check`, manual `clean` for expensive outputs, independent verification, and units in exchange formats.
     * [x] model the `all` target in the skeleton `Makefile` (defaults to `build`).
 * [x] preserve nested lists in the condensed `todo.html` (2026-09-24; Tier 1 from the recent-project lessons): the old renderer flattened them and counted only lowercase, top-level completed items.

@@ -176,6 +176,44 @@ single-source rule, with a machine-readable contract:
 - An exchange-format export (STEP, OBJ, glTF) declares its units, and a test
   parses the file back.
 
+## 6.4 Release and Publishing
+
+A release publishes an artifact; it must be the artifact of the commit it
+names. The build-time version from 6.2 is what makes that checkable.
+
+- A release refuses a version that carries `-changes` (the tree was dirty at
+  build time) and a version that does not name the current short commit hash.
+  `scripts/release-gate.sh` performs both checks.
+- Build from the commit being released inside the publish path, so a stale
+  build tree cannot be published.
+- Pack deterministically: sorted names, no owner, the commit's timestamp, and
+  no gzip timestamp, so packing the same build twice yields one digest.
+- Name release assets without a version, so
+  `releases/latest/download/<asset>` works without an API call; a version can
+  still be pinned by adding the tag to the path.
+- Publish a checksum (`SHA256SUMS`), a `VERSION` file, and generated release
+  notes that carry the install and verify commands.
+- An installer is POSIX shell (it may be piped), verifies the download against
+  the checksum, and refuses when verification is impossible; a named override
+  is the only way to skip the check.
+- Installing the tools is safe; claiming a system default (a MIME handler, a
+  desktop entry) is a deliberate step the installer prints, not performs.
+- Installing over a running program writes a temporary name and renames it
+  over the destination.
+- A publish is re-runnable: reuse the tag the commit already carries, refuse a
+  tag on a different commit, skip a redundant push, and re-upload assets.
+
+## 6.5 Pinned Dependencies
+
+- Pin a vendored or forked dependency to a release tag, never a branch: a
+  branch pin cannot be rebased against a fixed base.
+- Record the pin in the source README or the document that owns it.
+- A test asserts the pin in both places: the script's constant and the
+  recorded value match, and the pin has the expected shape.
+- When the heavy dependency cannot run in the test environment, the test
+  asserts the script interface and the pin instead, and cross-checks an
+  implementation against the system tool where one exists.
+
 ## 7. File Operations
 
 Every task must identify each file operation as one of:
