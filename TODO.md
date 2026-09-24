@@ -12,6 +12,10 @@
 
 ## Recently Completed
 
+* [x] build hygiene: start the site build from an empty output tree, and make `clean` remove directories (2026-09-24; Tier 1 from the recent-project lessons):
+    * [x] `scripts/site-build.sh` clears `site.out/` first (keeping `.gitkeep`), so a renamed or removed page cannot linger as a published orphan.
+    * [x] `make clean` uses `rm -rf`, so a pipeline's output subdirectories are actually removed (the old `rm -f` failed on a directory).
+    * [x] `tests/01-site-build.sh` seeds a stale page and the placeholder and asserts the page is removed and the placeholder kept.
 * [x] make the `PHASES.md` parser tolerant and validating (2026-09-24; Tier 1 from the recent-project lessons):
     * [x] `scripts/site-condense.sh` now takes the state as the last dash field, so `Current: phase N — <description> — state` parses (gnome's line did not, and lost its phase silently).
     * [x] an unknown state leaves `phase.txt` unwritten with a warning instead of emitting a wrong phase.

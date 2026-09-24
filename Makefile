@@ -8,7 +8,7 @@
 #		        (the standard page set; see prompts/features/02-project-pages.md)
 #		state:  sh scripts/site-state-fetch.sh (refresh the live state file;
 #		        run on the owning host)
-#		clean:  rm generated output
+#		clean:  rm -rf generated output (keeps .gitkeep placeholders)
 #		test:   npm test
 #		deploy: RETIRED - all publishing to labs.bannister.us goes through
 #		        the homelab project (homelab-publish; see the homelab's
@@ -28,7 +28,7 @@ state:
 	sh scripts/site-state-fetch.sh
 
 clean:
-	rm -f dataflow.out/* site.out/* logs/*
+	rm -rf dataflow.out/* site.out/* logs/*
 
 test:
 	npm test

@@ -24,9 +24,25 @@ cp "$REPOSITORY_ROOT/site.in/template.html" "$DIRECTORY_TEMPORARY/in/template.ht
 
 printf '%s\n' 'FETCHED=2026-09-24' 'BRANCH=main' > "$DIRECTORY_TEMPORARY/state.txt"
 
+# Seed the output tree with a stale page and the tracked placeholder: the
+# build must remove the stale page and keep the placeholder.
+mkdir -p "$DIRECTORY_TEMPORARY/out"
+printf '%s\n' 'stale' > "$DIRECTORY_TEMPORARY/out/stale.html"
+: > "$DIRECTORY_TEMPORARY/out/.gitkeep"
+
 # Set SITE_STATE_FILE explicitly so the test never reads a real state file.
 SITE_STATE_FILE="$DIRECTORY_TEMPORARY/state.txt" \
     sh "$SCRIPT_BUILD" "$DIRECTORY_TEMPORARY/in" "$DIRECTORY_TEMPORARY/out" >/dev/null
+
+if [ -e "$DIRECTORY_TEMPORARY/out/stale.html" ]; then
+    echo '01-site-build: a stale page survived the build' >&2
+    exit 1
+fi
+
+if [ ! -e "$DIRECTORY_TEMPORARY/out/.gitkeep" ]; then
+    echo '01-site-build: the build removed the directory placeholder' >&2
+    exit 1
+fi
 
 FILE_OUTPUT="$DIRECTORY_TEMPORARY/out/hello.html"
 FILE_DASHBOARD="$DIRECTORY_TEMPORARY/out/dashboard.html"

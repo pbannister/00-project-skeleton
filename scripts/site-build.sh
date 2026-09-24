@@ -79,6 +79,12 @@ page_title() {
     esac
 }
 
+# Start from an empty output tree: site.out/ is generated-only, so a renamed
+# or removed page must not linger as a published orphan. Keep .gitkeep so the
+# repository structure stays valid before the first build.
+if [ -d "$DIRECTORY_OUTPUT" ]; then
+    find "$DIRECTORY_OUTPUT" -mindepth 1 -maxdepth 1 ! -name '.gitkeep' -exec rm -rf {} +
+fi
 mkdir -p "$DIRECTORY_OUTPUT"
 
 count_built=0

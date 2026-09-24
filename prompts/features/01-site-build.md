@@ -11,6 +11,8 @@ The Site Build feature provides the script that converts `site.in/` into `site.o
 - `scripts/site-build.sh` must generate the static site in `site.out/` from the input in `site.in/`.
 - Each `site.in/*.txt` input file must produce `site.out/<name>.html`.
 - Generated output must be identified as generated.
+- The script must start from an empty output directory, so a renamed or
+  removed page cannot linger in `site.out/` as a published orphan.
 - The script must accept optional input and output directory arguments.
 - When no arguments are given, the script must use `site.in/` and `site.out/` relative to the repository root.
 - The script must be a POSIX shell script.
