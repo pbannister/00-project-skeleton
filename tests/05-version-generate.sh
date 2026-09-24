@@ -13,10 +13,8 @@ set -eu
 DIRECTORY_SCRIPT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 REPOSITORY_ROOT=$(CDPATH= cd -- "$DIRECTORY_SCRIPT/.." && pwd)
 
-if ! command -v git >/dev/null 2>&1; then
-    echo '05-version-generate: skipped: missing tool: git'
-    exit 0
-fi
+. "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
+skip_unless_tool git
 
 DIRECTORY_TEST=$(mktemp -d)
 trap 'rm -rf "$DIRECTORY_TEST"' EXIT HUP INT TERM

@@ -75,6 +75,17 @@ Rules:
 - A live-state test belongs in `tests/` only when the repository lives in the target environment; otherwise it is run by an explicit mechanism outside `make test`.
 - A live-state test must not pass silently when it could not check anything; it reports WARN or FAIL.
 - Use PASS/WARN/FAIL classification: WARN for environment-dependent conditions, FAIL for broken invariants.
+- A tool-gated test skips with the standard message `SKIP: missing tool: <tool>` (see `tests/lib/test_helpers.sh`).
+
+### 4.2 Test Organization
+
+- Number tests in reserved bands so lexical order is execution order; the bands are listed in `tests/README.md`.
+- Share helpers in `tests/lib/`, sourced by a test and never executed by the runner.
+- A test never touches the real system: sandbox `HOME` and XDG paths into a temporary directory, serve HTTP on `127.0.0.1`, and use no outside network.
+- A test that changes live state does not belong in `make test`.
+- Keep spec-derived sample inputs in `dataflow.in/` and use them as fixtures.
+- A fix lands a regression test that fails against the old code.
+- Verification is independent of construction: do not use the builder's own helpers as the oracle.
 
 ## 5. Implement the Requested Scope
 

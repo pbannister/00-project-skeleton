@@ -15,10 +15,8 @@ set -eu
 DIRECTORY_SCRIPT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 REPOSITORY_ROOT=$(CDPATH= cd -- "$DIRECTORY_SCRIPT/.." && pwd)
 
-if ! command -v python3 >/dev/null 2>&1; then
-    echo '06-todo-condense: skipped: missing tool: python3'
-    exit 0
-fi
+. "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
+skip_unless_tool python3
 
 DIRECTORY_TEST=$(mktemp -d)
 trap 'rm -rf "$DIRECTORY_TEST"' EXIT HUP INT TERM

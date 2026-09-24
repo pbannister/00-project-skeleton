@@ -12,6 +12,11 @@
 
 ## Recently Completed
 
+* [x] organize the test suite (2026-09-24; Tier 2 from the recent-project lessons):
+    * [x] `scripts/tests-run.sh` runs every test and reports `PASS`/`FAIL` with a summary, instead of stopping at the first failure.
+    * [x] `tests/lib/test_helpers.sh` holds the shared skip/fail/pass helpers; `tests/05`–`07` use `skip_unless_tool`.
+    * [x] `tests/README.md` documents the reserved number bands, the helper directory, the sandbox rule, and the fixture rule.
+    * [x] `prompts/02-workflow.md` §4.1/§4.2 encode the skip idiom and the organization rules.
 * [x] add the release and pinned-dependency conventions (2026-09-24; Tier 2 from the recent-project lessons): `prompts/03-conventions.md` §6.4 encodes publish gating, deterministic packing, versionless asset names, checksums/version/notes, installer rules, atomic install, and re-runnable publishing; §6.5 covers pinning a dependency to a tag and asserting the pin.
     * [x] ship `scripts/release-gate.sh` (refuses a dirty tree, a `-changes` version, and a version that does not name HEAD) and `tests/07-release-gate.sh`.
 * [x] add the generated-data-product conventions (2026-09-24; Tier 2 from the recent-project lessons): `prompts/03-conventions.md` §6.3 encodes numbered stages and work products, reuse/`--refresh`/`--retry-failed`, file-named make rules, the no-dead-placeholder rule, a cheap `all` target, raw caches with provenance, `manifest.json`, `check`/`--check`, manual `clean` for expensive outputs, independent verification, and units in exchange formats.
