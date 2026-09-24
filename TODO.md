@@ -12,6 +12,9 @@
 
 ## Recently Completed
 
+* [x] preserve nested lists in the condensed `todo.html` (2026-09-24; Tier 1 from the recent-project lessons): the old renderer flattened them and counted only lowercase, top-level completed items.
+    * [x] `scripts/site-condense.sh` renders nesting with an indentation stack; completed items (`[x]` or `[X]`) are counted, never listed.
+    * [x] `tests/06-todo-condense.sh` (tool-gated on python3) covers nesting, continuation lines, the counts, and balanced markup.
 * [x] extend the site-build contract and its worked example (2026-09-24; Tier 1 from the recent-project lessons): the feature doc omitted asset pass-through, live state, generated artifacts, and deterministic trees that six projects already implement.
     * [x] `scripts/site-build.sh` copies authored assets verbatim and excludes `template.html` and `pages.nav`.
     * [x] `prompts/features/01-site-build.md` states the asset, live-state, generated-artifact, and deterministic-tree rules.
