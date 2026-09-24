@@ -12,6 +12,7 @@
 
 ## Recently Completed
 
+* [x] pre-ignore scratch trees in `.gitignore` (2026-09-24; Tier 2 from the recent-project lessons): `.tmp-*`, `_site/`, `node_modules/`, and Python bytecode caches, so a pipeline or test that creates one does not dirty the tree.
 * [x] add the skeleton drift detector and the append-not-fork rule (2026-09-24; Tier 2 from the recent-project lessons): derived projects froze their prompt copies at fork, so a project's stated rules could contradict its scripts.
     * [x] `scripts/skeleton-diff.sh` reports rule-file drift (fatal) and reference-artifact adaptation (informational) between a project and the skeleton; it already finds real drift in elseon and gnome.
     * [x] `tests/08-skeleton-diff.sh` covers clean, rule drift, and adaptation.
