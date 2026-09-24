@@ -108,4 +108,24 @@ for file_input in "$DIRECTORY_INPUT"/*.txt; do
 done
 
 echo "site-build: built $count_built page(s) into $DIRECTORY_OUTPUT"
+
+# Copy authored assets (non-.txt, non-template files such as scripts, styles,
+# and images) verbatim, so a page can reference them by relative path.
+# site.in/pages.nav is input for the page set, not a published asset.
+count_assets=0
+for file_asset in "$DIRECTORY_INPUT"/*; do
+    if [ ! -f "$file_asset" ]; then
+        continue
+    fi
+    name_asset=$(basename "$file_asset")
+    case "$name_asset" in
+        .*|*.txt|template.html|pages.nav)
+            continue
+            ;;
+    esac
+    cp "$file_asset" "$DIRECTORY_OUTPUT/$name_asset"
+    count_assets=$((count_assets + 1))
+done
+
+echo "site-build: copied $count_assets asset(s) into $DIRECTORY_OUTPUT"
 exit 0

@@ -12,6 +12,10 @@
 
 ## Recently Completed
 
+* [x] extend the site-build contract and its worked example (2026-09-24; Tier 1 from the recent-project lessons): the feature doc omitted asset pass-through, live state, generated artifacts, and deterministic trees that six projects already implement.
+    * [x] `scripts/site-build.sh` copies authored assets verbatim and excludes `template.html` and `pages.nav`.
+    * [x] `prompts/features/01-site-build.md` states the asset, live-state, generated-artifact, and deterministic-tree rules.
+    * [x] ship an example `site.in/pages.nav`, and assert the asset copy and the two exclusions in `tests/01-site-build.sh`.
 * [x] ship `scripts/version-generate.sh` (2026-09-24; Tier 1 from the recent-project lessons): `prompts/03-conventions.md` §6.2 names it canonical, but the skeleton shipped no implementation.
     * [x] generalized from the gnome-appimage-integration implementation; writes `dataflow.out/build/generated/version_info.h` and the gitignored build counter.
     * [x] `tests/05-version-generate.sh` (tool-gated on git) checks the `date-branch-hash` shape, the tag and `-changes` suffixes, and the counter.

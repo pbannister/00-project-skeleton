@@ -20,6 +20,8 @@ trap 'rm -rf "$DIRECTORY_TEMPORARY"' EXIT HUP INT TERM
 mkdir -p "$DIRECTORY_TEMPORARY/in"
 printf '%s\n' 'Hello from the site-build test.' > "$DIRECTORY_TEMPORARY/in/hello.txt"
 printf '%s\n' 'Fetched __FETCHED__ on __BRANCH__; unset is __MISSING__.' > "$DIRECTORY_TEMPORARY/in/dashboard.txt"
+printf '%s\n' 'console.log("asset");' > "$DIRECTORY_TEMPORARY/in/asset.js"
+printf '%s\n' 'index.html|Summary' > "$DIRECTORY_TEMPORARY/in/pages.nav"
 cp "$REPOSITORY_ROOT/site.in/template.html" "$DIRECTORY_TEMPORARY/in/template.html"
 
 printf '%s\n' 'FETCHED=2026-09-24' 'BRANCH=main' > "$DIRECTORY_TEMPORARY/state.txt"
@@ -85,6 +87,19 @@ if grep -q '__[A-Z0-9_]*__' "$FILE_DASHBOARD"; then
     echo '01-site-build: a placeholder survived substitution' >&2
     exit 1
 fi
+
+# Authored assets are copied; the template and the page-set input are not.
+if [ ! -f "$DIRECTORY_TEMPORARY/out/asset.js" ]; then
+    echo '01-site-build: an authored asset was not copied' >&2
+    exit 1
+fi
+
+for file_absent in template.html pages.nav; do
+    if [ -e "$DIRECTORY_TEMPORARY/out/$file_absent" ]; then
+        echo "01-site-build: $file_absent was copied into the output" >&2
+        exit 1
+    fi
+done
 
 # Without a state file the build stays portable: every key is "unavailable".
 SITE_STATE_FILE="$DIRECTORY_TEMPORARY/absent.txt" \
