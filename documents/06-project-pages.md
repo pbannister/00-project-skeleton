@@ -79,6 +79,13 @@ Rules:
 - Live-state freshness: the project refreshes its own state (`make state`,
   run on the owning host for hardware/network values) before the homelab
   publishes.
+- **Live state is placeholders plus a fetched state file.** A page carries
+  `__UPPERCASE_KEY__` placeholders; `scripts/site-state-fetch.sh` writes
+  `dataflow.out/site-state.txt` as `KEY=value` lines (overridable with
+  `SITE_STATE_FILE`), and `scripts/site-build.sh` substitutes the values.
+  A placeholder with no value renders as `unavailable`, so the pages build
+  on a host that never ran the state fetch. Sanitize values at capture: the
+  publishing gate refuses absolute home paths, and the values land in HTML.
 
 ## Sanitization (non-negotiable)
 

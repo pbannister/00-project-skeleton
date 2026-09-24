@@ -22,6 +22,14 @@ does not push to the web server itself.
   - `todo.html`, `prompts.html`, `documents.html`, `records.html` generated
     by `scripts/site-condense.sh` from the project's own `TODO.md`,
     `prompts/`, `documents/`, and `records/` at build time.
+- **Live state is placeholders plus a fetched state file.** `site.in/` pages
+  carry `__UPPERCASE_KEY__` placeholders; `scripts/site-state-fetch.sh`
+  (`make state`) writes `dataflow.out/site-state.txt` as `KEY=value` lines
+  (overridable with `SITE_STATE_FILE`), and `scripts/site-build.sh`
+  substitutes the values at build time. A placeholder with no value renders as
+  `unavailable`, so the pages build on a host that never ran the state fetch.
+- A state fetch that reads hardware, `systemctl`, or the network must run on
+  the owning host, not the build host.
 - **Every `.md` file under `prompts/` (the entire tree, including
   subdirectories), `documents/`, and `records/` must be published as its own
   full-text page** (e.g. `prompts-common-02-universal-rules.html`), linked

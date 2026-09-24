@@ -12,6 +12,11 @@
 
 ## Recently Completed
 
+* [x] add the live-state mechanism the project-pages conventions already named (2026-09-24; Tier 1 from the recent-project lessons):
+    * [x] `scripts/site-state-fetch.sh` (`make state`) writes `dataflow.out/site-state.txt` as `KEY=value` lines, sanitized at capture.
+    * [x] `scripts/site-build.sh` substitutes `__KEY__` placeholders from the state file; a key with no value renders as `unavailable`.
+    * [x] `site.in/dashboard.txt` is a live-state example; `documents/06-project-pages.md` and `prompts/features/02-project-pages.md` document the mechanism.
+    * [x] `tests/01-site-build.sh` covers substitution and the portable fallback.
 * [x] repair skeleton inconsistencies: `logs/`, `.gitkeep` files, `make test` wiring.
 * [x] add worked example: Site Build feature, task, script, input, and tests.
 * [x] harden the workflow: Definition of Done, git commit step, verification-failure loop.
