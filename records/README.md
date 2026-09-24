@@ -12,7 +12,9 @@ Three record forms have proven their worth in practice.
 ### Outcome record
 
 - One file per episode.
-- Name: `records/<number>-<episode-name>.md`.
+- Name: `records/<number>-<episode-name>.md`, or
+  `records/<YYYY-MM-DD>-<number>-<episode-name>.md` when a project writes many
+  records per day and chronological sorting matters.
 
 Example structure:
 
@@ -106,6 +108,11 @@ Example structure:
 ## Rules
 
 - Write the record only after review.
+- A record cannot cite its own commit hash: commit the work first, then write the record in a second commit and cite the work commit. Never write a placeholder hash.
+- Every repair lands a regression test that fails against the old code; name the test in the record.
+- A record must not quote the patterns a sanitization gate refuses; describe them generically, or the record refuses itself.
+- Record an unattributable state change in `TODO.md` to confirm; do not silently revert it.
+- "Unexplained" is a result: record it rather than guessing.
 - When a task changes a status, update the referenced record in the same commit (see `prompts/02-workflow.md` §7.1).
 - Reference the commit hashes.
 - Do not paste model transcripts into records.

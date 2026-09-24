@@ -12,6 +12,7 @@
 
 ## Recently Completed
 
+* [x] encode the record-keeping lessons (2026-09-24; Tier 2 from the recent-project lessons): `records/README.md` gains the two-commit rule for a record's own hash, the fails-against-old-code regression rule, the do-not-quote-the-gate rule, date-prefixed filenames, unattributable-drift handling, and "unexplained is a result"; `prompts/02-workflow.md` §7.1/§7.2 and `prompts/common/02-universal-rules.md` carry the matching rules.
 * [x] organize the test suite (2026-09-24; Tier 2 from the recent-project lessons):
     * [x] `scripts/tests-run.sh` runs every test and reports `PASS`/`FAIL` with a summary, instead of stopping at the first failure.
     * [x] `tests/lib/test_helpers.sh` holds the shared skip/fail/pass helpers; `tests/05`–`07` use `skip_unless_tool`.

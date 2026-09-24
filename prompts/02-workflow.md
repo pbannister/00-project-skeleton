@@ -117,6 +117,7 @@ Rules:
 - When the task changed files and verification succeeds, commit the completed work with git.
 - Create one commit containing only the task's files and any TODO update made for the task.
 - When the task changes a status, update the referenced record in the same commit.
+- A record that cites its own commit hash cannot be committed with that commit: commit the work first, then commit the record citing the work commit.
 - Use the commit-message conventions in `prompts/03-conventions.md`.
 - Do not commit generated output, logs, or unrelated files.
 - Skip this step when the task changed no files.
@@ -127,6 +128,7 @@ A task is complete only when every applicable item is satisfied:
 
 - The requested scope is implemented with no out-of-scope changes.
 - `make test` executed successfully.
+- A fix ships a regression test that fails against the old code.
 - `TODO.md` is updated when the task requires a status update.
 - Completed work is committed when the task changed files.
 - Output is produced in the requested format.

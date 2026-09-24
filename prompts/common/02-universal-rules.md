@@ -60,6 +60,7 @@ These rules apply when a task changes a live system, device, or network:
 - Agree an emergency brake with the human before starting; the human keeps a physical or authoritative stop.
 - After an incident, write the incident record with root cause and lessons before starting new work.
 - Record non-negotiable safeguards for a retry in the incident record.
+- Do not silently revert a state change you cannot attribute; record it to confirm instead.
 
 ## Language and Format Rules
 
