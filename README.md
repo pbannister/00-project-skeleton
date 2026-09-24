@@ -74,11 +74,19 @@ The repository includes one worked example that exercises the whole workflow:
 
 - Copy the repository, then decide what to keep, trim, or repurpose.
 - Review `prompts/features/` and trim features the project does not need.
+- Replace the placeholder `site.in/index.txt` and `site.in/dashboard.txt` with the project's own pages, and replace the `index` case in `scripts/site-build.sh` `page_title()`; a published placeholder describes a project that does not exist.
 - Declare owner privacy boundaries (off-limits content) in the README or a dedicated document; the LLM treats them as authoritative scope exclusions.
 - Adopt the test tiers in `prompts/02-workflow.md`; declare live-state tests and their prerequisites.
 - Use records for outcomes, incidents, and handoffs; see `records/README.md`.
 - Choose the concurrency model: git worktrees for parallel multi-thread development, checkpoint and handoff records for serial work against live systems.
+- Delete this "Starting a New Project from this Skeleton" section from the derived project; it does not apply there.
 - See `documents/04-lessons-from-homelab.md` for the lessons that shaped these rules.
+
+## Keeping Current with this Skeleton
+
+- A derived project keeps its own copy of the shared rule files (`prompts/`, the directory READMEs, the reference scripts, and the template); those copies drift as the skeleton evolves.
+- `scripts/skeleton-diff.sh <project-dir>` reports how a project's shared files differ from this skeleton. Rule-file drift is a failure; drift in the reference scripts and template is expected when a project adapts them.
+- Customize a shared rule document by appending a project section (for example `## How this project does it`) and leaving the shared text intact. Do not fork it, so the next re-sync stays a small diff.
 
 ## Canonical Files
 

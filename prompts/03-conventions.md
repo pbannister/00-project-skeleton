@@ -85,6 +85,7 @@ Generated output directories are not version-controlled.
 - Document public APIs, non-obvious behavior, invariants, side effects, and externally visible formats.
 - Do not add comments that merely restate the code.
 - Include comments only when requested or when they explain non-obvious behavior.
+- Customize a shared convention document by appending a project section (for example `## How this project does it`); do not fork the shared text, so a later re-sync stays a small diff (see `scripts/skeleton-diff.sh`).
 
 ## 6. Repository Hygiene
 

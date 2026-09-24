@@ -12,6 +12,10 @@
 
 ## Recently Completed
 
+* [x] add the skeleton drift detector and the append-not-fork rule (2026-09-24; Tier 2 from the recent-project lessons): derived projects froze their prompt copies at fork, so a project's stated rules could contradict its scripts.
+    * [x] `scripts/skeleton-diff.sh` reports rule-file drift (fatal) and reference-artifact adaptation (informational) between a project and the skeleton; it already finds real drift in elseon and gnome.
+    * [x] `tests/08-skeleton-diff.sh` covers clean, rule drift, and adaptation.
+    * [x] `README.md` gains "Keeping Current with this Skeleton"; conventions §5 says to append a project section instead of forking shared text.
 * [x] encode the publishing lessons (2026-09-24; Tier 2 from the recent-project lessons):
     * [x] the shared nav must be depth-adjusted (`../` per level) for a page below the project root, applied to the nav block only.
     * [x] replace the skeleton's placeholder `index.txt`/`dashboard.txt` before registering; a placeholder publishes a project that does not exist.
