@@ -12,6 +12,7 @@
 
 ## Recently Completed
 
+* [x] make the contract's authoritative-file registry complete (2026-09-24; review consolidation 1): `prompts/01-contract.md` §2 is now a table naming every authoritative rule file, its precedence level, what it defines, and when it applies — including `flavors/02`, the `how-to-write-*` files (marked as addressed to the human author), `records/README.md`, `tests/README.md`, the episode template and plan, `tools/`, and the indexes; a restatement elsewhere is declared a pointer, and §9 now names §2 as the authority lookup.
 * [x] make the drift check meaningful (2026-09-24; follow-up to the skeleton drift detector):
     * [x] classify files as rules (byte-identical), append-only (skeleton text must lead the file; additions allowed), or template (informational), so a project's glossary terms, document index, episode index, and appended `## How this project does it` section are not false-positive drift.
     * [x] add the publishing-contract files that actually drifted in practice (`prompts/features/02-project-pages.md` fatal, `documents/06-project-pages.md` append-only).
