@@ -18,6 +18,8 @@ A precise description of the response representation.
 Additional information, requirements, notes, constraints, or file contents.
 * (Optional) TASK-FILES
 A list of files involved in the task.
+* (Optional) TASK-VERIFY
+The verification to run and its expected result.
 
 The task file ends with one `OUTPUT:` line that restates the response representation in a sentence, including whether the response ends with the `VERIFICATION:` line. It is the last line the LLM reads, which keeps the format requirement in recent context.
 
@@ -40,6 +42,7 @@ The phrase `Execute the next TODO task` selects the first unchecked `TODO.md` it
 * TASK-OUTPUT defines the response representation.
 * TASK-CONTEXT provides information: a `<constraint>` block is an instruction, a `<task_context>` block is data, and unlabeled content is background.
 * TASK-FILES identifies scope and does not authorize modifications by itself.
+* TASK-VERIFY declares the verification to run and its expected result.
 * File scope comes only from `TASK-DESCRIPTION` and `TASK-FILES`; a referenced feature adds requirements, not scope (see `prompts/how-to-write-features.md` section 5).
 
 ## 3. Writing the TASK-DESCRIPTION Section
@@ -111,12 +114,28 @@ Use TASK-FILES to identify files in the task scope.
 * State the authorized operation separately in TASK-DESCRIPTION.
 * Do not assume that listing an existing file authorizes modification.
 
+## 6.1 Writing the TASK-VERIFY Section
+
+Use TASK-VERIFY to declare how the work is checked, so verification is not buried in the description.
+
+* State the command or test to run, prefixed `Run:`.
+* State the expected result, prefixed `Expected:`.
+* The workflow determines the applicable verification (`prompts/02-workflow.md` section 6); TASK-VERIFY declares it for this task.
+
+Example:
+```markdown
+## TASK-VERIFY
+- Run: `make test` from the repository root.
+- Expected: exit status 0.
+```
+
 ## 7. Task Patterns to Avoid
 
 * Name the format for every requested output; leave no format to be inferred.
 * Name the exact files and operations; the LLM decides nothing about which files are needed.
 * Use a precise verb and target (`rename a to b`), not a vague goal (`clean this up`, `make this better`).
 * State the file operation in `TASK-DESCRIPTION` for every file you name.
+* Name the verification in `TASK-VERIFY`, not in `TASK-DESCRIPTION`.
 * Write one sentence per line in prose, and one statement per line in code.
 * Include the required syntax in every code example.
 

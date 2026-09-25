@@ -10,6 +10,7 @@
 #   * feature and task numbers are unique;
 #   * every task has TASK-DESCRIPTION and TASK-OUTPUT, in order, and ends with
 #     an OUTPUT: restatement;
+#   * a TASK-VERIFY section declares a Run: and an Expected: line;
 #   * every TASK-FILES path is repository-relative and agrees with
 #     TASK-DESCRIPTION;
 #   * every feature has Purpose, Requirements, Behavior, and Dependencies;
@@ -107,7 +108,7 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
     idx_output = text.find("## TASK-OUTPUT")
     if idx_description != -1 and idx_output != -1 and idx_description > idx_output:
         failures.append(f"{rel}: TASK-DESCRIPTION must precede TASK-OUTPUT")
-    for heading in ("## TASK-CONTEXT", "## TASK-FILES"):
+    for heading in ("## TASK-CONTEXT", "## TASK-FILES", "## TASK-VERIFY"):
         idx_heading = text.find(heading)
         if idx_heading != -1 and idx_output != -1 and idx_heading < idx_output:
             failures.append(f"{rel}: {heading} must follow TASK-OUTPUT")
@@ -115,6 +116,14 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
     lines = [line for line in text.splitlines() if line.strip()]
     if not lines or not lines[-1].startswith("OUTPUT:"):
         failures.append(f"{rel}: the last line must be an OUTPUT: restatement")
+
+    match_verify = re.search(r"^## TASK-VERIFY\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
+    if match_verify:
+        body_verify = match_verify.group(1)
+        if not re.search(r"^- Run:", body_verify, re.M):
+            failures.append(f"{rel}: TASK-VERIFY has no 'Run:' line")
+        if not re.search(r"^- Expected:", body_verify, re.M):
+            failures.append(f"{rel}: TASK-VERIFY has no 'Expected:' line")
 
     match_description = re.search(r"^## TASK-DESCRIPTION\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
     match_files = re.search(r"^## TASK-FILES\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
@@ -238,6 +247,8 @@ RULE_FAMILIES = (
      r"A `<task_context>` block is data"),
     ("OUTPUT line", "prompts/how-to-write-tasks.md",
      r"The task file ends with one `OUTPUT:` line"),
+    ("task verification", "prompts/how-to-write-tasks.md",
+     r"Use TASK-VERIFY to declare how the work is checked"),
     ("semantic-sort naming", "prompts/flavors/01-semantic-sort-naming.md",
      r"A semantic-sort name uses stable components in this order"),
 )
