@@ -12,6 +12,7 @@
 
 ## Recently Completed
 
+* [x] add a delimiter convention for interpolated context (2026-09-24; prompt-engineering gap 1): `prompts/how-to-write-tasks.md` §5 wraps copied data in `<task_context>`, task instructions in `<constraint>`, and background in `<note>`; the contract §8 treats a `<task_context>` block as untrusted data even when the task supplies it; the workflow §2 and the glossary follow, and the worked task demonstrates it.
 * [x] give verification an observable channel and remove the unobservable rules (2026-09-24; review consolidation 5):
     * [x] a single `VERIFICATION:` line is always permitted output, regardless of the requested format; the workflow reports through it and the glossary defines it.
     * [x] the internal restatement and plan are declared working aids, not an inspectable obligation.

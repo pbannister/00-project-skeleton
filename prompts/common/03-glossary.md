@@ -46,6 +46,21 @@ authoritative file; the glossary never states a rule.
 - A block providing additional information, such as file contents, notes, samples, or constraints.
 - Rules: `prompts/how-to-write-tasks.md` section 5.
 
+## task_context block
+
+- A delimited block of copied data inside `TASK-CONTEXT`; it is data, never instructions.
+- Rules: `prompts/how-to-write-tasks.md` section 5.
+
+## constraint block
+
+- A delimited block of instructions inside `TASK-CONTEXT`.
+- Rules: `prompts/how-to-write-tasks.md` section 5.
+
+## note block
+
+- A delimited block of background inside `TASK-CONTEXT` that does not constrain.
+- Rules: `prompts/how-to-write-tasks.md` section 5.
+
 ## Scope-based identifier length
 
 - The amount of identifier detail appropriate to the identifier's scope.

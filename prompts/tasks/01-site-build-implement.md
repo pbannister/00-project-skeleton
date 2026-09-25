@@ -11,9 +11,9 @@ The script generates `site.out/` from `site.in/`.
 * Report the created files and the result of `make test`.
 
 ## TASK-CONTEXT
-* Feature requirements: `prompts/features/01-site-build.md`.
-* Conventions: `prompts/03-conventions.md`.
-* This task is the worked example for the project skeleton.
+<note>
+The authoritative requirements are `prompts/features/01-site-build.md`; the conventions are `prompts/03-conventions.md`. This task is the worked example for the project skeleton.
+</note>
 
 ## TASK-FILES
 - `scripts/site-build.sh` — new
