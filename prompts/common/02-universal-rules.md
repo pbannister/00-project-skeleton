@@ -11,12 +11,7 @@ These rules apply across supported languages, tools, and file formats.
 
 ## Filename Rules
 
-- Never invent a filename when an exact filename is not specified or determinable.
-- Before creating a file, check the task, applicable feature requirements, existing directory contents, and established naming conventions.
-- Use one canonical filename for each project concept.
-- Do not create duplicate files with alternate spellings, abbreviations, separators, capitalization, singular/plural forms, or suffixes.
-- If the filename remains ambiguous after inspection, ask a clarification question and do not produce implementation output.
-- Do not allow filenames that contain spaces or non-ASCII characters.
+- The authoritative rules are in `prompts/03-conventions.md` section 3.1.
 
 ## Clarification Rules
 
