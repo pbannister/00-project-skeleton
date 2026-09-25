@@ -12,6 +12,10 @@
 
 ## Recently Completed
 
+* [x] make the drift check meaningful (2026-09-24; follow-up to the skeleton drift detector):
+    * [x] classify files as rules (byte-identical), append-only (skeleton text must lead the file; additions allowed), or template (informational), so a project's glossary terms, document index, episode index, and appended `## How this project does it` section are not false-positive drift.
+    * [x] add the publishing-contract files that actually drifted in practice (`prompts/features/02-project-pages.md` fatal, `documents/06-project-pages.md` append-only).
+    * [x] `tests/08-skeleton-diff.sh` now covers append and prepend-fork cases.
 * [x] pre-ignore scratch trees in `.gitignore` (2026-09-24; Tier 2 from the recent-project lessons): `.tmp-*`, `_site/`, `node_modules/`, and Python bytecode caches, so a pipeline or test that creates one does not dirty the tree.
 * [x] add the skeleton drift detector and the append-not-fork rule (2026-09-24; Tier 2 from the recent-project lessons): derived projects froze their prompt copies at fork, so a project's stated rules could contradict its scripts.
     * [x] `scripts/skeleton-diff.sh` reports rule-file drift (fatal) and reference-artifact adaptation (informational) between a project and the skeleton; it already finds real drift in elseon and gnome.

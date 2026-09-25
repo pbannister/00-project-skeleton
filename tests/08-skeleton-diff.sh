@@ -48,5 +48,23 @@ fi
 printf '%s\n' "$output_adapted" | grep -q 'informational' \
     || fail 'the adapted reference script was not reported'
 
+# Appending a project section to an append-allowed document is fine.
+printf '%s\n' '' '## How this project does it' 'A local note.' \
+    >> "$DIRECTORY_PROJECT/documents/06-project-pages.md"
+if ! output_append=$(sh "$SCRIPT_DIFF" "$DIRECTORY_PROJECT" 2>&1); then
+    fail "an appended project section was treated as fatal: $output_append"
+fi
+printf '%s\n' "$output_append" | grep -q 'appended (ok): documents/06-project-pages.md' \
+    || fail 'the appended section was not reported'
+
+# Prepending a line means the shared text no longer leads the file: drift.
+printf '%s\n' '# forked preamble' > "$DIRECTORY_TEST/preamble"
+cat "$DIRECTORY_TEST/preamble" "$DIRECTORY_PROJECT/documents/06-project-pages.md" \
+    > "$DIRECTORY_TEST/merged"
+mv "$DIRECTORY_TEST/merged" "$DIRECTORY_PROJECT/documents/06-project-pages.md"
+if sh "$SCRIPT_DIFF" "$DIRECTORY_PROJECT" >/dev/null 2>&1; then
+    fail 'a prepended fork of an append-only document was accepted'
+fi
+
 echo '08-skeleton-diff: ok'
 exit 0
