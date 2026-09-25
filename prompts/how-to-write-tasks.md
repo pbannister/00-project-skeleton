@@ -143,6 +143,7 @@ Use TASK-VERIFY to declare how the work is checked, so verification is not burie
 
 * State the command or test to run, prefixed `Run:`.
 * State the expected result, prefixed `Expected:`.
+* The `Expected:` line describes an observable result — an exit status, an output, or a count — not a judgment such as "looks correct", "works", or "no problems".
 * The workflow determines the applicable verification (`prompts/02-workflow.md` section 6); TASK-VERIFY declares it for this task.
 
 Example:

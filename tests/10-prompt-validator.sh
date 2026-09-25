@@ -77,6 +77,9 @@ expect_reject 'task missing the OUTPUT line' 'OUTPUT: restatement'
 reset; sed -i '/^- Run:/d' "$FILE_TASK"
 expect_reject 'TASK-VERIFY without a Run line' "TASK-VERIFY has no 'Run:' line"
 
+reset; sed -i 's/^- Expected: .*/- Expected: looks good./' "$FILE_TASK"
+expect_reject 'a judgmental Expected line' 'must describe an observable result'
+
 # --- scope table and operation lines ---
 reset; sed -i '/^| create |/d' "$FILE_TASK"
 expect_reject 'TASK-FILES without rows' "TASK-FILES has no '| operation |"

@@ -146,8 +146,14 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
         body_verify = match_verify.group(1)
         if not re.search(r"^- Run:", body_verify, re.M):
             failures.append(f"{rel}: TASK-VERIFY has no 'Run:' line")
-        if not re.search(r"^- Expected:", body_verify, re.M):
+        match_expected = re.search(r"^- Expected:\s*(.+)$", body_verify, re.M | re.I)
+        if not match_expected:
             failures.append(f"{rel}: TASK-VERIFY has no 'Expected:' line")
+        elif re.search(r"\b(looks? (correct|good|fine|right)|works?|no problems?"
+                       r"|seems? (correct|good|fine|right)|appears? (correct|good|fine|right)"
+                       r"|obviously)\b", match_expected.group(1), re.I):
+            failures.append(f"{rel}: TASK-VERIFY 'Expected:' must describe an observable result, "
+                            f"not a judgment: {match_expected.group(1)}")
 
     match_description = re.search(r"^## TASK-DESCRIPTION\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
     match_files = re.search(r"^## TASK-FILES\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
