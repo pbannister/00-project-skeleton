@@ -114,6 +114,26 @@ authoritative file; the glossary never states a rule.
 - A stable name for one top-level requirement, `<FEATURE-NAME>-R<NNN>`.
 - Rules: `prompts/how-to-write-features.md` section 4.
 
+## Scope
+
+- The artifacts and operations a task describes, declared by the operation lines of `TASK-DESCRIPTION` and the `TASK-FILES` table.
+- Rules: `prompts/how-to-write-tasks.md` sections 3 and 6.
+
+## Authorization
+
+- Permission to perform an operation, supplied by the task or by an applicable workflow rule.
+- Rules: `prompts/01-contract.md` section 3.
+
+## TASK-ACCEPTANCE
+
+- A claim that the task intends to satisfy the listed requirement identifiers; it is not the human's acceptance decision.
+- Rules: `prompts/how-to-write-tasks.md` section 6.2.
+
+## TASK-FEATURES
+
+- The feature files whose requirements a task applies; their requirements apply transitively through each feature's `Dependencies`.
+- Rules: `prompts/how-to-write-tasks.md` section 6.3.
+
 ## Acceptance criterion
 
 - A human-reviewable condition that decides whether the work is acceptable.
