@@ -21,15 +21,28 @@
 #   * every universal rule file is listed in the section 2 registry;
 #   * every tracked root-level file is permitted by contract section 7;
 #   * each curated rule family appears in exactly one authoritative file.
+#
+# With an optional ROOT argument it validates that corpus instead of this
+# repository; tests/10-prompt-validator.sh uses this to inject malformed
+# fixtures and prove the checks reject them.
 set -eu
 
 DIRECTORY_SCRIPT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 REPOSITORY_ROOT=$(CDPATH= cd -- "$DIRECTORY_SCRIPT/.." && pwd)
 
+# The corpus to validate. Defaults to this repository; tests/10 passes a
+# throwaway copy so it can inject malformed fixtures.
+ROOT_CHECK=${1:-"$REPOSITORY_ROOT"}
+
 . "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
 skip_unless_tool python3
 
-python3 - "$REPOSITORY_ROOT" <<'PY'
+if [ ! -d "$ROOT_CHECK/prompts" ]; then
+    echo "09-prompt-contract: no prompts directory under: $ROOT_CHECK" >&2
+    exit 2
+fi
+
+python3 - "$ROOT_CHECK" <<'PY'
 import glob
 import os
 import re

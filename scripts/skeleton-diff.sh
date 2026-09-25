@@ -74,6 +74,7 @@ scripts/site-condense.sh
 scripts/tests-run.sh
 tests/00-skeleton.sh
 tests/09-prompt-contract.sh
+tests/10-prompt-validator.sh
 site.in/template.html
 '
 

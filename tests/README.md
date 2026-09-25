@@ -5,7 +5,7 @@
   nonzero when any test failed.
 - Tests are numbered in reserved bands, so lexical order is execution order and
   areas do not collide:
-    - `00`–`09` — repository plumbing and the site build.
+    - `00`–`09` — repository plumbing, the site build, and prompt-contract validation.
     - `10`–`19` — readers and parsers.
     - `20`–`29` — locators and resolution.
     - `30`–`49` — containers and formats.
@@ -22,6 +22,7 @@
 - A test never touches the real system: sandbox `HOME` and XDG paths into a
   temporary directory, serve HTTP on `127.0.0.1`, and use no outside network.
 - A test that changes live state does not belong in `make test`.
+- `tests/09-prompt-contract.sh` validates the prompt corpus; `tests/10-prompt-validator.sh` is its adversarial corpus, injecting malformed fixtures and asserting each is rejected.
 - Keep spec-derived sample inputs in `dataflow.in/` and use them as fixtures.
 
 ## Canonical Files
