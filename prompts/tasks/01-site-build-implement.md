@@ -26,4 +26,9 @@ The authoritative requirements are `prompts/features/01-site-build.md`; the conv
 - Run: `make test` from the repository root.
 - Expected: exit status 0.
 
+## TASK-ACCEPTANCE
+- `SITE-BUILD-R001`
+- `SITE-BUILD-R002`
+- `SITE-BUILD-R011`
+
 OUTPUT: the created files and the `make test` result, ending with the `VERIFICATION:` line.

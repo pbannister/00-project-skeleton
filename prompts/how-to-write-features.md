@@ -29,7 +29,7 @@ Describe the capability and the problem it solves.
 
 ## Requirements
 
-List the mandatory behavior and constraints.
+- `SITE-BUILD-R001` — List the mandatory behavior and constraints, one identifier per top-level requirement.
 
 ## Behavior
 
@@ -45,6 +45,8 @@ List the mandatory behavior and constraints.
 * Requirements must be specific, testable, and implementation-independent.
 * Requirements must describe what the feature does, not how a task must implement it.
 * Each requirement must be stated as a separate bullet.
+* Give every top-level requirement a stable identifier, `<FEATURE-NAME>-R<NNN>`, prefixed to the bullet.
+* Keep an identifier stable once assigned; add a new identifier rather than renumbering an existing one.
 * Do not include TODO status, task sequencing, or response-format instructions in a feature file.
 
 ## 5. Feature and Task Relationship

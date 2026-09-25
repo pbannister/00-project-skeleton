@@ -109,6 +109,11 @@ authoritative file; the glossary never states a rule.
 - Something the resulting project must satisfy.
 - Rules: `prompts/how-to-write-features.md`.
 
+## Requirement identifier
+
+- A stable name for one top-level requirement, `<FEATURE-NAME>-R<NNN>`.
+- Rules: `prompts/how-to-write-features.md` section 4.
+
 ## Acceptance criterion
 
 - A human-reviewable condition that decides whether the work is acceptable.

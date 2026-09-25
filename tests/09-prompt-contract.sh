@@ -11,6 +11,8 @@
 #   * every task has TASK-DESCRIPTION and TASK-OUTPUT, in order, and ends with
 #     an OUTPUT: restatement;
 #   * a TASK-VERIFY section declares a Run: and an Expected: line;
+#   * every top-level feature requirement carries a unique identifier, and
+#     TASK-ACCEPTANCE resolves to an identifier in a feature the task references;
 #   * TASK-FILES is an operation/path table whose paths are repository-relative
 #     and agree with TASK-DESCRIPTION;
 #   * every feature has Purpose, Requirements, Behavior, and Dependencies;
@@ -109,7 +111,7 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
     idx_output = text.find("## TASK-OUTPUT")
     if idx_description != -1 and idx_output != -1 and idx_description > idx_output:
         failures.append(f"{rel}: TASK-DESCRIPTION must precede TASK-OUTPUT")
-    for heading in ("## TASK-CONTEXT", "## TASK-FILES", "## TASK-VERIFY"):
+    for heading in ("## TASK-CONTEXT", "## TASK-FILES", "## TASK-VERIFY", "## TASK-ACCEPTANCE"):
         idx_heading = text.find(heading)
         if idx_heading != -1 and idx_output != -1 and idx_heading < idx_output:
             failures.append(f"{rel}: {heading} must follow TASK-OUTPUT")
@@ -219,7 +221,44 @@ if section7:
         if f"`{rel}`" not in section7.group(0):
             failures.append(f"root file is not permitted by contract section 7: {rel}")
 
-# 10. Each rule family has exactly one authoritative home.
+# 10. Requirement identifiers are unique, and TASK-ACCEPTANCE resolves them.
+requirement_owner = {}
+for path in sorted(glob.glob(os.path.join(root, "prompts/features/[0-9][0-9]-*.md"))):
+    rel = os.path.relpath(path, root)
+    if os.path.basename(rel).startswith("00-"):
+        continue
+    match = re.search(r"^## Requirements\s*$(.*?)(?=^## |\Z)", read(rel), re.S | re.M)
+    if not match:
+        continue
+    body = match.group(1)
+    ids = re.findall(r"^- `([A-Za-z0-9-]+-R\d{3})`", body, re.M)
+    if not ids:
+        failures.append(f"{rel}: no requirement identifiers")
+    for line in body.splitlines():
+        if re.match(r"^- ", line) and not re.match(r"^- `[A-Za-z0-9-]+-R\d{3}`", line):
+            failures.append(f"{rel}: requirement without an identifier: {line[:60]}")
+    for req_id in ids:
+        if req_id in requirement_owner:
+            failures.append(f"duplicate requirement identifier {req_id}: {rel} and {requirement_owner[req_id]}")
+        requirement_owner[req_id] = rel
+
+for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md"))):
+    rel = os.path.relpath(path, root)
+    if os.path.basename(rel).startswith("00-"):
+        continue
+    text = read(rel)
+    match = re.search(r"^## TASK-ACCEPTANCE\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
+    if not match:
+        continue
+    referenced = set(re.findall(r"prompts/features/[0-9][0-9]-[a-z-]+\.md", text))
+    for req_id in re.findall(r"`([A-Za-z0-9-]+-R\d{3})`", match.group(1)):
+        owner = requirement_owner.get(req_id)
+        if owner is None:
+            failures.append(f"{rel}: TASK-ACCEPTANCE names an unknown identifier: {req_id}")
+        elif owner not in referenced:
+            failures.append(f"{rel}: TASK-ACCEPTANCE {req_id} belongs to {owner}, which the task does not reference")
+
+# 11. Each rule family has exactly one authoritative home.
 #
 # The list is curated: the marker must still be present in the owner, so a
 # reworded rule fails loudly and forces this list to be updated rather than
@@ -272,6 +311,8 @@ RULE_FAMILIES = (
      r"A semantic-sort name uses stable components in this order"),
     ("episode authority", "prompts/how-to-write-episodes.md",
      r"An episode authorizes only the operations in its dispatched task definition"),
+    ("requirement identifiers", "prompts/how-to-write-features.md",
+     r"Give every top-level requirement a stable identifier"),
 )
 
 for family, owner, marker in RULE_FAMILIES:

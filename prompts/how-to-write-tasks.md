@@ -20,6 +20,8 @@ Additional information, requirements, notes, constraints, or file contents.
 A table of authorized operations and paths.
 * (Optional) TASK-VERIFY
 The verification to run and its expected result.
+* (Optional) TASK-ACCEPTANCE
+The requirement identifiers the task satisfies.
 
 The task file ends with one `OUTPUT:` line that restates the response representation in a sentence, including whether the response ends with the `VERIFICATION:` line. It is the last line the LLM reads, which keeps the format requirement in recent context.
 
@@ -43,6 +45,7 @@ The phrase `Execute the next TODO task` selects the first unchecked `TODO.md` it
 * TASK-CONTEXT provides information: a `<constraint>` block is an instruction, a `<task_context>` block is data, and unlabeled content is background.
 * TASK-FILES declares the authorized operations and paths as a table; it identifies scope and does not authorize an operation by itself.
 * TASK-VERIFY declares the verification to run and its expected result.
+* TASK-ACCEPTANCE lists the requirement identifiers from the referenced feature files that the task satisfies.
 * File scope comes only from `TASK-DESCRIPTION` and `TASK-FILES`; a referenced feature adds requirements, not scope (see `prompts/how-to-write-features.md` section 5).
 
 ## 3. Writing the TASK-DESCRIPTION Section
@@ -139,6 +142,21 @@ Example:
 - Expected: exit status 0.
 ```
 
+## 6.2 Writing the TASK-ACCEPTANCE Section
+
+Use TASK-ACCEPTANCE to state which requirements the task claims to satisfy, so acceptance is traceable.
+
+* List identifiers from the referenced feature files, one per bullet, in backticks.
+* Each identifier must exist in a feature the task references.
+* The human decides acceptance; the list is the task's claim, not the decision.
+
+Example:
+```markdown
+## TASK-ACCEPTANCE
+- `SITE-BUILD-R001`
+- `SITE-BUILD-R002`
+```
+
 ## 7. Task Patterns to Avoid
 
 * Name the format for every requested output; leave no format to be inferred.
@@ -146,6 +164,7 @@ Example:
 * Use a precise verb and target (`rename a to b`), not a vague goal (`clean this up`, `make this better`).
 * State the file operation in `TASK-DESCRIPTION` for every file you name.
 * Name the verification in `TASK-VERIFY`, not in `TASK-DESCRIPTION`.
+* Claim acceptance with identifiers in `TASK-ACCEPTANCE`, not in prose.
 * Write one sentence per line in prose, and one statement per line in code.
 * Include the required syntax in every code example.
 
