@@ -24,6 +24,9 @@ printf '%s\n' 'console.log("asset");' > "$DIRECTORY_TEMPORARY/in/asset.js"
 printf '%s\n' 'index.html|Summary' > "$DIRECTORY_TEMPORARY/in/pages.nav"
 cp "$REPOSITORY_ROOT/site.in/template.html" "$DIRECTORY_TEMPORARY/in/template.html"
 
+# Fixture values: this state file describes the fixture, not the repository's
+# actual current state, so the assertions below are about substitution, not
+# about the live branch or fetch date.
 printf '%s\n' 'FETCHED=2026-09-24' 'BRANCH=main' > "$DIRECTORY_TEMPORARY/state.txt"
 
 # Seed the output tree with a stale page and the tracked placeholder: the
