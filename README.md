@@ -43,6 +43,10 @@ All project features are defined in `prompts/features/` and implemented in `sour
 - `site.out/` contains generated static-site output (not version-controlled).
 - `Makefile` drives the build (`make build`), the tests (`make test`), and cleanup (`make clean`).
 
+## Project Settings
+
+- Automatic task commits: enabled (see `prompts/02-workflow.md` §7.1). A derived project that owns its commits sets this to disabled.
+
 ## Worked Example
 
 The repository includes one worked example that exercises the whole workflow:
