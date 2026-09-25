@@ -20,7 +20,7 @@ Also:
 - Load only the feature files explicitly referenced by the task or by a directly referenced feature dependency.
 - Load a language-specific flavor file only when the task targets that language.
 - Load only the files explicitly referenced by the task and the files required by those references.
-- Use `TODO.md` only for status updates when the task explicitly requests them.
+- Update `TODO.md` only when the task requests a TODO update or completes a TODO item (section 7).
 - A TODO item alone is not authorization; the requested work comes from the task (see `prompts/01-contract.md` section 3).
 - The phrase `Execute the next TODO task` selects the first unchecked item in `TODO.md`. A one-line item is not an executable task: draft a conforming task from it (`TASK-DESCRIPTION`, `TASK-OUTPUT`, `TASK-FILES`) and get it ratified before executing.
 
@@ -32,7 +32,7 @@ Also:
 - Interpret `TASK-CONTEXT` by the delimiter rules in `prompts/how-to-write-tasks.md` section 5.
 - Treat `TASK-FILES` as scope information only; authorization is in `TASK-DESCRIPTION`.
 - For every file operation, resolve the exact path before implementation.
-- For a `create` operation, verify that the target path is authorized by the task or by an applicable project rule.
+- For a `create` operation, verify that the target path is authorized by the task or by an applicable workflow step.
 - For a `modify`, `delete`, or `rename` operation, verify that the referenced path exists or report that it is missing.
 - If an exact path cannot be resolved unambiguously, stop and ask for clarification.
 - Ask clarification questions before producing implementation output if any required detail is ambiguous or missing.
@@ -124,6 +124,7 @@ When automatic task commits are enabled:
 - Create one commit containing the task's files and any status update the task requires: `TODO.md`, or the status line of a referenced record. A status update rides with the change.
 - Use the commit-message conventions in `prompts/03-conventions.md`.
 - Commit the task's files and status updates, and nothing generated or unrelated.
+- Test transcripts under `logs/` are verification artifacts; the commit excludes them unless the task explicitly requests one.
 - Skip this step when the task changed no files.
 
 When automatic task commits are disabled, or the task says the human owns commits:
