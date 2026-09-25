@@ -72,9 +72,12 @@ FILES_TEMPLATE='
 scripts/site-build.sh
 scripts/site-condense.sh
 scripts/tests-run.sh
+scripts/release-package.sh
+scripts/install.sh
 tests/00-skeleton.sh
 tests/09-prompt-contract.sh
 tests/10-prompt-validator.sh
+tests/11-release-install.sh
 site.in/template.html
 '
 

@@ -201,6 +201,9 @@ names. The build-time version from 6.2 is what makes that checkable.
   build tree cannot be published.
 - Pack deterministically: sorted names, no owner, the commit's timestamp, and
   no gzip timestamp, so packing the same build twice yields one digest.
+- The canonical packaging script is `scripts/release-package.sh`; the canonical
+  installer is `scripts/install.sh`. Publishing is project-specific (the
+  reference project uses `scripts/release-publish.sh`).
 - Name release assets without a version, so
   `releases/latest/download/<asset>` works without an API call; a version can
   still be pinned by adding the tag to the path.

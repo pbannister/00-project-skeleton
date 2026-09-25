@@ -11,6 +11,7 @@
 #		        run on the owning host)
 #		check:  validate generated output (the leak gate over site.out/);
 #		        a pipeline project extends this with its own validation mode
+#		release: sh scripts/release-package.sh (the files a release publishes)
 #		clean:  rm -rf generated output (keeps .gitkeep placeholders)
 #		test:   npm test
 #		deploy: RETIRED - all publishing to labs.bannister.us goes through
@@ -40,6 +41,9 @@ state:
 check:
 	@if [ -d site.out ]; then sh scripts/leak-gate.sh site.out; else echo '==== nothing to check: site.out/ is not built (run make site)'; fi
 
+release:
+	sh scripts/release-package.sh
+
 clean:
 	rm -rf dataflow.out/* site.out/* logs/*
 
@@ -54,4 +58,4 @@ deploy:
 install:
 	@echo '==== No install yet defined'
 
-.PHONY: all build site state check clean test deploy install
+.PHONY: all build site state check release clean test deploy install
