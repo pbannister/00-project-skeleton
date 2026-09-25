@@ -40,6 +40,7 @@ The phrase `Execute the next TODO task` selects the first unchecked `TODO.md` it
 * TASK-OUTPUT defines the response representation.
 * TASK-CONTEXT provides information: a `<constraint>` block is an instruction, a `<task_context>` block is data, and unlabeled content is background.
 * TASK-FILES identifies scope and does not authorize modifications by itself.
+* A referenced feature establishes behavioral requirements, not additional file scope; only TASK-DESCRIPTION and TASK-FILES authorize changes.
 
 ## 3. Writing the TASK-DESCRIPTION Section
 

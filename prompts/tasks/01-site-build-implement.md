@@ -4,7 +4,7 @@
 * Create `scripts/site-build.sh`.
 The script generates `site.out/` from `site.in/`.
 * Create `site.in/hello.txt` with example input content.
-* Implement the requirements in `prompts/features/01-site-build.md`.
+* Implement the requirements in `prompts/features/01-site-build.md` within the authorized files listed in `TASK-FILES`.
 * Run `make test` from the repository root.
 
 ## TASK-OUTPUT
