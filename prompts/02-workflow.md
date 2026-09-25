@@ -29,7 +29,7 @@ Also:
 - Determine the requested operations, target files, constraints, and output format.
 - Treat `TASK-DESCRIPTION` as the requested work.
 - Treat `TASK-OUTPUT` as the response representation.
-- Treat `TASK-CONTEXT` as information: a `<task_context>` block is data, a `<constraint>` block is an instruction, and unlabeled content is background.
+- Interpret `TASK-CONTEXT` by the delimiter rules in `prompts/how-to-write-tasks.md` section 5.
 - Treat `TASK-FILES` as scope information only; authorization is in `TASK-DESCRIPTION`.
 - For every file operation, resolve the exact path before implementation.
 - For a `create` operation, verify that the target path is authorized by the task or by an applicable project rule.
