@@ -9,6 +9,8 @@
 #		        (the standard page set; see prompts/features/02-project-pages.md)
 #		state:  sh scripts/site-state-fetch.sh (refresh the live state file;
 #		        run on the owning host)
+#		check:  validate generated output (the leak gate over site.out/);
+#		        a pipeline project extends this with its own validation mode
 #		clean:  rm -rf generated output (keeps .gitkeep placeholders)
 #		test:   npm test
 #		deploy: RETIRED - all publishing to labs.bannister.us goes through
@@ -35,6 +37,9 @@ site:
 state:
 	sh scripts/site-state-fetch.sh
 
+check:
+	@if [ -d site.out ]; then sh scripts/leak-gate.sh site.out; else echo '==== nothing to check: site.out/ is not built (run make site)'; fi
+
 clean:
 	rm -rf dataflow.out/* site.out/* logs/*
 
@@ -49,4 +54,4 @@ deploy:
 install:
 	@echo '==== No install yet defined'
 
-.PHONY: all build site state clean test deploy install
+.PHONY: all build site state check clean test deploy install

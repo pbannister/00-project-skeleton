@@ -16,3 +16,6 @@ _site/
 node_modules/
 __pycache__/
 *.py[cod]
+
+# An accidental in-source build directory (builds belong in dataflow.out/build).
+build/
