@@ -96,10 +96,14 @@ Rules:
 
 ## 6. Verify the Work
 
-- When execution tools are available, run `make test` from the repository root.
-- Claim a passing suite only after `make test` ran successfully.
-- If `make test` cannot be run, report that verification was not performed when verification results are requested.
-- If `make test` fails, correct the failure within task scope and run `make test` again.
+Determine the verification applicable to the task (section 4.1), then perform it.
+
+- Run `make test` when the repository test suite covers the changed artifacts.
+- Run the relevant test directly when it is not part of `make test`, for example a live-state test.
+- For a documentation-, prompt-, or configuration-only change, run the validation that applies to it when one exists.
+- Claim a passing suite only after it ran successfully.
+- If the applicable verification cannot be run, report that with the `VERIFICATION:` line instead of claiming completion.
+- If it fails, correct the failure within task scope and run it again.
 - If the failure cannot be corrected within task scope, stop, report the failure, and do not claim completion.
 - Report verification with the `VERIFICATION:` line defined in `prompts/01-contract.md` section 5.
 
@@ -111,25 +115,33 @@ Rules:
 
 ## 7.1 Commit Completed Work
 
-A change, its status updates, and its outcome record follow one rule set.
+A project declares whether the LLM commits completed tasks. The setting lives in `README.md` or the applicable project rules; the default is enabled.
+
+When automatic task commits are enabled:
 
 - When the task changed files and verification succeeds, commit the completed work with git.
 - Create one commit containing the task's files and any status update the task requires: `TODO.md`, or the status line of a referenced record. A status update rides with the change.
-- Write the outcome record after the episode settles and the human reviews it (see `records/README.md`); commit it separately and cite the work commit in it.
-- A record that cites its own commit hash is always that second commit. Write the real commit hash, never a placeholder.
 - Use the commit-message conventions in `prompts/03-conventions.md`.
 - Commit the task's files and status updates, and nothing generated or unrelated.
 - Skip this step when the task changed no files.
+
+When automatic task commits are disabled, or the task says the human owns commits:
+
+- Leave the changes in the working tree.
+- Report that verification succeeded and no commit was created.
+
+An outcome record is written after the episode settles and the human reviews it (see `records/README.md`); commit it separately and cite the work commit. A record that cites its own commit hash is always that second commit. Write the real commit hash, never a placeholder.
 
 ## 7.2 Definition of Done
 
 A task is complete only when every applicable item is satisfied:
 
 - The requested scope is implemented with no out-of-scope changes.
-- `make test` executed successfully, or the task reports that verification could not be run because no execution tools were available (section 6).
+- All verification applicable to the task was executed successfully.
+- `make test` ran when it covers the changed artifacts; its omission is not a failure when it does not.
 - A fix to executable code ships a regression test that fails against the old code; a fix with no applicable test mechanism is exempt (see section 4).
 - `TODO.md` is updated when the task requires a status update.
-- Completed work is committed when the task changed files.
+- Completed work is committed when automatic task commits are enabled and the task changed files (section 7.1).
 - Output is produced in the requested format.
 
 ## 8. Produce Output
