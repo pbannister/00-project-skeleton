@@ -236,7 +236,9 @@ for path in sorted(universal):
     if f"`{rel}`" not in section2 and f"`{os.path.dirname(rel)}/*.md`" not in section2:
         failures.append(f"not in the contract section 2 registry: {rel}")
 
-# 9. Every tracked root-level file is named as permitted in contract section 7.
+# 9. Every tracked root-level file, and every tracked tool-specific root
+#    directory, is named as permitted in contract section 7; committed tool
+#    configuration carries no absolute home path.
 section7 = re.search(r"^## 7\..*?(?=^## 8\.)", contract, re.S | re.M)
 if section7:
     try:
@@ -245,11 +247,29 @@ if section7:
                                  capture_output=True, text=True, check=True).stdout.split()
     except Exception:
         tracked = []
+    body7 = section7.group(0)
     for rel in tracked:
         if "/" in rel:
+            top = rel.split("/")[0]
+            if top.startswith(".") and f"`{top}/`" not in body7 and f"`{top}`" not in body7:
+                failures.append(f"tool directory is not permitted by contract section 7: {top}/")
             continue
-        if f"`{rel}`" not in section7.group(0):
+        if f"`{rel}`" not in body7:
             failures.append(f"root file is not permitted by contract section 7: {rel}")
+
+    for rel in tracked:
+        if "/" in rel:
+            if not rel.split("/")[0].startswith("."):
+                continue
+        elif not rel.startswith(".aider"):
+            continue
+        try:
+            with open(os.path.join(root, rel), encoding="utf-8", errors="ignore") as handle:
+                content = handle.read()
+        except OSError:
+            continue
+        if re.search(r"/(home|Users)/[A-Za-z]", content):
+            failures.append(f"{rel}: committed tool configuration contains an absolute home path")
 
 # 10. Requirement identifiers are unique, and TASK-ACCEPTANCE resolves them.
 requirement_owner = {}

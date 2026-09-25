@@ -2,10 +2,11 @@
 #
 # Prompt-validator test: the adversarial corpus.
 #
-# Tier: tool-gated (python3, through tests/09). Builds a throwaway copy of the
-# repository, injects one malformed fixture at a time, and asserts that
-# tests/09-prompt-contract.sh rejects each one for the expected reason. This
-# tests the validator itself, not only the clean corpus.
+# Tier: tool-gated (python3 and git, through tests/09). Builds a throwaway copy
+# of the repository, commits it to a scratch git repository, injects one
+# malformed fixture at a time, and asserts that tests/09-prompt-contract.sh
+# rejects each one for the expected reason. This tests the validator itself,
+# not only the clean corpus.
 set -eu
 
 DIRECTORY_SCRIPT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
@@ -14,6 +15,7 @@ SCRIPT_CHECK="$REPOSITORY_ROOT/tests/09-prompt-contract.sh"
 
 . "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
 skip_unless_tool python3
+skip_unless_tool git
 
 DIRECTORY_TEST=$(mktemp -d)
 trap 'rm -rf "$DIRECTORY_TEST"' EXIT HUP INT TERM
@@ -24,13 +26,16 @@ fail() {
     exit 1
 }
 
-# reset: a clean copy of the repository to mutate.
+# reset: a clean, committed copy of the repository to mutate. Committing it
+# lets the validator's tracked-root and tool-config checks run.
 reset() {
     rm -rf "$DIRECTORY_ROOT"
     mkdir -p "$DIRECTORY_ROOT"
     (cd "$REPOSITORY_ROOT" && tar --exclude=./.git --exclude=./site.out \
         --exclude=./dataflow.out --exclude=./logs -cf - .) \
         | (cd "$DIRECTORY_ROOT" && tar -xf -)
+    git -C "$DIRECTORY_ROOT" init -q
+    git -C "$DIRECTORY_ROOT" add -A
 }
 
 FILE_TASK="$DIRECTORY_ROOT/prompts/tasks/01-site-build-implement.md"
@@ -45,6 +50,7 @@ expect_reject() {
     name_case=$1
     text_expect=$2
     count_case=$((count_case + 1))
+    git -C "$DIRECTORY_ROOT" add -A >/dev/null 2>&1 || true
     if output_case=$(sh "$SCRIPT_CHECK" "$DIRECTORY_ROOT" 2>&1); then
         fail "the validator accepted '$name_case'"
     fi
@@ -146,6 +152,15 @@ expect_reject 'episode missing acceptance' 'missing ## EPISODE-ACCEPTANCE'
 # project at any phase rather than only in one that has not started.
 reset; sed -i 's/^Current: .*/Current: phase 1 — in-progress/' "$FILE_PHASES"
 expect_reject 'invalid phase state' 'invalid phase state'
+
+# --- root structure and portable tool configuration ---
+reset; mkdir -p "$DIRECTORY_ROOT/.undocumented"
+printf '%s\n' 'x' > "$DIRECTORY_ROOT/.undocumented/config.json"
+expect_reject 'undeclared tool directory' 'tool directory is not permitted'
+
+reset; mkdir -p "$DIRECTORY_ROOT/.vscode"
+printf '%s\n' '{ "path": "/home/someone/sources" }' > "$DIRECTORY_ROOT/.vscode/settings.json"
+expect_reject 'absolute home path in tool configuration' 'absolute home path'
 
 echo "10-prompt-validator: ok ($count_case fixtures rejected)"
 exit 0

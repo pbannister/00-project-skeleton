@@ -135,12 +135,14 @@ The canonical root-level files are:
 - `package.json` — the test entry point.
 - `.gitignore` — the ignore rules.
 
-Tool-specific root-level files are permitted when a file under `tools/` declares them:
+Tool-specific root-level files and directories are permitted when a file under `tools/` declares them:
 
 - `.aider.conf.yml`, `.aiderignore` — configuration for the Aider tool (see `tools/aider-rules.md`).
+- `.vscode/` — editor configuration for the project.
 
+- Committed tool configuration uses workspace-relative paths; never an absolute home path. An absolute home path is both a leak and a portability bug.
 - `tests/00-skeleton.sh` is the machine-readable list of canonical root files and directories; keep this section and that test in agreement.
-- A derived project may declare additional canonical or tool-specific root files in its project rules; the declaration makes them part of the project structure.
+- A derived project may declare additional canonical or tool-specific root files or directories in its project rules; the declaration makes them part of the project structure.
 - A root-level file may change only when the task authorizes the operation or a workflow step requires it.
 
 All new files must be placed in the correct directory:
@@ -160,7 +162,7 @@ All new files must be placed in the correct directory:
 
 - Log filenames must begin with the sortable prefix `YYYY-MM-DD-HH-MM-SS-<description>.log`.
 - Place every new file in a directory listed here or in the permitted root set.
-- The project structure is the canonical root-level files, any declared tool-specific root files, and the directories listed here.
+- The project structure is the canonical root-level files, any declared tool-specific root files or directories, and the directories listed here.
 - Generated directories and files must follow the generated-file rules in `prompts/03-conventions.md`.
 
 ## 8. Safety Rules
