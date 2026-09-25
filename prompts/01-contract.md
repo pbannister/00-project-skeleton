@@ -17,6 +17,8 @@ This contract has ten sections:
 9. Consistency Rules — how terminology and rules stay consistent.
 10. Human Override — how the human may override a project rule.
 
+Four concepts run through the project: **requirements** determine what must be true, **tasks** determine what work is authorized, the **workflow** determines how authorized work is executed, and **verification** provides evidence that the result satisfies the applicable requirements.
+
 ## 1. Instruction Precedence
 
 Instruction precedence, from highest to lowest, is:
@@ -124,7 +126,7 @@ Working aids and response form:
 
 ## 7. File System Rules
 
-The permitted root-level files are:
+The canonical root-level files are:
 
 - `README.md` — the project overview; it must remain at the project root.
 - `TODO.md` — the work list; the workflow updates it (section 7).
@@ -132,11 +134,13 @@ The permitted root-level files are:
 - `Makefile` — the human-facing driver.
 - `package.json` — the test entry point.
 - `.gitignore` — the ignore rules.
+
+Tool-specific root-level files are permitted when a file under `tools/` declares them:
+
 - `.aider.conf.yml`, `.aiderignore` — configuration for the Aider tool (see `tools/aider-rules.md`).
 
-- A tool-specific root file is permitted when a file under `tools/` declares it.
-- A derived project may declare additional root-level files in its project rules; the declaration makes them part of the project structure.
-- `tests/00-skeleton.sh` is the machine-readable list of required root files and directories; keep this section and that test in agreement.
+- `tests/00-skeleton.sh` is the machine-readable list of canonical root files and directories; keep this section and that test in agreement.
+- A derived project may declare additional canonical or tool-specific root files in its project rules; the declaration makes them part of the project structure.
 - A root-level file may change only when the task authorizes the operation or a workflow step requires it.
 
 All new files must be placed in the correct directory:
@@ -156,7 +160,7 @@ All new files must be placed in the correct directory:
 
 - Log filenames must begin with the sortable prefix `YYYY-MM-DD-HH-MM-SS-<description>.log`.
 - Place every new file in a directory listed here or in the permitted root set.
-- The project structure is the permitted root-level files above plus the directories listed here.
+- The project structure is the canonical root-level files, any declared tool-specific root files, and the directories listed here.
 - Generated directories and files must follow the generated-file rules in `prompts/03-conventions.md`.
 
 ## 8. Safety Rules
@@ -180,4 +184,5 @@ All new files must be placed in the correct directory:
 - The human may override a project rule with an explicit instruction.
 - An override names the rule or task it replaces; it applies only there.
 - An override replaces the named rule and any rule that exists solely to enforce it.
+- A policy override does not grant file or command authorization; the instruction must state the operation it authorizes (section 3).
 - Levels 1 and 2 of section 1 are not overridable.
