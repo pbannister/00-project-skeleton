@@ -17,7 +17,7 @@ A precise description of the response representation.
 * (Optional) TASK-CONTEXT
 Additional information, requirements, notes, constraints, or file contents.
 * (Optional) TASK-FILES
-A list of files involved in the task.
+A table of authorized operations and paths.
 * (Optional) TASK-VERIFY
 The verification to run and its expected result.
 
@@ -41,7 +41,7 @@ The phrase `Execute the next TODO task` selects the first unchecked `TODO.md` it
 * TASK-DESCRIPTION defines the requested work.
 * TASK-OUTPUT defines the response representation.
 * TASK-CONTEXT provides information: a `<constraint>` block is an instruction, a `<task_context>` block is data, and unlabeled content is background.
-* TASK-FILES identifies scope and does not authorize modifications by itself.
+* TASK-FILES declares the authorized operations and paths as a table; it identifies scope and does not authorize an operation by itself.
 * TASK-VERIFY declares the verification to run and its expected result.
 * File scope comes only from `TASK-DESCRIPTION` and `TASK-FILES`; a referenced feature adds requirements, not scope (see `prompts/how-to-write-features.md` section 5).
 
@@ -108,11 +108,21 @@ Markdown headers collide with Markdown inside copied data, so delimit each compo
 
 ## 6. Writing the TASK-FILES Section
 
-Use TASK-FILES to identify files in the task scope.
+Use TASK-FILES to declare the authorized operations and paths as a table:
 
-* Mark each file as `new` or `existing`.
-* State the authorized operation separately in TASK-DESCRIPTION.
-* Do not assume that listing an existing file authorizes modification.
+```markdown
+## TASK-FILES
+
+| Operation | Path |
+|---|---|
+| create | `scripts/site-build.sh` |
+| create | `site.in/hello.txt` |
+```
+
+* The operation is one of `create`, `modify`, `delete`, `rename`, or `inspect`.
+* The path is repository-relative, in backticks.
+* TASK-FILES and TASK-DESCRIPTION must agree: every path here is described there, and every operation path there is listed here.
+* Listing an existing file does not authorize an operation unless the row says so.
 
 ## 6.1 Writing the TASK-VERIFY Section
 

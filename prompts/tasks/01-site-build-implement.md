@@ -16,8 +16,11 @@ The authoritative requirements are `prompts/features/01-site-build.md`; the conv
 </note>
 
 ## TASK-FILES
-- `scripts/site-build.sh` — new
-- `site.in/hello.txt` — new
+
+| Operation | Path |
+|---|---|
+| create | `scripts/site-build.sh` |
+| create | `site.in/hello.txt` |
 
 ## TASK-VERIFY
 - Run: `make test` from the repository root.

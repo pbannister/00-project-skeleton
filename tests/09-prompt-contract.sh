@@ -11,8 +11,8 @@
 #   * every task has TASK-DESCRIPTION and TASK-OUTPUT, in order, and ends with
 #     an OUTPUT: restatement;
 #   * a TASK-VERIFY section declares a Run: and an Expected: line;
-#   * every TASK-FILES path is repository-relative and agrees with
-#     TASK-DESCRIPTION;
+#   * TASK-FILES is an operation/path table whose paths are repository-relative
+#     and agree with TASK-DESCRIPTION;
 #   * every feature has Purpose, Requirements, Behavior, and Dependencies;
 #   * every episode has a goal and at least one acceptance criterion;
 #   * PHASES.md has a parsable Current line with an allowed state;
@@ -131,7 +131,17 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
         continue
     body_description = match_description.group(1)
     body_files = match_files.group(1)
-    paths_files = [token for token in re.findall(r"`([^`]+)`", body_files) if "/" in token]
+
+    rows = re.findall(r"^\|\s*([A-Za-z]+)\s*\|\s*`([^`]+)`\s*\|\s*$", body_files, re.M)
+    paths_files = []
+    if not rows:
+        failures.append(f"{rel}: TASK-FILES has no '| operation | `path` |' rows")
+    for operation, path_token in rows:
+        if operation.lower() not in OPERATIONS:
+            failures.append(f"{rel}: TASK-FILES has an unknown operation: {operation}")
+        if path_token.startswith("/") or ".." in path_token.split("/"):
+            failures.append(f"{rel}: TASK-FILES path is not repository-relative: {path_token}")
+        paths_files.append(path_token)
 
     for token in paths_files:
         if token not in body_description:
@@ -146,14 +156,7 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
             if token not in paths_files:
                 failures.append(f"{rel}: operation on undeclared path: {token}")
 
-# 5. TASK-FILES paths are repository-relative.
-for rel, text in texts.items():
-    match = re.search(r"^## TASK-FILES\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
-    if not match:
-        continue
-    for token in re.findall(r"`([^`]+)`", match.group(1)):
-        if token.startswith("/") or ".." in token.split("/"):
-            failures.append(f"{rel}: TASK-FILES path is not repository-relative: {token}")
+# 5. (TASK-FILES relativity is checked with the table in check 4.)
 
 # 6. Features carry the required sections.
 for path in sorted(glob.glob(os.path.join(root, "prompts/features/[0-9][0-9]-*.md"))):
