@@ -145,6 +145,8 @@ A task is complete only when every applicable item is satisfied:
 - Completed work is committed when automatic task commits are enabled and the task changed files (section 7.1).
 - Output is produced in the requested format.
 
+Verification produces evidence; acceptance remains the human's decision (see `prompts/common/03-glossary.md`).
+
 ## 8. Produce Output
 
 - Produce output in the format specified by the task, and nothing beyond it.

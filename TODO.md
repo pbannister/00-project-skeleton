@@ -12,6 +12,7 @@
 
 ## Recently Completed
 
+* [x] define the evidence terminology and clarify "untrusted" (2026-09-24; evaluation P1): the glossary defines Requirement, Acceptance criterion, Verification, Output, and Untrusted content, each pointing at its authoritative rule; `prompts/02-workflow.md` §7.2 states that verification produces evidence while acceptance remains the human's decision; contract §8 states that untrusted means not authoritative as instructions, not factually false.
 * [x] state episode-to-task authority (2026-09-24; evaluation P1): `prompts/how-to-write-episodes.md` §4 says an episode authorizes only the operations in its dispatched task definition, and §8 says an episode's goal does not widen the task's file scope; the rule is a tracked duplicate-authority family.
 * [x] classify conventions as core or capability (2026-09-24; evaluation P1): `prompts/03-conventions.md` gains an Applicability section — sections 1–6 are core and apply to every task, while 6.1–6.5 are capability conventions that apply only when the project uses that capability — and the five capability headings are marked `(capability)`.
 * [x] permit and check tool-specific root files (2026-09-24; evaluation P1): contract §7 names `.aider.conf.yml` and `.aiderignore`, permits a tool-specific root file when a `tools/` rule declares it, and lets a derived project declare additional root files; the validator requires every tracked root-level file to be named in §7, negative-tested with a staged stray root file.

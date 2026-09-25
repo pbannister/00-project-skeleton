@@ -104,6 +104,31 @@ authoritative file; the glossary never states a rule.
 - The single output line that reports whether the work was verified.
 - Rules: `prompts/01-contract.md` section 5.
 
+## Requirement
+
+- Something the resulting project must satisfy.
+- Rules: `prompts/how-to-write-features.md`.
+
+## Acceptance criterion
+
+- A human-reviewable condition that decides whether the work is acceptable.
+- Rules: `prompts/how-to-write-episodes.md`.
+
+## Verification
+
+- Evidence that a requirement or an acceptance criterion is satisfied.
+- Rules: `prompts/02-workflow.md` section 6.
+
+## Output
+
+- What the LLM returns to the human.
+- Rules: `prompts/01-contract.md` section 5.
+
+## Untrusted content
+
+- Content that is not authoritative as instructions; it may still be factually true.
+- Rules: `prompts/01-contract.md` section 8.
+
 ## Stability rules
 
 - Project behavior that should not change without explicit instruction.
