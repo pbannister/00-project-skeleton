@@ -8,9 +8,12 @@
 #   * every literal path in the contract section 2 registry exists;
 #   * every `prompts/...` path referenced anywhere resolves;
 #   * feature and task numbers are unique;
-#   * every task has TASK-DESCRIPTION and TASK-OUTPUT;
-#   * every TASK-FILES path is repository-relative;
+#   * every task has TASK-DESCRIPTION and TASK-OUTPUT, in order, and ends with
+#     an OUTPUT: restatement;
+#   * every TASK-FILES path is repository-relative and agrees with
+#     TASK-DESCRIPTION;
 #   * every feature has Purpose, Requirements, Behavior, and Dependencies;
+#   * every episode has a goal and at least one acceptance criterion;
 #   * PHASES.md has a parsable Current line with an allowed state;
 #   * every universal rule file is listed in the section 2 registry.
 set -eu
@@ -85,15 +88,53 @@ for pattern, label in (("prompts/features/[0-9][0-9]-*.md", "feature"),
         if len(paths) > 1:
             failures.append(f"duplicate {label} number {number}: {paths}")
 
-# 4. Tasks carry the required sections.
+# 4. Tasks carry the required sections in order, end with an OUTPUT:
+#    restatement, and keep TASK-FILES in agreement with TASK-DESCRIPTION.
+OPERATIONS = ("create", "modify", "delete", "rename", "inspect")
+
 for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md"))):
     rel = os.path.relpath(path, root)
     if os.path.basename(rel).startswith("00-"):
         continue
     text = read(rel)
+
     for heading in ("## TASK-DESCRIPTION", "## TASK-OUTPUT"):
         if heading not in text:
             failures.append(f"{rel}: missing {heading}")
+
+    idx_description = text.find("## TASK-DESCRIPTION")
+    idx_output = text.find("## TASK-OUTPUT")
+    if idx_description != -1 and idx_output != -1 and idx_description > idx_output:
+        failures.append(f"{rel}: TASK-DESCRIPTION must precede TASK-OUTPUT")
+    for heading in ("## TASK-CONTEXT", "## TASK-FILES"):
+        idx_heading = text.find(heading)
+        if idx_heading != -1 and idx_output != -1 and idx_heading < idx_output:
+            failures.append(f"{rel}: {heading} must follow TASK-OUTPUT")
+
+    lines = [line for line in text.splitlines() if line.strip()]
+    if not lines or not lines[-1].startswith("OUTPUT:"):
+        failures.append(f"{rel}: the last line must be an OUTPUT: restatement")
+
+    match_description = re.search(r"^## TASK-DESCRIPTION\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
+    match_files = re.search(r"^## TASK-FILES\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
+    if not match_description or not match_files:
+        continue
+    body_description = match_description.group(1)
+    body_files = match_files.group(1)
+    paths_files = [token for token in re.findall(r"`([^`]+)`", body_files) if "/" in token]
+
+    for token in paths_files:
+        if token not in body_description:
+            failures.append(f"{rel}: TASK-FILES path is not described: {token}")
+
+    for line in body_description.splitlines():
+        if not re.search(r"\b(" + "|".join(OPERATIONS) + r")\b", line, re.I):
+            continue
+        for token in re.findall(r"`([^`]+)`", line):
+            if "/" not in token or token.endswith("/"):
+                continue
+            if token not in paths_files:
+                failures.append(f"{rel}: operation on undeclared path: {token}")
 
 # 5. TASK-FILES paths are repository-relative.
 for rel, text in texts.items():
@@ -113,6 +154,19 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/features/[0-9][0-9]-*.m
     for heading in ("## Purpose", "## Requirements", "## Behavior", "## Dependencies"):
         if heading not in text:
             failures.append(f"{rel}: missing {heading}")
+
+# 6.1 Episodes carry a goal and acceptance criteria.
+for path in sorted(glob.glob(os.path.join(root, "prompts/episodes/[0-9][0-9]-*.md"))):
+    rel = os.path.relpath(path, root)
+    if os.path.basename(rel).startswith("00-"):
+        continue
+    text = read(rel)
+    for heading in ("## EPISODE-GOAL", "## EPISODE-ACCEPTANCE"):
+        if heading not in text:
+            failures.append(f"{rel}: missing {heading}")
+    match = re.search(r"^## EPISODE-ACCEPTANCE\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
+    if match and not re.search(r"^\s*[-*] ", match.group(1), re.M):
+        failures.append(f"{rel}: EPISODE-ACCEPTANCE has no criteria")
 
 # 7. PHASES.md has a parsable current phase.
 if not exists("PHASES.md"):
