@@ -12,6 +12,7 @@
 
 ## Recently Completed
 
+* [x] let `TASK-OUTPUT` name the verification line and restate the format last (2026-09-24; prompt-engineering gap 3): `prompts/how-to-write-tasks.md` §4 requires `TASK-OUTPUT` to state whether the response ends with the `VERIFICATION:` line (the default is yes), and §1 requires the task file to end with a one-line `OUTPUT:` restatement, putting the format requirement in recent context without reordering the sections; the worked task demonstrates it and the glossary defines the term.
 * [x] invert the highest-traffic negative rules into positive invariants (2026-09-24; prompt-engineering gap 2): the contract, `common/02` scope and anti-hallucination and risky-operation rules, the workflow output/stability/scope rules, `how-to-write-tasks` §7, and `how-to-write-episodes` §12 now state what to do rather than what to avoid. Negative markers fell from 102 to 40 across the prompt set; the contract has none.
 * [x] add a delimiter convention for interpolated context (2026-09-24; prompt-engineering gap 1): `prompts/how-to-write-tasks.md` §5 wraps copied data in `<task_context>`, task instructions in `<constraint>`, and background in `<note>`; the contract §8 treats a `<task_context>` block as untrusted data even when the task supplies it; the workflow §2 and the glossary follow, and the worked task demonstrates it.
 * [x] give verification an observable channel and remove the unobservable rules (2026-09-24; review consolidation 5):

@@ -19,6 +19,8 @@ Additional information, requirements, notes, constraints, or file contents.
 * (Optional) TASK-FILES
 A list of files involved in the task.
 
+The task file ends with one `OUTPUT:` line that restates the response representation in a sentence, including whether the response ends with the `VERIFICATION:` line. It is the last line the LLM reads, which keeps the format requirement in recent context.
+
 The phrase `Execute the next TODO task` selects the first unchecked `TODO.md` item; the LLM drafts a conforming task from it and the human ratifies it before execution.
 
 ## 1.1 Task and Feature Workflow
@@ -67,21 +69,24 @@ TASK-OUTPUT must be explicit.
 * It must specify whether commentary is allowed.
 * Commentary is not allowed unless explicitly requested.
 * It must specify whether filenames are included.
+* It must state whether the response ends with the `VERIFICATION:` line. The default is that it does; a format that omits the line says so.
+
+End the task file with the one-line `OUTPUT:` restatement (section 1).
 
 Examples:
 ```markdown
 ## TASK-OUTPUT
-Provide only the complete content of `scripts/site-build.sh`.
+Provide only the complete content of `scripts/site-build.sh`, then the `VERIFICATION:` line.
 ```
 ```markdown
 ## TASK-OUTPUT
-Produce these complete files in this order:
+Produce these complete files in this order, then the `VERIFICATION:` line:
 1. `sources/auth/auth_handler.cpp`
 2. `sources/auth/auth_handler.h`
 ```
 ```markdown
 ## TASK-OUTPUT
-Provide a semantic-sort plan followed by the complete requested file content.
+Provide a semantic-sort plan followed by the complete requested file content, then the `VERIFICATION:` line.
 ```
 
 ## 5. Writing the TASK-CONTEXT Section

@@ -9,6 +9,7 @@ The script generates `site.out/` from `site.in/`.
 
 ## TASK-OUTPUT
 * Report the created files and the result of `make test`.
+* End with the `VERIFICATION:` line.
 
 ## TASK-CONTEXT
 <note>
@@ -18,3 +19,5 @@ The authoritative requirements are `prompts/features/01-site-build.md`; the conv
 ## TASK-FILES
 - `scripts/site-build.sh` — new
 - `site.in/hello.txt` — new
+
+OUTPUT: the created files and the `make test` result, ending with the `VERIFICATION:` line.

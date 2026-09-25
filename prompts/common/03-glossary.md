@@ -41,6 +41,11 @@ authoritative file; the glossary never states a rule.
 - A block containing final output.
 - Rules: `prompts/01-contract.md` section 5.
 
+## OUTPUT line
+
+- The final line of a task file that restates the response representation, including whether it ends with the `VERIFICATION:` line.
+- Rules: `prompts/how-to-write-tasks.md` section 1.
+
 ## Context block
 
 - A block providing additional information, such as file contents, notes, samples, or constraints.
