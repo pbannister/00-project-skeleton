@@ -9,7 +9,7 @@ Each lesson names where the skeleton now encodes it.
 ## 1. A record must track the live state
 
 - The record `09-project-site.md` said "not yet implemented" after the deployment was already live.
-- When a task changes a status, update the referenced record in the same commit.
+- When a task changes a status, update the referenced record's status in the work commit; the outcome record itself is written after review and committed separately.
 - Encoded in: `prompts/02-workflow.md` §7.1, `records/README.md`.
 
 ## 2. Generated build trees are path-bound

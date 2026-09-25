@@ -97,7 +97,7 @@ Generated output directories are not version-controlled.
 - Generated build trees are path-bound: clean them when the repository is reached through a different path.
 - Do not mix source, prompt, and generated files.
 - Commit messages use one line in imperative mood with a conventional prefix (`feat:`, `fix:`, `docs:`, `test:`, `chore:`, `refactor:`) and a short summary.
-- A commit contains only the files of one completed task.
+- A commit contains one task's files and that task's status updates; an outcome record is a separate commit (see `prompts/02-workflow.md` §7.1).
 - Never commit generated output or logs.
 - Live-state facts in hand-written documents carry a verification date: `verified 2026-08-22`.
 - Prefer generated documents over hand-written ones for anything that reflects live state.

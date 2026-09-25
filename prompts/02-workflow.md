@@ -114,10 +114,12 @@ Rules:
 
 ## 7.1 Commit Completed Work
 
+A change, its status updates, and its outcome record follow one rule set.
+
 - When the task changed files and verification succeeds, commit the completed work with git.
-- Create one commit containing only the task's files and any TODO update made for the task.
-- When the task changes a status, update the referenced record in the same commit.
-- A record that cites its own commit hash cannot be committed with that commit: commit the work first, then commit the record citing the work commit.
+- Create one commit containing the task's files and any status update the task requires: `TODO.md`, or the status line of a referenced record. A status update rides with the change.
+- Write the outcome record after the episode settles and the human reviews it (see `records/README.md`); commit it separately and cite the work commit in it.
+- A record that cites its own commit hash is always that second commit. Never write a placeholder hash.
 - Use the commit-message conventions in `prompts/03-conventions.md`.
 - Do not commit generated output, logs, or unrelated files.
 - Skip this step when the task changed no files.
@@ -128,7 +130,7 @@ A task is complete only when every applicable item is satisfied:
 
 - The requested scope is implemented with no out-of-scope changes.
 - `make test` executed successfully.
-- A fix ships a regression test that fails against the old code.
+- A fix to executable code ships a regression test that fails against the old code; a fix with no applicable test mechanism is exempt (see section 4).
 - `TODO.md` is updated when the task requires a status update.
 - Completed work is committed when the task changed files.
 - Output is produced in the requested format.
