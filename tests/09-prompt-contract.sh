@@ -270,6 +270,8 @@ RULE_FAMILIES = (
      r"Use TASK-VERIFY to declare how the work is checked"),
     ("semantic-sort naming", "prompts/flavors/01-semantic-sort-naming.md",
      r"A semantic-sort name uses stable components in this order"),
+    ("episode authority", "prompts/how-to-write-episodes.md",
+     r"An episode authorizes only the operations in its dispatched task definition"),
 )
 
 for family, owner, marker in RULE_FAMILIES:

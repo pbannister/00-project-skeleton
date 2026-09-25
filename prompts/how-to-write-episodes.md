@@ -39,6 +39,7 @@ Every episode must contain these sections in order:
 - The EPISODE-GOAL section is the requested work, equivalent to TASK-DESCRIPTION in `prompts/how-to-write-tasks.md`.
 - The EPISODE-ACCEPTANCE and EPISODE-RISKS sections are constraints the model must verify.
 - The EPISODE-TASKS section is the execution plan.
+- An episode authorizes only the operations in its dispatched task definition. EPISODE-GOAL and EPISODE-ACCEPTANCE establish intent and acceptance; they do not authorize additional file operations.
 
 ## 5. Writing the EPISODE-ACCEPTANCE Section
 
@@ -67,6 +68,7 @@ Every episode must contain these sections in order:
 - Task files in `prompts/tasks/` may serve as sub-task definitions.
 - Feature files in `prompts/features/` define stable requirements.
 - An episode must reference applicable feature files explicitly.
+- An episode's goal does not widen the dispatched task's file scope (section 4).
 
 ## 9. Relationship to Phases
 
