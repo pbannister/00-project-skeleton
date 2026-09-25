@@ -67,6 +67,8 @@ The phrase `Execute the next TODO task` selects the first unchecked `TODO.md` it
 
 The operation lines are the machine-checkable statement of scope; `TASK-FILES` must agree with them (section 6).
 
+A vague phrase such as "update related tests" or "adjust supporting files" authorizes nothing; only an operation line does.
+
 Example:
 ```markdown
 ## TASK-DESCRIPTION
@@ -187,6 +189,7 @@ Example:
 * State every file operation on its own `- <Verb>: \`path\`` line.
 * Give every task a `TASK-FILES` table and a `TASK-VERIFY` section.
 * List the applied feature files in `TASK-FEATURES`; do not leave the reference to prose.
+* Name scope with an operation line; a vague phrase authorizes nothing.
 * Name the verification in `TASK-VERIFY`, not in `TASK-DESCRIPTION`.
 * Claim acceptance with identifiers in `TASK-ACCEPTANCE`, not in prose.
 * Write one sentence per line in prose, and one statement per line in code.

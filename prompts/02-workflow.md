@@ -4,7 +4,7 @@ This workflow defines the execution sequence for tasks in this project.
 
 ## 1. Load Project Rules
 
-Always load these files in this order before executing a task:
+Always load the mandatory baseline in this order before executing a task:
 
 - `prompts/01-contract.md`
 - `prompts/02-workflow.md`
@@ -15,17 +15,23 @@ Always load these files in this order before executing a task:
 - `prompts/common/03-glossary.md`
 - `prompts/flavors/01-semantic-sort-naming.md`
 
+After the baseline, load only the task-relevant files:
+
+- Load the feature files the task references, and the feature files those depend on.
+- Load a language-specific flavor file only when the task targets that language.
+- Load a tool rule file only when the task uses that tool.
+- Load no other prompt files.
+
 Also:
 
-- Load only the feature files explicitly referenced by the task or by a directly referenced feature dependency.
-- Load a language-specific flavor file only when the task targets that language.
-- Load only the files explicitly referenced by the task and the files required by those references.
 - Update `TODO.md` only when the task requests a TODO update or completes a TODO item (section 7).
 - A TODO item alone is not authorization; the requested work comes from the task (see `prompts/01-contract.md` section 3).
-- The phrase `Execute the next TODO task` selects the first unchecked item in `TODO.md`. A one-line item is not an executable task: draft a conforming task from it (`TASK-DESCRIPTION`, `TASK-OUTPUT`, `TASK-FILES`) and get it ratified before executing.
+- The phrase `Execute the next TODO task` selects the first unchecked item in `TODO.md`. A one-line item is not an executable task: draft a conforming task from it, with every required section in `prompts/how-to-write-tasks.md` section 1, and get it ratified before executing.
 
 ## 2. Interpret the Task
 
+- Treat the task according to `prompts/how-to-write-tasks.md`: description, output, context, files, verification, feature scope, and acceptance.
+- Execute only a conforming task; report a malformed one instead of guessing what it meant.
 - Determine the requested operations, target files, constraints, and output format.
 - Treat `TASK-DESCRIPTION` as the requested work.
 - Treat `TASK-OUTPUT` as the response representation.
