@@ -142,7 +142,9 @@ expect_reject 'duplicated authoritative rule' 'duplicated in'
 reset; sed -i '/^## EPISODE-ACCEPTANCE$/d' "$FILE_EPISODE"
 expect_reject 'episode missing acceptance' 'missing ## EPISODE-ACCEPTANCE'
 
-reset; sed -i 's/^Current: phase 1 — not-started/Current: phase 1 — in-progress/' "$FILE_PHASES"
+# The fixture rewrites whatever the current phase line is, so it works in a
+# project at any phase rather than only in one that has not started.
+reset; sed -i 's/^Current: .*/Current: phase 1 — in-progress/' "$FILE_PHASES"
 expect_reject 'invalid phase state' 'invalid phase state'
 
 echo "10-prompt-validator: ok ($count_case fixtures rejected)"
