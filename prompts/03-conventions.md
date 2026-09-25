@@ -2,6 +2,16 @@
 
 These conventions define formatting, naming, and repository structure.
 
+## Applicability
+
+- Sections 1–6 are core conventions: they apply to every task.
+- Sections 6.1–6.5 are capability conventions: they apply only when the project uses that capability. A project that does not use a capability ignores those rules, and a task that does not touch the capability does not apply them.
+    - 6.1 Generated Documentation
+    - 6.2 Version Information
+    - 6.3 Generated Data Products
+    - 6.4 Release and Publishing
+    - 6.5 Pinned Dependencies
+
 ## 1. Formatting
 
 - Use 4-space indents in code and Markdown when the format supports configurable indentation.
@@ -106,7 +116,7 @@ Generated output directories are not version-controlled.
 - A served static asset is requested under a URL that changes when its bytes change: derive one content token from the interdependent asset set and append it to every URL, including transitive module imports; fail the build when the stamp does not land.
 - Keep `PHASES.md` current: it names the project's phases and the current phase, one `Current: phase N — [description —] state` line; change the current phase only when committing the project.
 
-## 6.1 Generated Documentation
+## 6.1 Generated Documentation (capability)
 
 A project whose documents reflect live or derived state should keep a single source of truth and generate the documents from it:
 
@@ -117,7 +127,7 @@ A project whose documents reflect live or derived state should keep a single sou
 - The documents index (`documents/README.md`) marks generated documents as generated.
 - The generator's validation mode runs under `make test` when the project defines it.
 
-## 6.2 Version Information
+## 6.2 Version Information (capability)
 
 A program version is a build-time fact, not a source literal.
 
@@ -140,7 +150,7 @@ A program version is a build-time fact, not a source literal.
 Decided 2026-08-24: the git hash disambiguates builds, so the build counter
 policy is settled. Keep the local counter gitignored; never check it in.
 
-## 6.3 Generated Data Products
+## 6.3 Generated Data Products (capability)
 
 A project that generates data (not only documents) follows the same
 single-source rule, with a machine-readable contract:
@@ -178,7 +188,7 @@ single-source rule, with a machine-readable contract:
 - An exchange-format export (STEP, OBJ, glTF) declares its units, and a test
   parses the file back.
 
-## 6.4 Release and Publishing
+## 6.4 Release and Publishing (capability)
 
 A release publishes an artifact; it must be the artifact of the commit it
 names. The build-time version from 6.2 is what makes that checkable.
@@ -205,7 +215,7 @@ names. The build-time version from 6.2 is what makes that checkable.
 - A publish is re-runnable: reuse the tag the commit already carries, refuse a
   tag on a different commit, skip a redundant push, and re-upload assets.
 
-## 6.5 Pinned Dependencies
+## 6.5 Pinned Dependencies (capability)
 
 - Pin a vendored or forked dependency to a release tag, never a branch: a
   branch pin cannot be rebased against a fixed base.
