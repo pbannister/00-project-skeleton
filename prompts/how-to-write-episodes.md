@@ -18,6 +18,7 @@ This document defines how a human must write episodes for the LLM.
 - Group strongly related items into one episode.
 - Do not group unrelated items.
 - Size an episode so one competent reviewer can review its complete diff in one sitting.
+- Prefer one feature or one work product per episode; that is the observable proxy for reviewable size.
 - A larger episode has vague acceptance and drifts.
 - A smaller episode pays overhead per item.
 

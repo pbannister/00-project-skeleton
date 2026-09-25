@@ -48,8 +48,7 @@ Also:
 
 ## 3. Plan the Work
 
-- Create a concise internal plan before implementation.
-- The internal plan must identify the applicable requirements, target files, required validation, and output order.
+- Plan before implementation, as a working aid: identify the applicable requirements, target files, required validation, and output order.
 - The plan must not appear in the response unless the requested output format includes it.
 
 ## 4. Apply the Test Policy
@@ -103,6 +102,7 @@ Rules:
 - If `make test` cannot be run, report that verification was not performed when verification results are requested.
 - If `make test` fails, correct the failure within task scope and run `make test` again.
 - If the failure cannot be corrected within task scope, stop, report the failure, and do not claim completion.
+- Report verification with the `VERIFICATION:` line defined in `prompts/01-contract.md` section 5.
 
 ## 7. Update Task Status
 

@@ -12,6 +12,12 @@
 
 ## Recently Completed
 
+* [x] give verification an observable channel and remove the unobservable rules (2026-09-24; review consolidation 5):
+    * [x] a single `VERIFICATION:` line is always permitted output, regardless of the requested format; the workflow reports through it and the glossary defines it.
+    * [x] the internal restatement and plan are declared working aids, not an inspectable obligation.
+    * [x] terminology is recast observably: use the glossary terms, and add a new term to the glossary in the same change.
+    * [x] "do not include assumptions" becomes "state an assumption the task left open; do not present it as a requirement".
+    * [x] episode size gains an observable proxy: one feature or one work product per episode.
 * [x] close the clarification and workflow deadlocks (2026-09-24; review consolidation 3):
     * [x] a materiality rule: ask only when the ambiguity can change the output, scope, or safety; otherwise proceed and state the assumption (common/02 Clarification Rules).
     * [x] a missing referenced file is reported when the task can proceed, and asked about only when it cannot.

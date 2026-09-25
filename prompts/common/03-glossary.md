@@ -79,6 +79,11 @@ authoritative file; the glossary never states a rule.
 - Owner-declared content that is off-limits to the LLM.
 - Rules: `prompts/common/02-universal-rules.md`.
 
+## VERIFICATION line
+
+- The single output line that reports whether the work was verified.
+- Rules: `prompts/01-contract.md` section 5.
+
 ## Stability rules
 
 - Project behavior that should not change without explicit instruction.
