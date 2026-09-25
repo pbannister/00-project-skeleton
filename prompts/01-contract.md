@@ -22,49 +22,52 @@ This contract has ten sections:
 Instruction precedence, from highest to lowest, is:
 
 1. System and platform instructions.
-2. Explicit human instructions in the current task.
-3. This contract.
-4. The workflow.
-5. Feature requirements.
-6. Global requirements.
-7. Conventions.
-8. Examples and descriptive documentation.
+2. Non-overridable safety and privacy constraints (section 8; `prompts/common/02-universal-rules.md` Privacy-Boundary Rules).
+3. Explicit human instructions in the current task.
+4. This contract.
+5. The workflow.
+6. Feature requirements.
+7. Global requirements.
+8. Conventions.
+9. Examples and descriptive documentation.
 
 A higher-priority instruction overrides a lower-priority one only when they conflict.
 
-An override applies only to the explicitly identified rule or task.
+- A human instruction may override a policy, workflow, feature, requirement, or convention rule.
+- A human instruction may not override level 1 or level 2.
+- An override applies only to the explicitly identified rule or task.
 
 ## 2. Authoritative Project Rules
 
-Every project rule has exactly one authoritative file, listed here. A rule restated in another file is a pointer, not authority: when two files disagree, the higher precedence in section 1 wins, and the lower file is the defect.
+Every project rule has exactly one authoritative file, listed here. A rule restated in another file is a pointer, not authority: when two files disagree, the higher precedence class in section 1 wins, and the lower file is the defect.
 
 | Rule file | Precedence | Defines | Applies |
 |---|---|---|---|
-| `prompts/01-contract.md` | 3 contract | authority, precedence, response phases, safety | always |
-| `prompts/02-workflow.md` | 4 workflow | the execution sequence for tasks | always |
-| `prompts/features/*.md` | 5 feature requirements | one capability's requirements | only when referenced by the task or by a directly referenced feature dependency |
-| `prompts/common/01-requirements.md` | 6 global requirements | requirements that apply to every feature and task | always |
-| `prompts/common/02-universal-rules.md` | 6 global requirements | cross-language failure-prevention rules | always |
-| `prompts/03-conventions.md` | 7 conventions | formatting, naming, repository structure, generated artifacts | always |
-| `prompts/flavors/01-semantic-sort-naming.md` | 7 conventions | semantic-sort naming | always |
-| `prompts/flavors/02-cpp-conventions.md` | 7 conventions | C++ naming and compilation | only when the task targets C++ |
-| `prompts/how-to-write-tasks.md` | 7 conventions | the format of a task file | when a task is written, interpreted, or validated |
-| `prompts/how-to-write-features.md` | 7 conventions | the format of a feature file | when a feature file is written or validated |
-| `prompts/how-to-write-episodes.md` | 7 conventions | the format of an episode file | when an episode is written, dispatched, or validated |
-| `prompts/how-to-write-research.md` | 7 conventions | the format of a study series and a decision record | when a study series or a decision record is written |
-| `prompts/episodes/01-episode-template.md` | 7 conventions | the episode template | when an episode is written |
-| `prompts/episodes/02-episode-plan.md` | 7 conventions | the suggested episode breakdown | when work is planned by phase |
-| `records/README.md` | 7 conventions | the record forms and rules | when a record is written |
-| `tests/README.md` | 7 conventions | test bands and the helper directory | when a test is added |
-| `tools/*.md` | 7 conventions | constraints for one tool | only when that tool is used |
-| `prompts/common/00-overview.md` | 8 descriptive | the common prompt directory | orientation only |
-| `prompts/common/03-glossary.md` | 8 descriptive | terminology pointers, never rules | always, as a reference |
-| `prompts/README.md`, `prompts/features/00-features.md`, `prompts/tasks/00-tasks.md`, `prompts/episodes/00-episodes.md` | 8 descriptive | the prompt and directory indexes | orientation only |
-| `README.md`, `documents/*.md` | 8 descriptive | project overview and human documents | as context |
+| `prompts/01-contract.md` | contract | authority, precedence, response phases, safety | always |
+| `prompts/02-workflow.md` | workflow | the execution sequence for tasks | always |
+| `prompts/features/*.md` | feature requirements | one capability's requirements | only when referenced by the task or by a directly referenced feature dependency |
+| `prompts/common/01-requirements.md` | global requirements | requirements that apply to every feature and task | always |
+| `prompts/common/02-universal-rules.md` | global requirements | cross-language failure-prevention rules | always |
+| `prompts/03-conventions.md` | conventions | formatting, naming, repository structure, generated artifacts | always |
+| `prompts/flavors/01-semantic-sort-naming.md` | conventions | semantic-sort naming | always |
+| `prompts/flavors/02-cpp-conventions.md` | conventions | C++ naming and compilation | only when the task targets C++ |
+| `prompts/how-to-write-tasks.md` | conventions | the format of a task file | when a task is written, interpreted, or validated |
+| `prompts/how-to-write-features.md` | conventions | the format of a feature file | when a feature file is written or validated |
+| `prompts/how-to-write-episodes.md` | conventions | the format of an episode file | when an episode is written, dispatched, or validated |
+| `prompts/how-to-write-research.md` | conventions | the format of a study series and a decision record | when a study series or a decision record is written |
+| `prompts/episodes/01-episode-template.md` | conventions | the episode template | when an episode is written |
+| `prompts/episodes/02-episode-plan.md` | conventions | the suggested episode breakdown | when work is planned by phase |
+| `records/README.md` | conventions | the record forms and rules | when a record is written |
+| `tests/README.md` | conventions | test bands and the helper directory | when a test is added |
+| `tools/*.md` | conventions | constraints for one tool | only when that tool is used |
+| `prompts/common/00-overview.md` | descriptive | the common prompt directory | orientation only |
+| `prompts/common/03-glossary.md` | descriptive | terminology pointers, never rules | always, as a reference |
+| `prompts/README.md`, `prompts/features/00-features.md`, `prompts/tasks/00-tasks.md`, `prompts/episodes/00-episodes.md` | descriptive | the prompt and directory indexes | orientation only |
+| `README.md`, `documents/*.md` | descriptive | project overview and human documents | as context |
 
 - A `how-to-write-*` file is addressed to the human who writes the artifact; the LLM reads it to interpret and validate that artifact. It is not a source of task requirements.
 - The glossary defines terms. Where it restates a rule, the file named in this table governs, and the restatement is a defect to correct.
-- A dispatched task file or episode file is an explicit human instruction (precedence 2), not an authoritative rule file.
+- A dispatched task file or episode file is an explicit human instruction (precedence 3), not an authoritative rule file.
 - Only feature files explicitly referenced by the task or by a directly referenced feature dependency apply.
 - Unreferenced feature files do not apply automatically.
 - Tool-specific rule files under `tools/` apply only when the corresponding tool is used.
@@ -169,4 +172,5 @@ All new files must be placed in the correct directory:
 
 - The human may override a project rule with an explicit instruction.
 - An override names the rule or task it replaces; it applies only there.
-- An override replaces the named rule and any rule that exists solely to enforce it. It never waives section 8 (safety) or section 3 (authorization).
+- An override replaces the named rule and any rule that exists solely to enforce it.
+- Levels 1 and 2 of section 1 are not overridable.
