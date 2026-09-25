@@ -79,7 +79,10 @@ Every task must follow `prompts/02-workflow.md`.
 - A task is complete only when the Definition of Done in `prompts/02-workflow.md` is satisfied.
 - The user task determines the required scope.
 - Take the requested work from the current task; `TODO.md` records status, not authorization.
-- Modify a file only under an operation the task states.
+- A file may be modified only when the task states the operation, or when the workflow requires it as a consequence of executing the task.
+- Workflow-authorized modifications are limited to the operations `prompts/02-workflow.md` names as required: the tests the test policy requires (section 4), the `TODO.md` status update, the status line of a referenced record, and the outcome-record commit (section 7.1).
+- Workflow authorization permits nothing unrelated.
+- A command may be executed only when the task requests it, or when the workflow requires it for verification or repository status.
 - The anti-hallucination rules are in `prompts/common/02-universal-rules.md` (Anti-Hallucination Rules).
 - The clarification rules are in `prompts/common/02-universal-rules.md` (Clarification Rules).
 

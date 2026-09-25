@@ -109,7 +109,7 @@ Example structure:
 
 - Write the outcome record only after the episode settles and the human reviews it.
 - A record cannot cite its own commit hash: commit the work first, then write the record in a second commit and cite the work commit. Never write a placeholder hash.
-- Every repair to executable code lands a regression test that fails against the old code; name the test in the record.
+- A behavioral repair to executable code names its regression test in the record (see `prompts/02-workflow.md` section 4).
 - A record must not quote the patterns a sanitization gate refuses; describe them generically, or the record refuses itself.
 - Record an unattributable state change in `TODO.md` to confirm; do not silently revert it.
 - "Unexplained" is a result: record it rather than guessing.

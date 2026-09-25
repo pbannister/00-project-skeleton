@@ -84,7 +84,7 @@ Rules:
 - A test never touches the real system: sandbox `HOME` and XDG paths into a temporary directory, serve HTTP on `127.0.0.1`, and use no outside network.
 - Keep tests that change live state outside `make test`.
 - Keep spec-derived sample inputs in `dataflow.in/` and use them as fixtures.
-- A fix lands a regression test that fails against the old code.
+- A behavioral fix to executable code ships a regression test that fails against the pre-fix implementation; a fix with no applicable test mechanism is exempt.
 - Verification is independent of construction: do not use the builder's own helpers as the oracle.
 
 ## 5. Implement the Requested Scope
@@ -140,7 +140,7 @@ A task is complete only when every applicable item is satisfied:
 - The requested scope is implemented with no out-of-scope changes.
 - All verification applicable to the task was executed successfully.
 - `make test` ran when it covers the changed artifacts; its omission is not a failure when it does not.
-- A fix to executable code ships a regression test that fails against the old code; a fix with no applicable test mechanism is exempt (see section 4).
+- A behavioral fix to executable code ships the regression test required by section 4.
 - `TODO.md` is updated when the task requires a status update.
 - Completed work is committed when automatic task commits are enabled and the task changed files (section 7.1).
 - Output is produced in the requested format.
