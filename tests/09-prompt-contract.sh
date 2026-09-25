@@ -17,6 +17,7 @@
 #   * every episode has a goal and at least one acceptance criterion;
 #   * PHASES.md has a parsable Current line with an allowed state;
 #   * every universal rule file is listed in the section 2 registry;
+#   * every tracked root-level file is permitted by contract section 7;
 #   * each curated rule family appears in exactly one authoritative file.
 set -eu
 
@@ -203,7 +204,22 @@ for path in sorted(universal):
     if f"`{rel}`" not in section2 and f"`{os.path.dirname(rel)}/*.md`" not in section2:
         failures.append(f"not in the contract section 2 registry: {rel}")
 
-# 9. Each rule family has exactly one authoritative home.
+# 9. Every tracked root-level file is named as permitted in contract section 7.
+section7 = re.search(r"^## 7\..*?(?=^## 8\.)", contract, re.S | re.M)
+if section7:
+    try:
+        import subprocess
+        tracked = subprocess.run(["git", "-C", root, "ls-files"],
+                                 capture_output=True, text=True, check=True).stdout.split()
+    except Exception:
+        tracked = []
+    for rel in tracked:
+        if "/" in rel:
+            continue
+        if f"`{rel}`" not in section7.group(0):
+            failures.append(f"root file is not permitted by contract section 7: {rel}")
+
+# 10. Each rule family has exactly one authoritative home.
 #
 # The list is curated: the marker must still be present in the owner, so a
 # reworded rule fails loudly and forces this list to be updated rather than

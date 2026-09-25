@@ -132,7 +132,10 @@ The permitted root-level files are:
 - `Makefile` — the human-facing driver.
 - `package.json` — the test entry point.
 - `.gitignore` — the ignore rules.
+- `.aider.conf.yml`, `.aiderignore` — configuration for the Aider tool (see `tools/aider-rules.md`).
 
+- A tool-specific root file is permitted when a file under `tools/` declares it.
+- A derived project may declare additional root-level files in its project rules; the declaration makes them part of the project structure.
 - `tests/00-skeleton.sh` is the machine-readable list of required root files and directories; keep this section and that test in agreement.
 - A root-level file may change only when the task authorizes the operation or a workflow step requires it.
 
