@@ -8,11 +8,11 @@
 #   * every literal path in the contract section 2 registry exists;
 #   * every `prompts/...` path referenced anywhere resolves;
 #   * feature and task numbers are unique;
-#   * every task has TASK-DESCRIPTION and TASK-OUTPUT, in order, and ends with
-#     an OUTPUT: restatement;
+#   * every task has TASK-DESCRIPTION, TASK-OUTPUT, TASK-FILES, and
+#     TASK-VERIFY, in order, and ends with an OUTPUT: restatement;
+#   * a task that applies features has TASK-FEATURES and TASK-ACCEPTANCE, and
+#     every acceptance identifier belongs to a listed feature;
 #   * a TASK-VERIFY section declares a Run: and an Expected: line;
-#   * every top-level feature requirement carries a unique identifier, and
-#     TASK-ACCEPTANCE resolves to an identifier in a feature the task references;
 #   * TASK-DESCRIPTION declares operations as '- <Verb>: `path`' lines, and
 #     TASK-FILES is an operation/path table that agrees with them;
 #   * every feature has Purpose, Requirements, Behavior, and Dependencies;
@@ -21,6 +21,11 @@
 #   * every universal rule file is listed in the section 2 registry;
 #   * every tracked root-level file is permitted by contract section 7;
 #   * each curated rule family appears in exactly one authoritative file.
+#
+# The rule-family markers are stable identifiers for canonical rules, not the
+# canonical wording itself; a marker that no longer appears fails loudly, so a
+# reworded rule forces the list to be updated rather than silently skipping the
+# check.
 #
 # With an optional ROOT argument it validates that corpus instead of this
 # repository; tests/10-prompt-validator.sh uses this to inject malformed
@@ -116,7 +121,7 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
         continue
     text = read(rel)
 
-    for heading in ("## TASK-DESCRIPTION", "## TASK-OUTPUT"):
+    for heading in ("## TASK-DESCRIPTION", "## TASK-OUTPUT", "## TASK-FILES", "## TASK-VERIFY"):
         if heading not in text:
             failures.append(f"{rel}: missing {heading}")
 
@@ -124,7 +129,8 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
     idx_output = text.find("## TASK-OUTPUT")
     if idx_description != -1 and idx_output != -1 and idx_description > idx_output:
         failures.append(f"{rel}: TASK-DESCRIPTION must precede TASK-OUTPUT")
-    for heading in ("## TASK-CONTEXT", "## TASK-FILES", "## TASK-VERIFY", "## TASK-ACCEPTANCE"):
+    for heading in ("## TASK-CONTEXT", "## TASK-FILES", "## TASK-VERIFY",
+                    "## TASK-FEATURES", "## TASK-ACCEPTANCE"):
         idx_heading = text.find(heading)
         if idx_heading != -1 and idx_output != -1 and idx_heading < idx_output:
             failures.append(f"{rel}: {heading} must follow TASK-OUTPUT")
@@ -134,7 +140,9 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
         failures.append(f"{rel}: the last line must be an OUTPUT: restatement")
 
     match_verify = re.search(r"^## TASK-VERIFY\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
-    if match_verify:
+    if not match_verify:
+        failures.append(f"{rel}: missing ## TASK-VERIFY")
+    else:
         body_verify = match_verify.group(1)
         if not re.search(r"^- Run:", body_verify, re.M):
             failures.append(f"{rel}: TASK-VERIFY has no 'Run:' line")
@@ -269,16 +277,39 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
     if os.path.basename(rel).startswith("00-"):
         continue
     text = read(rel)
-    match = re.search(r"^## TASK-ACCEPTANCE\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
-    if not match:
-        continue
-    referenced = set(re.findall(r"prompts/features/[0-9][0-9]-[a-z-]+\.md", text))
-    for req_id in re.findall(r"`([A-Za-z0-9-]+-R\d{3})`", match.group(1)):
+
+    match_features = re.search(r"^## TASK-FEATURES\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
+    features_listed = []
+    if match_features:
+        for token in re.findall(r"`([^`]+)`", match_features.group(1)):
+            if not re.match(r"^prompts/features/[A-Za-z0-9._-]+\.md$", token):
+                failures.append(f"{rel}: TASK-FEATURES must list feature files, not: {token}")
+                continue
+            if not exists(token):
+                failures.append(f"{rel}: TASK-FEATURES names a missing feature: {token}")
+                continue
+            features_listed.append(token)
+
+    referenced = set(re.findall(r"`(prompts/features/[A-Za-z0-9_./-]+)`", text))
+    if referenced and not match_features:
+        failures.append(f"{rel}: references a feature but has no TASK-FEATURES section")
+
+    match_acceptance = re.search(r"^## TASK-ACCEPTANCE\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
+    acceptance_ids = re.findall(r"`([A-Za-z0-9-]+-R\d{3})`", match_acceptance.group(1)) if match_acceptance else []
+
+    if match_features and not match_acceptance:
+        failures.append(f"{rel}: has TASK-FEATURES but no TASK-ACCEPTANCE")
+    if match_acceptance and not match_features:
+        failures.append(f"{rel}: has TASK-ACCEPTANCE but no TASK-FEATURES")
+    if match_acceptance and not acceptance_ids:
+        failures.append(f"{rel}: TASK-ACCEPTANCE has no requirement identifiers")
+
+    for req_id in acceptance_ids:
         owner = requirement_owner.get(req_id)
         if owner is None:
             failures.append(f"{rel}: TASK-ACCEPTANCE names an unknown identifier: {req_id}")
-        elif owner not in referenced:
-            failures.append(f"{rel}: TASK-ACCEPTANCE {req_id} belongs to {owner}, which the task does not reference")
+        elif owner not in features_listed:
+            failures.append(f"{rel}: TASK-ACCEPTANCE {req_id} belongs to {owner}, which is not in TASK-FEATURES")
 
 # 11. Each rule family has exactly one authoritative home.
 #

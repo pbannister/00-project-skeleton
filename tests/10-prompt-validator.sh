@@ -98,10 +98,32 @@ reset; sed -i '/^## TASK-ACCEPTANCE$/a - `NOPE-R999`' "$FILE_TASK"
 expect_reject 'unknown acceptance identifier' 'unknown identifier'
 
 reset; sed -i '/^## TASK-ACCEPTANCE$/a - `PROJECT-PAGES-R001`' "$FILE_TASK"
-expect_reject 'acceptance from an unreferenced feature' 'does not reference'
+expect_reject 'acceptance from a feature not in TASK-FEATURES' 'not in TASK-FEATURES'
 
 reset; sed -i '/^## Requirements$/a - A new unnamed requirement.' "$FILE_FEATURE"
 expect_reject 'requirement without an identifier' 'requirement without an identifier'
+
+# --- mandatory sections and feature references ---
+reset; sed -i '/^## TASK-FILES$/d; /^| create |/d' "$FILE_TASK"
+expect_reject 'task missing TASK-FILES' 'missing ## TASK-FILES'
+
+reset; sed -i '/^## TASK-VERIFY$/d; /^- Run:/d; /^- Expected:/d' "$FILE_TASK"
+expect_reject 'task missing TASK-VERIFY' 'missing ## TASK-VERIFY'
+
+reset; sed -i '/^## TASK-FEATURES$/d; /^\- `prompts\/features\/01-site-build.md`$/d' "$FILE_TASK"
+expect_reject 'TASK-ACCEPTANCE without TASK-FEATURES' 'has TASK-ACCEPTANCE but no TASK-FEATURES'
+
+reset; sed -i '/^## TASK-FEATURES$/d; /^\- `prompts\/features\/01-site-build.md`$/d; /^## TASK-ACCEPTANCE$/d; /^- `SITE-BUILD-R/d' "$FILE_TASK"
+expect_reject 'feature referenced but no TASK-FEATURES' 'references a feature but has no TASK-FEATURES'
+
+reset; sed -i '/^## TASK-ACCEPTANCE$/d; /^- `SITE-BUILD-R/d' "$FILE_TASK"
+expect_reject 'TASK-FEATURES without TASK-ACCEPTANCE' 'has TASK-FEATURES but no TASK-ACCEPTANCE'
+
+reset; sed -i 's#`prompts/features/01-site-build.md`#`prompts/03-conventions.md`#' "$FILE_TASK"
+expect_reject 'TASK-FEATURES lists a non-feature' 'TASK-FEATURES must list feature files'
+
+reset; sed -i 's#`prompts/features/01-site-build.md`#`prompts/features/99-missing.md`#' "$FILE_TASK"
+expect_reject 'TASK-FEATURES lists a missing feature' 'TASK-FEATURES names a missing feature'
 
 # --- corpus and registry ---
 reset; cp "$FILE_FEATURE" "$DIRECTORY_ROOT/prompts/features/01-dup.md"

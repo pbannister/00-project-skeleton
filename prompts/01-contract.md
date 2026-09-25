@@ -17,7 +17,7 @@ This contract has ten sections:
 9. Consistency Rules — how terminology and rules stay consistent.
 10. Human Override — how the human may override a project rule.
 
-Four concepts run through the project: **requirements** determine what must be true, **tasks** determine what work is authorized, the **workflow** determines how authorized work is executed, and **verification** provides evidence that the result satisfies the applicable requirements.
+Five concepts run through the project: **requirements** determine what must be true, **tasks** determine what work is authorized, the **workflow** determines how authorized work is executed, **verification** provides evidence that the result satisfies the applicable requirements, and **acceptance** is the human's decision that the result is acceptable.
 
 ## 1. Instruction Precedence
 

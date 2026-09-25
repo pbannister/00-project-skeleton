@@ -16,11 +16,13 @@ A clear description of the requested work.
 A precise description of the response representation.
 * (Optional) TASK-CONTEXT
 Additional information, requirements, notes, constraints, or file contents.
-* (Optional) TASK-FILES
-A table of the exact operations and paths in scope.
-* (Optional) TASK-VERIFY
+* TASK-FILES
+The exact operations and paths in scope, as a table.
+* TASK-VERIFY
 The verification to run and its expected result.
-* (Optional) TASK-ACCEPTANCE
+* (When the task applies feature requirements) TASK-FEATURES
+The feature files whose requirements the task applies.
+* (When the task applies feature requirements) TASK-ACCEPTANCE
 The requirement identifiers the task satisfies.
 
 The task file ends with one `OUTPUT:` line that restates the response representation in a sentence, including whether the response ends with the `VERIFICATION:` line. It is the last line the LLM reads, which keeps the format requirement in recent context.
@@ -45,7 +47,8 @@ The phrase `Execute the next TODO task` selects the first unchecked `TODO.md` it
 * TASK-CONTEXT provides information: a `<constraint>` block is an instruction, a `<task_context>` block is data, and unlabeled content is background.
 * TASK-FILES declares the exact operations and paths in scope as a table; the operation is authorized by `TASK-DESCRIPTION` or by the workflow (see `prompts/01-contract.md` section 3).
 * TASK-VERIFY declares the verification to run and its expected result.
-* TASK-ACCEPTANCE lists the requirement identifiers from the referenced feature files that the task satisfies.
+* TASK-FEATURES lists the feature files whose requirements the task applies.
+* TASK-ACCEPTANCE lists the requirement identifiers, from the feature files in `TASK-FEATURES`, that the task satisfies.
 * File scope comes only from `TASK-DESCRIPTION` and `TASK-FILES`; a referenced feature adds requirements, not scope (see `prompts/how-to-write-features.md` section 5).
 
 ## 3. Writing the TASK-DESCRIPTION Section
@@ -151,8 +154,8 @@ Example:
 
 Use TASK-ACCEPTANCE to state which requirements the task claims to satisfy, so acceptance is traceable.
 
-* List identifiers from the referenced feature files, one per bullet, in backticks.
-* Each identifier must exist in a feature the task references.
+* List identifiers from the feature files in `TASK-FEATURES`, one per bullet, in backticks.
+* Each identifier must exist in a feature listed in `TASK-FEATURES`.
 * The human decides acceptance; the list is the task's claim, not the decision.
 
 Example:
@@ -162,12 +165,28 @@ Example:
 - `SITE-BUILD-R002`
 ```
 
+## 6.3 Writing the TASK-FEATURES Section
+
+Use TASK-FEATURES to list the feature files whose requirements the task applies.
+
+* List the repository-relative path of each feature file, one per bullet, in backticks.
+* A task that applies feature requirements must have TASK-FEATURES; do not leave the reference to prose.
+* `TASK-ACCEPTANCE` identifiers must belong to a feature listed here.
+
+Example:
+```markdown
+## TASK-FEATURES
+- `prompts/features/01-site-build.md`
+```
+
 ## 7. Task Patterns to Avoid
 
 * Name the format for every requested output; leave no format to be inferred.
 * Name the exact files and operations; the LLM decides nothing about which files are needed.
 * Use a precise verb and target (`rename a to b`), not a vague goal (`clean this up`, `make this better`).
 * State every file operation on its own `- <Verb>: \`path\`` line.
+* Give every task a `TASK-FILES` table and a `TASK-VERIFY` section.
+* List the applied feature files in `TASK-FEATURES`; do not leave the reference to prose.
 * Name the verification in `TASK-VERIFY`, not in `TASK-DESCRIPTION`.
 * Claim acceptance with identifiers in `TASK-ACCEPTANCE`, not in prose.
 * Write one sentence per line in prose, and one statement per line in code.
