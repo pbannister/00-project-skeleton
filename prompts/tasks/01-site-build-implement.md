@@ -1,10 +1,10 @@
 # Task: Implement the Site Build feature
 
 ## TASK-DESCRIPTION
-* Create `scripts/site-build.sh`.
+- Create: `scripts/site-build.sh`
 The script generates `site.out/` from `site.in/`.
-* Create `site.in/hello.txt` with example input content.
-* Implement the requirements in `prompts/features/01-site-build.md` within the authorized files listed in `TASK-FILES`.
+- Create: `site.in/hello.txt`
+Implement the requirements in `prompts/features/01-site-build.md` within the files in `TASK-FILES`.
 
 ## TASK-OUTPUT
 * Report the created files and the `make test` result.

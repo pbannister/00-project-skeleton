@@ -17,7 +17,7 @@ A precise description of the response representation.
 * (Optional) TASK-CONTEXT
 Additional information, requirements, notes, constraints, or file contents.
 * (Optional) TASK-FILES
-A table of authorized operations and paths.
+A table of the exact operations and paths in scope.
 * (Optional) TASK-VERIFY
 The verification to run and its expected result.
 * (Optional) TASK-ACCEPTANCE
@@ -43,7 +43,7 @@ The phrase `Execute the next TODO task` selects the first unchecked `TODO.md` it
 * TASK-DESCRIPTION defines the requested work.
 * TASK-OUTPUT defines the response representation.
 * TASK-CONTEXT provides information: a `<constraint>` block is an instruction, a `<task_context>` block is data, and unlabeled content is background.
-* TASK-FILES declares the authorized operations and paths as a table; it identifies scope and does not authorize an operation by itself.
+* TASK-FILES declares the exact operations and paths in scope as a table; the operation is authorized by `TASK-DESCRIPTION` or by the workflow (see `prompts/01-contract.md` section 3).
 * TASK-VERIFY declares the verification to run and its expected result.
 * TASK-ACCEPTANCE lists the requirement identifiers from the referenced feature files that the task satisfies.
 * File scope comes only from `TASK-DESCRIPTION` and `TASK-FILES`; a referenced feature adds requirements, not scope (see `prompts/how-to-write-features.md` section 5).
@@ -53,18 +53,23 @@ The phrase `Execute the next TODO task` selects the first unchecked `TODO.md` it
 * The TASK-DESCRIPTION section must:
     * describe the goal clearly.
     * avoid ambiguity and unstated assumptions.
-    * state the operation for each file as `create`, `modify`, `delete`, `rename`, or `inspect`.
-    * For every file operation, specify the complete repository-relative path in `backticks`.
+    * state each file operation on its own line as `<Verb>: \`path\``, where `<Verb>` is `Create`, `Modify`, `Delete`, `Rename`, or `Inspect`.
+    * For `Rename`, name both paths: `- Rename: \`old/path\` → \`new/path\``.
+    * Use repository-relative paths, in backticks.
+    * explain the goal in the prose around the operation lines.
     * Do not identify a file only by its purpose, role, or directory.
 
 * The TASK-DESCRIPTION section must not:
     * mix implementation instructions with output requirements.
 
+The operation lines are the machine-checkable statement of scope; `TASK-FILES` must agree with them (section 6).
+
 Example:
 ```markdown
 ## TASK-DESCRIPTION
-Create `scripts/site-build.sh`.
+- Create: `scripts/site-build.sh`
 The script generates `site.out/` from `site.in/`.
+- Create: `site.in/hello.txt`
 ```
 
 ## 4. Writing the TASK-OUTPUT Section
@@ -111,7 +116,7 @@ Markdown headers collide with Markdown inside copied data, so delimit each compo
 
 ## 6. Writing the TASK-FILES Section
 
-Use TASK-FILES to declare the authorized operations and paths as a table:
+Use TASK-FILES to declare the exact operations and paths in scope, as a table:
 
 ```markdown
 ## TASK-FILES
@@ -124,8 +129,8 @@ Use TASK-FILES to declare the authorized operations and paths as a table:
 
 * The operation is one of `create`, `modify`, `delete`, `rename`, or `inspect`.
 * The path is repository-relative, in backticks.
-* TASK-FILES and TASK-DESCRIPTION must agree: every path here is described there, and every operation path there is listed here.
-* Listing an existing file does not authorize an operation unless the row says so.
+* TASK-FILES and the operation lines of TASK-DESCRIPTION must agree: every row here has an operation line there, and every operation line there has a row here.
+* The table is scope, not authorization: `TASK-DESCRIPTION` states the operation, and the workflow authorizes the operations it mandates.
 
 ## 6.1 Writing the TASK-VERIFY Section
 
@@ -162,7 +167,7 @@ Example:
 * Name the format for every requested output; leave no format to be inferred.
 * Name the exact files and operations; the LLM decides nothing about which files are needed.
 * Use a precise verb and target (`rename a to b`), not a vague goal (`clean this up`, `make this better`).
-* State the file operation in `TASK-DESCRIPTION` for every file you name.
+* State every file operation on its own `- <Verb>: \`path\`` line.
 * Name the verification in `TASK-VERIFY`, not in `TASK-DESCRIPTION`.
 * Claim acceptance with identifiers in `TASK-ACCEPTANCE`, not in prose.
 * Write one sentence per line in prose, and one statement per line in code.

@@ -13,8 +13,8 @@
 #   * a TASK-VERIFY section declares a Run: and an Expected: line;
 #   * every top-level feature requirement carries a unique identifier, and
 #     TASK-ACCEPTANCE resolves to an identifier in a feature the task references;
-#   * TASK-FILES is an operation/path table whose paths are repository-relative
-#     and agree with TASK-DESCRIPTION;
+#   * TASK-DESCRIPTION declares operations as '- <Verb>: `path`' lines, and
+#     TASK-FILES is an operation/path table that agrees with them;
 #   * every feature has Purpose, Requirements, Behavior, and Dependencies;
 #   * every episode has a goal and at least one acceptance criterion;
 #   * PHASES.md has a parsable Current line with an allowed state;
@@ -136,7 +136,7 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
     body_files = match_files.group(1)
 
     rows = re.findall(r"^\|\s*([A-Za-z]+)\s*\|\s*`([^`]+)`\s*\|\s*$", body_files, re.M)
-    paths_files = []
+    operations_files = {}
     if not rows:
         failures.append(f"{rel}: TASK-FILES has no '| operation | `path` |' rows")
     for operation, path_token in rows:
@@ -144,20 +144,29 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
             failures.append(f"{rel}: TASK-FILES has an unknown operation: {operation}")
         if path_token.startswith("/") or ".." in path_token.split("/"):
             failures.append(f"{rel}: TASK-FILES path is not repository-relative: {path_token}")
-        paths_files.append(path_token)
+        operations_files[path_token] = operation.lower()
 
-    for token in paths_files:
-        if token not in body_description:
-            failures.append(f"{rel}: TASK-FILES path is not described: {token}")
-
-    for line in body_description.splitlines():
-        if not re.search(r"\b(" + "|".join(OPERATIONS) + r")\b", line, re.I):
-            continue
-        for token in re.findall(r"`([^`]+)`", line):
-            if "/" not in token or token.endswith("/"):
-                continue
-            if token not in paths_files:
-                failures.append(f"{rel}: operation on undeclared path: {token}")
+    # TASK-DESCRIPTION declares each operation as `- <Verb>: `path``. Only
+    # those lines are parsed, so prose mentioning a path (including a
+    # prohibition) is not mistaken for an authorized operation.
+    declared = []
+    for match_line in re.finditer(r"^- (Create|Modify|Delete|Rename|Inspect):(.*)$",
+                                  body_description, re.M | re.I):
+        verb = match_line.group(1).lower()
+        for path_token in re.findall(r"`([^`]+)`", match_line.group(2)):
+            declared.append((verb, path_token))
+    if not declared:
+        failures.append(f"{rel}: TASK-DESCRIPTION has no '- <Verb>: `path`' operation line")
+    for verb, path_token in declared:
+        if path_token not in operations_files:
+            failures.append(f"{rel}: operation on undeclared path: {path_token}")
+        elif operations_files[path_token] != verb:
+            failures.append(f"{rel}: {path_token} is '{operations_files[path_token]}' in TASK-FILES "
+                            f"but '{verb}' in TASK-DESCRIPTION")
+    declared_paths = {path_token for _verb, path_token in declared}
+    for path_token in operations_files:
+        if path_token not in declared_paths:
+            failures.append(f"{rel}: TASK-FILES path has no operation line in TASK-DESCRIPTION: {path_token}")
 
 # 5. (TASK-FILES relativity is checked with the table in check 4.)
 
