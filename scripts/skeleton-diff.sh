@@ -73,6 +73,7 @@ scripts/site-build.sh
 scripts/site-condense.sh
 scripts/tests-run.sh
 tests/00-skeleton.sh
+tests/09-prompt-contract.sh
 site.in/template.html
 '
 
