@@ -277,13 +277,33 @@ if section7:
         if re.search(r"/(home|Users)/[A-Za-z]", content):
             failures.append(f"{rel}: committed tool configuration contains an absolute home path")
 
-# 10. Requirement identifiers are unique, and TASK-ACCEPTANCE resolves them.
+# 10. Requirement identifiers are unique, TASK-ACCEPTANCE resolves them, and
+#     feature dependencies apply transitively.
 requirement_owner = {}
+dependency_edges = {}
 for path in sorted(glob.glob(os.path.join(root, "prompts/features/[0-9][0-9]-*.md"))):
     rel = os.path.relpath(path, root)
     if os.path.basename(rel).startswith("00-"):
         continue
-    match = re.search(r"^## Requirements\s*$(.*?)(?=^## |\Z)", read(rel), re.S | re.M)
+    text_feature = read(rel)
+
+    match_dependencies = re.search(r"^## Dependencies\s*$(.*?)(?=^## |\Z)", text_feature, re.S | re.M)
+    edges = set()
+    if match_dependencies:
+        for token in re.findall(r"`([^`]+)`", match_dependencies.group(1)):
+            if token.lower() == "none":
+                continue
+            dependency = token if token.startswith("prompts/features/") else f"prompts/features/{token}"
+            if not re.match(r"^prompts/features/[A-Za-z0-9._-]+\.md$", dependency):
+                failures.append(f"{rel}: feature dependency is not a feature file: {token}")
+                continue
+            if not exists(dependency):
+                failures.append(f"{rel}: feature dependency does not resolve: {token}")
+                continue
+            edges.add(dependency)
+    dependency_edges[rel] = edges
+
+    match = re.search(r"^## Requirements\s*$(.*?)(?=^## |\Z)", text_feature, re.S | re.M)
     if not match:
         continue
     body = match.group(1)
@@ -330,12 +350,26 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
     if match_acceptance and not acceptance_ids:
         failures.append(f"{rel}: TASK-ACCEPTANCE has no requirement identifiers")
 
+    # A task applies the features it lists and, transitively, the features they
+    # depend on.
+    applicable_features = set()
+    pending = list(features_listed)
+    while pending:
+        feature_name = pending.pop()
+        if feature_name in applicable_features:
+            continue
+        applicable_features.add(feature_name)
+        for dependency in dependency_edges.get(feature_name, ()):
+            if dependency not in applicable_features:
+                pending.append(dependency)
+
     for req_id in acceptance_ids:
         owner = requirement_owner.get(req_id)
         if owner is None:
             failures.append(f"{rel}: TASK-ACCEPTANCE names an unknown identifier: {req_id}")
-        elif owner not in features_listed:
-            failures.append(f"{rel}: TASK-ACCEPTANCE {req_id} belongs to {owner}, which is not in TASK-FEATURES")
+        elif owner not in applicable_features:
+            failures.append(f"{rel}: TASK-ACCEPTANCE {req_id} belongs to {owner}, which is not in "
+                            f"TASK-FEATURES or its dependencies")
 
 # 11. Each rule family has exactly one authoritative home.
 #

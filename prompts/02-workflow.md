@@ -47,7 +47,7 @@ Also:
 ## 2.1 Apply Feature and Task Scope
 
 - Treat a referenced feature file as authoritative requirements for the current task.
-- Apply a feature file only when the task references it or a referenced feature depends on it.
+- Apply a feature file only when the task references it or a feature it depends on, transitively, requires.
 - Treat a task file as a detailed task description and apply its `TASK-DESCRIPTION`, `TASK-OUTPUT`, `TASK-CONTEXT`, and `TASK-FILES` sections according to `prompts/how-to-write-tasks.md`.
 - When a task conflicts with a referenced feature, report the conflict, state which of the two you believe is stale and why, and ask which governs, unless the task explicitly overrides the feature requirement.
 

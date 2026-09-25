@@ -47,7 +47,7 @@ Every project rule has exactly one authoritative file, listed here. A rule resta
 |---|---|---|---|
 | `prompts/01-contract.md` | contract | authority, precedence, response phases, safety | always |
 | `prompts/02-workflow.md` | workflow | the execution sequence for tasks | always |
-| `prompts/features/*.md` | feature requirements | one capability's requirements | only when referenced by the task or by a directly referenced feature dependency |
+| `prompts/features/*.md` | feature requirements | one capability's requirements | only when referenced by the task or by a feature dependency, transitively |
 | `prompts/common/01-requirements.md` | global requirements | requirements that apply to every feature and task | always |
 | `prompts/common/02-universal-rules.md` | global requirements | cross-language failure-prevention rules | always |
 | `prompts/03-conventions.md` | conventions | formatting, naming, repository structure, generated artifacts | always |

@@ -41,10 +41,12 @@ reset() {
 FILE_TASK="$DIRECTORY_ROOT/prompts/tasks/01-site-build-implement.md"
 FILE_WORKFLOW="$DIRECTORY_ROOT/prompts/02-workflow.md"
 FILE_FEATURE="$DIRECTORY_ROOT/prompts/features/01-site-build.md"
+FILE_FEATURE_02="$DIRECTORY_ROOT/prompts/features/02-project-pages.md"
 FILE_EPISODE="$DIRECTORY_ROOT/prompts/episodes/01-episode-template.md"
 FILE_PHASES="$DIRECTORY_ROOT/PHASES.md"
 
 count_case=0
+count_accept=0
 
 expect_reject() {
     name_case=$1
@@ -56,6 +58,15 @@ expect_reject() {
     fi
     printf '%s\n' "$output_case" | grep -qF "$text_expect" \
         || fail "the validator rejected '$name_case' for the wrong reason: $output_case"
+}
+
+expect_accept() {
+    name_case=$1
+    count_accept=$((count_accept + 1))
+    git -C "$DIRECTORY_ROOT" add -A >/dev/null 2>&1 || true
+    if ! output_case=$(sh "$SCRIPT_CHECK" "$DIRECTORY_ROOT" 2>&1); then
+        fail "the validator rejected '$name_case': $output_case"
+    fi
 }
 
 # Baseline: the clean corpus validates.
@@ -108,6 +119,14 @@ expect_reject 'unknown acceptance identifier' 'unknown identifier'
 
 reset; sed -i '/^## TASK-ACCEPTANCE$/a - `PROJECT-PAGES-R001`' "$FILE_TASK"
 expect_reject 'acceptance from a feature not in TASK-FEATURES' 'not in TASK-FEATURES'
+
+# Feature 02 depends on feature 01, so a task that lists 02 may claim a
+# requirement owned by 01: dependencies apply transitively.
+reset; sed -i 's#`prompts/features/01-site-build.md`#`prompts/features/02-project-pages.md`#' "$FILE_TASK"
+expect_accept 'acceptance reachable through a feature dependency'
+
+reset; sed -i 's#`01-site-build.md`#`99-missing.md`#' "$FILE_FEATURE_02"
+expect_reject 'unresolved feature dependency' 'feature dependency does not resolve'
 
 reset; sed -i '/^## Requirements$/a - A new unnamed requirement.' "$FILE_FEATURE"
 expect_reject 'requirement without an identifier' 'requirement without an identifier'
@@ -165,5 +184,5 @@ reset; mkdir -p "$DIRECTORY_ROOT/.vscode"
 printf '%s\n' '{ "path": "/home/someone/sources" }' > "$DIRECTORY_ROOT/.vscode/settings.json"
 expect_reject 'absolute home path in tool configuration' 'absolute home path'
 
-echo "10-prompt-validator: ok ($count_case fixtures rejected)"
+echo "10-prompt-validator: ok ($count_case rejected, $count_accept accepted)"
 exit 0
