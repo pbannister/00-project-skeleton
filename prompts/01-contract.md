@@ -119,8 +119,17 @@ Required for response:
 
 ## 7. File System Rules
 
-- `README.md` is a permitted root-level project file and must remain at the project root.
-- Root-level files may change only when the task explicitly authorizes the operation.
+The permitted root-level files are:
+
+- `README.md` — the project overview; it must remain at the project root.
+- `TODO.md` — the work list; the workflow updates it (section 7).
+- `PHASES.md` — the phase plan; `prompts/03-conventions.md` section 6 keeps it current.
+- `Makefile` — the human-facing driver.
+- `package.json` — the test entry point.
+- `.gitignore` — the ignore rules.
+
+- `tests/00-skeleton.sh` is the machine-readable list of required root files and directories; keep this section and that test in agreement.
+- A root-level file may change only when the task authorizes the operation or a workflow step requires it.
 
 All new files must be placed in the correct directory:
 
@@ -135,10 +144,11 @@ All new files must be placed in the correct directory:
 - `site.out/` for generated static-site output.
 - `documents/` for human-consumption documents.
 - `records/` for outcome, incident, and handoff records.
+- `tools/` for tool-specific rules.
 
 - Log filenames must begin with the sortable prefix `YYYY-MM-DD-HH-MM-SS-<description>.log`.
 - The LLM must never create files outside the project structure.
-- The project structure includes the permitted root-level file `README.md` and the directories listed above.
+- The project structure is the permitted root-level files above plus the directories listed here.
 - Generated directories and files must follow the generated-file rules in `prompts/03-conventions.md`.
 
 ## 8. Safety Rules

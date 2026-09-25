@@ -12,6 +12,7 @@
 
 ## Recently Completed
 
+* [x] fix the file-system contract (2026-09-24; review consolidation, C1): `prompts/01-contract.md` §7 listed only `README.md` as a permitted root file, though `TODO.md`, `PHASES.md`, `Makefile`, `package.json`, and `.gitignore` live there and the workflow requires touching `TODO.md`; the section now names the permitted root files, points at `tests/00-skeleton.sh` for the required set, and adds `tools/` to the directory list.
 * [x] resolve the commit, record, and Definition of Done rules (2026-09-24; review consolidation 4): `prompts/02-workflow.md` §7.1 now states one rule set — a status update rides with the work commit, the outcome record is post-review and a separate commit, and a record citing its own hash is always that second commit; §7.2 scopes the regression test to executable-code fixes; `records/README.md`, `prompts/03-conventions.md` §6, and `documents/05-lessons-from-MI25.md` are aligned.
 * [x] make the contract's authoritative-file registry complete (2026-09-24; review consolidation 1): `prompts/01-contract.md` §2 is now a table naming every authoritative rule file, its precedence level, what it defines, and when it applies — including `flavors/02`, the `how-to-write-*` files (marked as addressed to the human author), `records/README.md`, `tests/README.md`, the episode template and plan, `tools/`, and the indexes; a restatement elsewhere is declared a pointer, and §9 now names §2 as the authority lookup.
 * [x] make the drift check meaningful (2026-09-24; follow-up to the skeleton drift detector):
