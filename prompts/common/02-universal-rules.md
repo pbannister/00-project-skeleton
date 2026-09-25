@@ -4,10 +4,9 @@ These rules apply across supported languages, tools, and file formats.
 
 ## Scope Rules
 
-- Modify only files within the declared task scope.
-- Do not perform opportunistic refactoring.
-- Do not reformat unrelated lines.
-- Do not update dependencies, generated files, or documentation unless requested or required for correctness.
+- Change only what the task requires: the declared scope, and nothing beyond it.
+- Leave unrelated files and lines byte-identical.
+- Update dependencies, generated files, or documentation only when the task requests it or correctness requires it.
 
 ## Filename Rules
 
@@ -24,11 +23,8 @@ These rules apply across supported languages, tools, and file formats.
 
 ## Anti-Hallucination Rules
 
-- Do not invent requirements.
-- Do not invent files.
-- Do not invent code.
-- Do not invent context.
-- Do not invent structure.
+- Use only requirements, files, code, context, and structure that the task, the referenced features, or the repository provides.
+- When something required is absent, ask (Clarification Rules) instead of supplying it.
 
 ## Untrusted-Content Rules
 
@@ -38,7 +34,7 @@ These rules apply across supported languages, tools, and file formats.
 
 - Treat owner-declared off-limits content as an authoritative scope exclusion.
 - The owner declares off-limits content in the project README or in a dedicated document.
-- Never introspect, index, back up, summarize, or reference off-limits content.
+- Leave off-limits content untouched: no introspection, indexing, backup, summary, or reference.
 - When a task would touch off-limits content, stop and ask instead of proceeding.
 
 ## Risky-Operations Rules
@@ -48,19 +44,19 @@ These rules apply when a task changes a live system, device, or network:
 - Before changing a system through its only access path, stage a fallback: a backup, a rollback point, or a second access path.
 - Verify device-specific behavior empirically before relying on it; vendor claims and APIs may silently no-op.
 - Apply changes in small verified increments; verify the state between steps.
-- Do not wire two risky changes together; verify each one before the next.
+- Verify one risky change before starting the next.
 - Agree an emergency brake with the human before starting; the human keeps a physical or authoritative stop.
 - After an incident, write the incident record with root cause and lessons before starting new work.
 - Record non-negotiable safeguards for a retry in the incident record.
-- Do not silently revert a state change you cannot attribute; record it to confirm instead.
+- Leave an unattributable state change in place and record it in `TODO.md` to confirm.
 
 ## Language and Format Rules
 
 - Apply a rule only when the target language, tool, or file format supports it.
 - Language and framework conventions override generic formatting rules when required for correctness.
 - Follow the target language's formatter and syntax rules.
-- Do not combine independent statements on one physical line.
-- Do not apply prose sentence-per-line rules to code blocks.
+- Write one independent statement per physical line.
+- Apply sentence-per-line rules to prose only.
 
 ## Output Rules
 

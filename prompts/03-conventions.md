@@ -5,7 +5,7 @@ These conventions define formatting, naming, and repository structure.
 ## 1. Formatting
 
 - Use 4-space indents in code and Markdown when the format supports configurable indentation.
-- Do not use tabs when the format supports spaces.
+- Use spaces where the format allows a choice.
 - Use one sentence per line in Markdown, so `git diff` is easier to read.
 - Render a series of more than two one-sentence paragraphs as an unordered list when the sentences are parallel points that could be reordered.
 - Keep prose for narrative progression, introductions, and sentences that lead into a following list.
@@ -15,8 +15,8 @@ These conventions define formatting, naming, and repository structure.
 - Give shell constants at least two words in semantic-sort order, broad first.
 - Prefix shell variable names with the type word, like `file_input`.
 - Use short, concise sentences in the style of Douglas Adams.
-- Do not apply sentence-per-line rules to code blocks.
-- Do not combine independent statements on one physical line.
+- Apply sentence-per-line rules to prose only.
+- Write one independent statement per physical line.
 - Follow the target language's formatter and syntax rules.
 - Follow the target language's brace and block syntax.
 - Language and framework conventions override generic rules when required for correctness.
@@ -91,14 +91,14 @@ Generated output directories are not version-controlled.
 
 - Maintain `.gitignore` rules for generated output and logs.
 - Preserve required empty directories with placeholder files.
-- Generated files must be identified as generated.
-- Do not edit generated files manually unless explicitly requested.
-- Write generated output only to the designated output directory.
+- Identify every generated file as generated.
+- Edit a generated file only when the task explicitly requests it.
+- Write generated output only to its designated output directory.
 - Generated build trees are path-bound: clean them when the repository is reached through a different path.
-- Do not mix source, prompt, and generated files.
+- Keep source, prompt, and generated files in their own directories.
 - Commit messages use one line in imperative mood with a conventional prefix (`feat:`, `fix:`, `docs:`, `test:`, `chore:`, `refactor:`) and a short summary.
 - A commit contains one task's files and that task's status updates; an outcome record is a separate commit (see `prompts/02-workflow.md` §7.1).
-- Never commit generated output or logs.
+- Commit source, prompts, records, and configuration only.
 - Live-state facts in hand-written documents carry a verification date: `verified 2026-08-22`.
 - Prefer generated documents over hand-written ones for anything that reflects live state.
 - Run the publish sanitization gate (`scripts/leak-gate.sh`) over generated output before publishing.

@@ -105,18 +105,14 @@ Use TASK-FILES to identify files in the task scope.
 * State the authorized operation separately in TASK-DESCRIPTION.
 * Do not assume that listing an existing file authorizes modification.
 
-## 7. Prohibited Task Patterns
+## 7. Task Patterns to Avoid
 
-* Do not ask the LLM to:
-    * figure out an unspecified format.
-    * improvise.
-    * decide what files are needed.
-* Do not use vague language such as “clean this up” or “make this better.”
-* Do not request modifications without identifying the file operation.
-* Do not request output without specifying its format.
-* Do not compress multiple sentences into one prose line.
-* Do not compress independent statements into one code line.
-* Do not omit required syntax from code examples.
+* Name the format for every requested output; leave no format to be inferred.
+* Name the exact files and operations; the LLM decides nothing about which files are needed.
+* Use a precise verb and target (`rename a to b`), not a vague goal (`clean this up`, `make this better`).
+* State the file operation in `TASK-DESCRIPTION` for every file you name.
+* Write one sentence per line in prose, and one statement per line in code.
+* Include the required syntax in every code example.
 
 ## 8. Human Override
 
