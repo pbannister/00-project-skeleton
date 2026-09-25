@@ -23,7 +23,7 @@ Also:
 - Load only the files explicitly referenced by the task and the files required by those references.
 - Use `TODO.md` only for status updates when the task explicitly requests them.
 - Do not infer the requested work from the first unchecked TODO item.
-- The phrase `Execute the next TODO task` explicitly requests TODO-driven execution.
+- The phrase `Execute the next TODO task` selects the first unchecked item in `TODO.md`. A one-line item is not an executable task: draft a conforming task from it (`TASK-DESCRIPTION`, `TASK-OUTPUT`, `TASK-FILES`) and get it ratified before executing.
 
 ## 2. Interpret the Task
 
@@ -44,7 +44,7 @@ Also:
 - Treat a referenced feature file as authoritative requirements for the current task.
 - Do not apply unreferenced feature files.
 - Treat a task file as a detailed task description and apply its `TASK-DESCRIPTION`, `TASK-OUTPUT`, `TASK-CONTEXT`, and `TASK-FILES` sections according to `prompts/how-to-write-tasks.md`.
-- When a task conflicts with a referenced feature, ask for clarification unless the task explicitly overrides the feature requirement.
+- When a task conflicts with a referenced feature, report the conflict, state which of the two you believe is stale and why, and ask which governs, unless the task explicitly overrides the feature requirement.
 
 ## 3. Plan the Work
 
@@ -55,6 +55,7 @@ Also:
 ## 4. Apply the Test Policy
 
 - For executable source-code changes, create or update tests before implementation code.
+- This policy authorizes creating or updating the tests the change requires in `tests/`; the task need not list those test files separately.
 - For prompt, documentation, configuration, or build-script changes, add tests only when an applicable test mechanism exists or the task requests tests.
 - Tests for source code belong in `tests/`.
 - Tests for scripts belong in `tests/` and should validate the script behavior without placing generated output in source directories.
@@ -126,7 +127,7 @@ A change, its status updates, and its outcome record follow one rule set.
 A task is complete only when every applicable item is satisfied:
 
 - The requested scope is implemented with no out-of-scope changes.
-- `make test` executed successfully.
+- `make test` executed successfully, or the task reports that verification could not be run because no execution tools were available (section 6).
 - A fix to executable code ships a regression test that fails against the old code; a fix with no applicable test mechanism is exempt (see section 4).
 - `TODO.md` is updated when the task requires a status update.
 - Completed work is committed when the task changed files.

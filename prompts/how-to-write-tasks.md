@@ -19,7 +19,7 @@ Additional information, requirements, notes, constraints, or file contents.
 * (Optional) TASK-FILES
 A list of files involved in the task.
 
-The phrase `Execute the next TODO task` explicitly requests TODO-driven execution.
+The phrase `Execute the next TODO task` selects the first unchecked `TODO.md` item; the LLM drafts a conforming task from it and the human ratifies it before execution.
 
 ## 1.1 Task and Feature Workflow
 

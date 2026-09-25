@@ -20,12 +20,12 @@ These rules apply across supported languages, tools, and file formats.
 
 ## Clarification Rules
 
-- Ask when requirements are ambiguous.
-- Ask when naming patterns are unclear.
-- Ask when directory targets are unclear.
-- Ask when output format is unclear.
-- Ask when a referenced file is missing.
-- Do not guess missing requirements.
+- Ask only when the ambiguity can change the requested output, the authorized scope, or safety. An ambiguity that cannot is not a reason to stop.
+- Ask when a requirement, naming pattern, directory target, or output format is unclear and the choice changes the result.
+- Ask when a rule conflict cannot be resolved by the precedence in `prompts/01-contract.md` section 1.
+- Ask when a referenced file is missing and the task cannot proceed without it; otherwise report the missing file and continue.
+- When an ambiguity cannot change the output, scope, or safety, proceed and state the assumption in the output.
+- Do not guess a missing requirement.
 
 ## Anti-Hallucination Rules
 

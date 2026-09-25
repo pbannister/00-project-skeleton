@@ -12,6 +12,13 @@
 
 ## Recently Completed
 
+* [x] close the clarification and workflow deadlocks (2026-09-24; review consolidation 3):
+    * [x] a materiality rule: ask only when the ambiguity can change the output, scope, or safety; otherwise proceed and state the assumption (common/02 Clarification Rules).
+    * [x] a missing referenced file is reported when the task can proceed, and asked about only when it cannot.
+    * [x] the test policy authorizes the test files the change requires, resolving the TDD-versus-scope deadlock.
+    * [x] `Execute the next TODO task` now drafts a conforming task for ratification instead of acting on a one-line item.
+    * [x] a task/feature conflict reports which file is believed stale rather than looping on a question.
+    * [x] a clarification question is always permitted output; the override names the rule it replaces and never waives safety or authorization; the Definition of Done accepts a reported no-tools verification.
 * [x] give each rule family one authoritative home (2026-09-24; review consolidation 2): duplicated rule text replaced with pointers — DELTA (contract §6), untrusted content and secrets (contract §8), scope, clarification, and anti-hallucination (common/02), output (contract §5), human override (contract §10); the glossary now defines terms and names the rules instead of restating them; `02-workflow.md` §5/§9, `03-conventions.md` §8, `common/02`, and the two `how-to-write-*` override sections are pointers.
 * [x] fix the file-system contract (2026-09-24; review consolidation, C1): `prompts/01-contract.md` §7 listed only `README.md` as a permitted root file, though `TODO.md`, `PHASES.md`, `Makefile`, `package.json`, and `.gitignore` live there and the workflow requires touching `TODO.md`; the section now names the permitted root files, points at `tests/00-skeleton.sh` for the required set, and adds `tools/` to the directory list.
 * [x] resolve the commit, record, and Definition of Done rules (2026-09-24; review consolidation 4): `prompts/02-workflow.md` §7.1 now states one rule set — a status update rides with the work commit, the outcome record is post-review and a separate commit, and a record citing its own hash is always that second commit; §7.2 scopes the regression test to executable-code fixes; `records/README.md`, `prompts/03-conventions.md` §6, and `documents/05-lessons-from-MI25.md` are aligned.
