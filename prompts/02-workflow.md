@@ -89,10 +89,7 @@ Rules:
 
 ## 5. Implement the Requested Scope
 
-- Modify only files within the declared task scope.
-- Do not perform opportunistic refactoring.
-- Do not reformat unrelated lines.
-- Do not update dependencies, generated files, or documentation unless requested or required for correctness.
+- The scope rules are in `prompts/common/02-universal-rules.md` (Scope Rules).
 - Apply feature-specific requirements only when the feature is referenced by the task or by a directly referenced feature dependency.
 - Do not create a file merely because its directory is available.
 - Do not create a second file to replace or supplement an existing file unless the task explicitly requests both files.
@@ -144,9 +141,7 @@ A task is complete only when every applicable item is satisfied:
 
 ## 9. Apply Corrections
 
-- Treat a correction as a DELTA when the human uses the DELTA protocol.
-- Apply only the requested DELTA changes.
-- Ask for clarification if the change cannot be isolated to the named portions.
+- Apply the DELTA rules in `prompts/01-contract.md` section 6.
 
 ## 10. Stability
 

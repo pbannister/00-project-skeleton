@@ -107,5 +107,4 @@ Every episode must contain these sections in order:
 
 ## 13. Human Override
 
-- A human may explicitly override a rule in this document.
-- An override applies only to the explicitly identified rule or task.
+- The override rules are in `prompts/01-contract.md` section 10.

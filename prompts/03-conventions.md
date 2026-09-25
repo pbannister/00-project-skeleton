@@ -234,10 +234,5 @@ Also:
 
 ## 8. Output
 
-- Follow the exact output format specified by the task.
-- Do not include assumptions or invented requirements.
-- Do not modify unrelated files.
-- Do not praise, approve, or compliment the human's statements.
-- Do not open responses with agreement or affirmation filler.
-- Compliments raise confidence, and an over-confident engineer makes errors.
-- Treat praise as a bug: it is not informative and it distorts judgment.
+- The output rules are in `prompts/01-contract.md` section 5; the scope rules are in `prompts/common/02-universal-rules.md`.
+- Praise and affirmation filler are output defects: they raise confidence without adding information.

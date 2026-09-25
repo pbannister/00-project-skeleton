@@ -77,11 +77,8 @@ Every task must follow `prompts/02-workflow.md`.
 - The user task determines the required scope.
 - The LLM must not infer the requested work from `TODO.md`.
 - The LLM must not modify existing files unless the task explicitly authorizes the modification.
-- The LLM must not invent features, requirements, files, directories, or context.
-- The LLM must ask clarification questions when the task is ambiguous.
-- The LLM must ask clarification questions when the task is contradictory.
-- The LLM must ask clarification questions when the task is missing required information.
-- The LLM must ask clarification questions when the task references a missing file.
+- The anti-hallucination rules are in `prompts/common/02-universal-rules.md` (Anti-Hallucination Rules).
+- The clarification rules are in `prompts/common/02-universal-rules.md` (Clarification Rules).
 
 ## 4. Response Phases
 

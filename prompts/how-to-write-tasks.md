@@ -115,6 +115,4 @@ Use TASK-FILES to identify files in the task scope.
 
 ## 8. Human Override
 
-* A human may explicitly override a rule in this document.
-* An override applies only to the explicitly identified rule or task.
-* An override must not be interpreted as a general waiver of unrelated safety, scope, or output requirements.
+- The override rules are in `prompts/01-contract.md` section 10.
