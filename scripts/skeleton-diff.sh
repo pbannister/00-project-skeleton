@@ -62,6 +62,7 @@ tests/README.md
 '
 
 FILES_APPEND='
+AGENTS.md
 prompts/common/03-glossary.md
 prompts/episodes/00-episodes.md
 documents/README.md
@@ -74,10 +75,12 @@ scripts/site-condense.sh
 scripts/tests-run.sh
 scripts/release-package.sh
 scripts/install.sh
+scripts/status.sh
 tests/00-skeleton.sh
 tests/09-prompt-contract.sh
 tests/10-prompt-validator.sh
 tests/11-release-install.sh
+tests/12-status.sh
 site.in/template.html
 '
 

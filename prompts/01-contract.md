@@ -65,7 +65,7 @@ Every project rule has exactly one authoritative file, listed here. A rule resta
 | `prompts/common/00-overview.md` | descriptive | the common prompt directory | orientation only |
 | `prompts/common/03-glossary.md` | descriptive | terminology pointers, never rules | always, as a reference |
 | `prompts/README.md`, `prompts/features/00-features.md`, `prompts/tasks/00-tasks.md`, `prompts/episodes/00-episodes.md` | descriptive | the prompt and directory indexes | orientation only |
-| `README.md`, `documents/*.md` | descriptive | project overview and human documents | as context |
+| `README.md`, `AGENTS.md`, `documents/*.md` | descriptive | project overview, the coding-agent entry point, and human documents | as context |
 
 - A `how-to-write-*` file is addressed to the human who writes the artifact; the LLM reads it to interpret and validate that artifact. It is not a source of task requirements.
 - The glossary defines terms. Where it restates a rule, the file named in this table governs, and the restatement is a defect to correct.
@@ -134,6 +134,7 @@ The canonical root-level files are:
 - `Makefile` — the human-facing driver.
 - `package.json` — the test entry point.
 - `.gitignore` — the ignore rules.
+- `AGENTS.md` — the coding-agent entry point; orientation only, it points at the authoritative files and defines no rule.
 
 Tool-specific root-level files and directories are permitted when a file under `tools/` declares them:
 

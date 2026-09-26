@@ -184,5 +184,23 @@ reset; mkdir -p "$DIRECTORY_ROOT/.vscode"
 printf '%s\n' '{ "path": "/home/someone/sources" }' > "$DIRECTORY_ROOT/.vscode/settings.json"
 expect_reject 'absolute home path in tool configuration' 'absolute home path'
 
+# --- the coding-agent entry point ---
+reset; rm "$DIRECTORY_ROOT/AGENTS.md"
+expect_reject 'missing agent entry point' 'AGENTS.md is missing'
+
+reset; printf '# Agent Entry Point\n\nRun `make test`.\n' > "$DIRECTORY_ROOT/AGENTS.md"
+expect_reject 'agent entry point without pointers' 'AGENTS.md does not point at prompts/01-contract.md'
+
+reset; printf '%s\n' '- Change only what the task requires.' >> "$DIRECTORY_ROOT/AGENTS.md"
+expect_reject 'rule restated in the agent entry point' 'duplicated in AGENTS.md'
+
+# --- unattended scripts ---
+reset; printf '#!/bin/sh\nread -p "Continue? " answer\n' > "$DIRECTORY_ROOT/scripts/prompt-user.sh"
+expect_reject 'script that blocks on standard input' 'blocks on standard input'
+
+# --- concurrent work isolation ---
+reset; printf '%s\n' 'Each writer works in its own git worktree.' >> "$FILE_FEATURE"
+expect_reject 'duplicated concurrent-work rule' 'duplicated in'
+
 echo "10-prompt-validator: ok ($count_case rejected, $count_accept accepted)"
 exit 0

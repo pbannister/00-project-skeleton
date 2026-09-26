@@ -2,7 +2,7 @@
 #
 # Skeleton sanity test.
 # Verifies that every required repository directory and canonical root file
-# exists, as defined in prompts/03-conventions.md and README.md.
+# exists, as defined in prompts/01-contract.md section 7 and README.md.
 set -eu
 
 REPOSITORY_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
@@ -21,7 +21,7 @@ documents
 records
 '
 
-FILES_REQUIRED='README.md TODO.md PHASES.md Makefile package.json .gitignore'
+FILES_REQUIRED='README.md AGENTS.md TODO.md PHASES.md Makefile package.json .gitignore'
 
 for dir in $DIRECTORIES_REQUIRED; do
     if [ ! -d "$REPOSITORY_ROOT/$dir" ]; then

@@ -19,6 +19,8 @@ Git is the message channel.
 
 ## The Pattern
 
+The binding rule is `prompts/02-workflow.md` section 3.1; this document is the worked example.
+
 1. Create a worktree for the episode.
 2. The LLM works only inside the worktree.
 3. The LLM commits on its branch.

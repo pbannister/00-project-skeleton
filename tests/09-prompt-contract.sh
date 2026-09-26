@@ -20,6 +20,8 @@
 #   * PHASES.md has a parsable Current line with an allowed state;
 #   * every universal rule file is listed in the section 2 registry;
 #   * every tracked root-level file is permitted by contract section 7;
+#   * AGENTS.md exists and points at the authoritative files;
+#   * a script never blocks on standard input;
 #   * each curated rule family appears in exactly one authoritative file.
 #
 # The rule-family markers are stable identifiers for canonical rules, not the
@@ -75,6 +77,13 @@ for base, _dirs, names in os.walk(os.path.join(root, "prompts")):
 prompt_files.sort()
 texts = {rel: read(rel) for rel in prompt_files}
 
+# AGENTS.md is orientation for a coding agent, not a prompt file, but its
+# pointers must resolve and it must not restate a rule. Scan it alongside the
+# prompt files for both.
+texts_scan = dict(texts)
+if exists("AGENTS.md"):
+    texts_scan["AGENTS.md"] = read("AGENTS.md")
+
 contract = texts.get("prompts/01-contract.md", "")
 match = re.search(r"^## 2\..*?(?=^## 3\.)", contract, re.S | re.M)
 if not match:
@@ -91,7 +100,7 @@ for token in re.findall(r"`([^`]+)`", section2):
         failures.append(f"registry path does not exist: {token}")
 
 # 2. Referenced prompt paths resolve.
-for rel, text in texts.items():
+for rel, text in texts_scan.items():
     for token in re.findall(r"`(prompts/[A-Za-z0-9_./-]+)`", text):
         if "*" in token or "<" in token:
             continue
@@ -242,17 +251,19 @@ for path in sorted(universal):
     if f"`{rel}`" not in section2 and f"`{os.path.dirname(rel)}/*.md`" not in section2:
         failures.append(f"not in the contract section 2 registry: {rel}")
 
+# Tracked files, used by the root-structure and unattended-script checks.
+try:
+    import subprocess
+    tracked = subprocess.run(["git", "-C", root, "ls-files"],
+                             capture_output=True, text=True, check=True).stdout.split()
+except Exception:
+    tracked = []
+
 # 9. Every tracked root-level file, and every tracked tool-specific root
 #    directory, is named as permitted in contract section 7; committed tool
 #    configuration carries no absolute home path.
 section7 = re.search(r"^## 7\..*?(?=^## 8\.)", contract, re.S | re.M)
 if section7:
-    try:
-        import subprocess
-        tracked = subprocess.run(["git", "-C", root, "ls-files"],
-                                 capture_output=True, text=True, check=True).stdout.split()
-    except Exception:
-        tracked = []
     body7 = section7.group(0)
     for rel in tracked:
         if "/" in rel:
@@ -276,6 +287,36 @@ if section7:
             continue
         if re.search(r"/(home|Users)/[A-Za-z]", content):
             failures.append(f"{rel}: committed tool configuration contains an absolute home path")
+
+# 9.1 The coding-agent entry point exists and points at the authoritative
+#     files. It is descriptive, so it defines no rule of its own.
+if not exists("AGENTS.md"):
+    failures.append("AGENTS.md is missing")
+else:
+    text_agents = read("AGENTS.md")
+    for token in ("prompts/01-contract.md", "prompts/02-workflow.md",
+                  "prompts/03-conventions.md", "prompts/how-to-write-tasks.md"):
+        if token not in text_agents:
+            failures.append(f"AGENTS.md does not point at {token}")
+    if "make test" not in text_agents:
+        failures.append("AGENTS.md does not name the `make test` command")
+
+# 9.2 An unattended script never blocks on standard input
+#     (prompts/03-conventions.md section 7.1).
+for rel in tracked:
+    if not rel.startswith("scripts/") or not rel.endswith(".sh"):
+        continue
+    try:
+        text_script = read(rel)
+    except OSError:
+        continue
+    for number, line in enumerate(text_script.splitlines(), 1):
+        if re.match(r"^\s*read\b", line) and "<" not in line:
+            failures.append(f"{rel}:{number}: blocks on standard input; "
+                            f"use an environment variable or flag")
+        elif "/dev/tty" in line:
+            failures.append(f"{rel}:{number}: reads the terminal; "
+                            f"a script must complete unattended")
 
 # 10. Requirement identifiers are unique, TASK-ACCEPTANCE resolves them, and
 #     feature dependencies apply transitively.
@@ -426,10 +467,14 @@ RULE_FAMILIES = (
      r"An episode authorizes only the operations in its dispatched task definition"),
     ("requirement identifiers", "prompts/how-to-write-features.md",
      r"Give every top-level requirement a stable identifier"),
+    ("concurrent work isolation", "prompts/02-workflow.md",
+     r"Each writer works in its own git worktree"),
+    ("unattended scripts", "prompts/03-conventions.md",
+     r"A script must not block on standard input"),
 )
 
 for family, owner, marker in RULE_FAMILIES:
-    holders = [rel for rel, text in texts.items() if re.search(marker, text, re.I)]
+    holders = [rel for rel, text in texts_scan.items() if re.search(marker, text, re.I)]
     if owner not in holders:
         failures.append(f"rule family '{family}': marker not found in {owner}; update the marker in this test")
     for rel in holders:

@@ -22,7 +22,7 @@
 - A test never touches the real system: sandbox `HOME` and XDG paths into a
   temporary directory, serve HTTP on `127.0.0.1`, and use no outside network.
 - A test that changes live state does not belong in `make test`.
-- `tests/09-prompt-contract.sh` validates the prompt corpus; `tests/10-prompt-validator.sh` is its adversarial corpus, injecting malformed fixtures and asserting each is rejected. `tests/11-release-install.sh` exercises the packaging and installer scripts hermetically, including the refusals.
+- `tests/09-prompt-contract.sh` validates the prompt corpus; `tests/10-prompt-validator.sh` is its adversarial corpus, injecting malformed fixtures and asserting each is rejected. `tests/11-release-install.sh` exercises the packaging and installer scripts hermetically, including the refusals. `tests/12-status.sh` checks the orientation command `scripts/status.sh`.
 - Keep spec-derived sample inputs in `dataflow.in/` and use them as fixtures.
 
 ## Canonical Files

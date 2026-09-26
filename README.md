@@ -3,13 +3,13 @@
 - This repository is structured for collaborative development with a Large Language Model (LLM).
 - This file `README.md` is located at the root of the project structure.
 
-The LLM should begin by reading these files in this order (the numeric prefix marks the load order):
+A coding agent begins at `AGENTS.md`, the tool-neutral entry point. The full
+mandatory load order is in `prompts/02-workflow.md` section 1:
 
-1. `prompts/01-contract.md`
-2. `prompts/02-workflow.md`
-3. `prompts/03-conventions.md`
+- `prompts/01-contract.md` defines the interaction, authority, and safety rules.
+- `prompts/02-workflow.md` defines the execution sequence for every task.
+- `prompts/03-conventions.md` defines formatting and repository conventions.
 
-- These define the interaction rules, workflow, and formatting conventions.
 - The LLM must follow the workflow defined in `prompts/02-workflow.md` for every task.
 
 Human contributors should begin by reading:
@@ -26,6 +26,7 @@ All project features are defined in `prompts/features/` and implemented in `sour
 ## Top-Level Map
 
 - `README.md` is the project overview.
+- `AGENTS.md` is the coding-agent entry point; it points at `prompts/` and defines no rule.
 - `TODO.md` tracks pending and completed project tasks.
 - `PHASES.md` names the project's phases and the current phase (see `documents/06-project-pages.md`).
 - `prompts/` contains LLM interaction rules, common requirements, feature requirements, task definitions, and episode work orders.
@@ -97,6 +98,7 @@ The repository includes one worked example that exercises the whole workflow:
 The following filenames are canonical and must not be renamed or duplicated without an explicit task:
 
 - `README.md`
+- `AGENTS.md`
 - `TODO.md`
 - `PHASES.md`
 - `Makefile`

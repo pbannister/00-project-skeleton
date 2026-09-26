@@ -56,6 +56,17 @@ Also:
 - Plan before implementation, as a working aid: identify the applicable requirements, target files, required validation, and output order.
 - Keep the plan out of the response unless the requested output format includes it.
 
+## 3.1 Isolate Concurrent Work
+
+When more than one writer may change the repository at the same time:
+
+- Each writer works in its own git worktree on its own branch; a branch alone does not isolate, because every branch in one checkout shares one working tree.
+- An agent does not share a checkout with another writer working on the same episode.
+- When an authorized file changed after it was read, stop and report the change rather than overwriting it.
+- Integrate the branch in the human's checkout after the episode settles.
+
+`documents/01-async-worktree.md` is the worked example. When the agent is the only writer, the main checkout is permitted.
+
 ## 4. Apply the Test Policy
 
 - For executable source-code changes, create or update tests before implementation code.

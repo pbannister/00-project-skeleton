@@ -12,6 +12,12 @@
 
 ## Recently Completed
 
+* [x] support coding agents, not only a chat session (2026-09-25; "what is needed for best use of agents"):
+    * [x] `AGENTS.md` is the tool-neutral entry point: contract §7 makes it a canonical root file, §2 classes it descriptive, and the validator requires it to exist, point at the contract/workflow/conventions and the task format, name `make test`, and restate no rule (its pointers are checked, and a restated rule is rejected as duplicate authority).
+    * [x] concurrent work is a rule, not background reading: workflow §3.1 requires each writer to use its own git worktree, forbids overwriting a file that changed after it was read, and `documents/01-async-worktree.md` now points at the rule as the worked example.
+    * [x] conventions §7.1 makes unattended scripts a requirement: a script must not block on standard input, takes a choice from an environment variable or flag, and fails closed when unattended; `scripts/install.sh` is named as the worked example, and the validator rejects a script that reads stdin or the terminal.
+    * [x] `make status` answers "where am I" in one command: `scripts/status.sh` prints the phase, the next open TODO item, the last recorded test result, and the working-tree state, read-only and unattended; `tests/12-status.sh` checks it against a scratch project, including an empty log directory.
+    * [x] the corpus proves each new check: missing entry point, an entry point with no pointers, a rule restated in the entry point, a stdin-blocking script, and a duplicated isolation rule (36 rejected, 1 accepted).
 * [x] close the remaining schema, loading, and dependency inconsistencies (2026-09-25; evaluation "fix now"):
     * [x] the `Execute the next TODO task` phrase now requires every section in `prompts/how-to-write-tasks.md` §1, and the workflow interprets the full schema (description, output, context, files, verification, feature scope, acceptance) and executes only a conforming task.
     * [x] the loading rules are now a mandatory baseline plus task-relevant optional files, instead of two rules that contradicted each other.

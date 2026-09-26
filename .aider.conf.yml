@@ -1,8 +1,10 @@
 # Aider configuration specific to this project.
 #
 # Inject your rule/prompt instruction files as read-only context on launch.
-# The order mirrors prompts/02-workflow.md section 1 (Load Project Rules).
+# The order mirrors prompts/02-workflow.md section 1 (Load Project Rules);
+# AGENTS.md is the tool-neutral entry point and is read first.
 read:
+  - AGENTS.md
   - prompts/01-contract.md
   - prompts/02-workflow.md
   - prompts/03-conventions.md

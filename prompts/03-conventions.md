@@ -246,6 +246,16 @@ Also:
 - For every `create`, `rename`, or `delete` operation, the task must identify the exact source and target filename.
 - A directory name alone does not authorize creating a file with an invented name.
 
+## 7.1 Unattended Scripts
+
+A script must complete without a human at the terminal.
+
+- A script must not block on standard input. A prompt that waits for an answer hangs an unattended run instead of failing it.
+- When a script needs a choice, take it from an environment variable or an explicit command-line flag.
+- The unattended default must fail closed: refuse, exit nonzero, and state the reason.
+- A prompt is permitted only in a script the caller has explicitly marked interactive.
+- `scripts/install.sh` is the worked example: it refuses when it cannot verify, names the environment variable that overrides the refusal, and never prompts.
+
 ## 8. Output
 
 - The output rules are in `prompts/01-contract.md` section 5; the scope rules are in `prompts/common/02-universal-rules.md`.
