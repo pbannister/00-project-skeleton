@@ -37,6 +37,7 @@ All project features are defined in `prompts/features/` and implemented in `sour
 - `sources/` contains implementations.
 - `scripts/` contains project scripts.
 - `tests/` contains tests and validation code.
+- `evals/` contains behavioral evaluation cases for a real agent, scored by hand; see `evals/README.md`.
 - `dataflow.in/` contains input data.
 - `dataflow.out/` contains generated data output (not version-controlled).
 - `logs/` contains generated logs (not version-controlled).

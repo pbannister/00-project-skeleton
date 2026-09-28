@@ -63,10 +63,12 @@ tests/README.md
 
 FILES_APPEND='
 AGENTS.md
+evals/README.md
 prompts/common/03-glossary.md
 prompts/episodes/00-episodes.md
 documents/README.md
 documents/06-project-pages.md
+documents/07-prompt-maturity.md
 '
 
 FILES_TEMPLATE='
@@ -76,11 +78,13 @@ scripts/tests-run.sh
 scripts/release-package.sh
 scripts/install.sh
 scripts/status.sh
+scripts/prompt-maturity.sh
 tests/00-skeleton.sh
 tests/09-prompt-contract.sh
 tests/10-prompt-validator.sh
 tests/11-release-install.sh
 tests/12-status.sh
+tests/13-corpus-coverage.sh
 site.in/template.html
 '
 

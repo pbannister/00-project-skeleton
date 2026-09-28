@@ -152,6 +152,7 @@ All new files must be placed in the correct directory:
 - `sources/` for source code.
 - `scripts/` for shell scripts.
 - `tests/` for tests and validation code.
+- `evals/` for behavioral evaluation cases for a real agent.
 - `dataflow.in/` for input data.
 - `dataflow.out/` for generated data output.
 - `logs/` for generated logs.

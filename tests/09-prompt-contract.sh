@@ -58,6 +58,11 @@ import sys
 root = sys.argv[1]
 failures = []
 
+# Each check below carries a numbered comment header, `# <id>.`, which is the
+# coverage unit: tests/13-corpus-coverage.sh requires every numbered check to
+# have at least one fixture in the adversarial corpus (tests/10), so a new
+# check cannot land without a case that exercises it.
+
 
 def read(rel):
     with open(os.path.join(root, rel), encoding="utf-8") as handle:
@@ -203,8 +208,6 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/tasks/[0-9][0-9]-*.md")
     for path_token in operations_files:
         if path_token not in declared_paths:
             failures.append(f"{rel}: TASK-FILES path has no operation line in TASK-DESCRIPTION: {path_token}")
-
-# 5. (TASK-FILES relativity is checked with the table in check 4.)
 
 # 6. Features carry the required sections.
 for path in sorted(glob.glob(os.path.join(root, "prompts/features/[0-9][0-9]-*.md"))):

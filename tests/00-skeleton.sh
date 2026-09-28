@@ -12,6 +12,7 @@ prompts
 sources
 scripts
 tests
+evals
 dataflow.in
 dataflow.out
 logs

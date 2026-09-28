@@ -41,6 +41,9 @@ state:
 status:
 	sh scripts/status.sh
 
+maturity:
+	sh scripts/prompt-maturity.sh
+
 check:
 	@if [ -d site.out ]; then sh scripts/leak-gate.sh site.out; else echo '==== nothing to check: site.out/ is not built (run make site)'; fi
 
@@ -61,4 +64,4 @@ deploy:
 install:
 	@echo '==== No install yet defined'
 
-.PHONY: all build site state status check release clean test deploy install
+.PHONY: all build site state status maturity check release clean test deploy install
