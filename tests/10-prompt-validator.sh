@@ -268,7 +268,7 @@ expect_reject 12 'a task authorizing generated output' 'authorizes a protected p
 reset; sed -i 's#`prompts/features/01-site-build.md`#`prompts/features/02-project-pages.md`#' "$FILE_TASK"
 expect_accept 'acceptance reachable through a feature dependency'
 
-reset; cat > "$DIRECTORY_ROOT/prompts/features/03-eval-sample.md" <<'EOF'
+reset; cat > "$DIRECTORY_ROOT/prompts/features/90-eval-sample.md" <<'EOF'
 # Feature: Eval Sample
 
 ## Purpose

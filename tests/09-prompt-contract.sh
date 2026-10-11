@@ -260,7 +260,7 @@ for path in sorted(universal):
 try:
     import subprocess
     tracked = subprocess.run(["git", "-C", root, "ls-files"],
-                             capture_output=True, text=True, check=True).stdout.split()
+                             capture_output=True, text=True, check=True).stdout.splitlines()
 except Exception:
     tracked = []
 
