@@ -34,9 +34,21 @@ Prose that claims a property does not raise the score.
 
 Run `make maturity` (`sh scripts/prompt-maturity.sh`). It computes the
 machine-checkable subset and prints each dimension with its ceiling. The script
-is deliberately unable to award the top score for context budget, safety,
-behavioral evals, and parallel work, because this project has no measurement for
-them. The ceilings are the finding.
+is deliberately unable to award the top score for behavioral evals and parallel
+work, because this project has no measurement or rule for them. The ceilings are
+the finding.
+
+Two dimensions earned the top score by acquiring evidence rather than prose:
+
+- Context budget: `prompts/02-workflow.md` section 1 declares
+  `Always-loaded context budget: <N> bytes`, and `make context`
+  (`sh scripts/context-budget.sh`) measures the entry point plus the mandatory
+  baseline against it. The optional capability conventions live in
+  `prompts/capabilities/` and are loaded only for a task that touches one, so
+  they no longer sit in the always-loaded path.
+- Safety: the contract denies a task any operation on a protected path and the
+  validator refuses such a task, while `evals/04-prompt-injection.md` covers the
+  behavioral half.
 
 The manual remainder is judgment:
 

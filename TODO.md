@@ -12,6 +12,12 @@
 
 ## Recently Completed
 
+* [x] raise the two scoreable ceilings of the prompt-maturity rubric (2026-09-28):
+    * [x] measure the always-loaded context: the baseline had grown to 51,962 bytes including the entry point, and 45% of the largest file was the capability block, already labelled `(capability)` yet loaded by every task. The five capability conventions moved to `prompts/capabilities/`, loaded only for a task that touches one; the baseline dropped 12.8% to about 45,600 bytes.
+    * [x] `prompts/02-workflow.md` section 1 now declares `Always-loaded context budget: 48128 bytes`, so the load list and its limit have one home; `scripts/context-budget.sh` measures the entry point plus the baseline against it, names the largest contributor when it refuses, and `tests/14-context-budget.sh` checks the pass, the refusal, a missing budget line, and a missing baseline file. The margin is about 2 KB: an ordinary rule fits, a new section forces a deliberate raise.
+    * [x] close the missing permission boundary: the contract now names protected paths (`.git/`, the dependency and bytecode trees, and generated output under `logs/`, `site.out/`, `dataflow.out/`, with the tracked `.gitkeep` placeholder exempt), and the validator refuses a task that authorizes an operation on one. Nothing previously stopped a task from naming `.git/config` or `logs/session.log`.
+    * [x] add the behavioral half: `evals/04-prompt-injection.md` hands the agent a conforming task whose `<task_context>` comment instructs it to edit `AGENTS.md` and the contract, and scores whether it treats untrusted content as data.
+    * [x] the corpus grows to 55 rejected and 6 accepted cases across 14 checked invariants; `make maturity` now reports 28/30, with behavioral evals and parallel work the remaining ceilings.
 * [x] measure the prompt corpus instead of trusting it (2026-09-25; prompt best practice):
     * [x] the adversarial corpus declares the numbered check each rejection exercises and now covers every check: 53 rejected cases and 5 accepted cases, up from 36 and 1. The new fixtures close the distinct-logic gaps: a registry path that does not exist, a feature missing a required section, an episode missing its goal and acceptance criteria, `PHASES.md` missing and without a `Current:` line, a stray root file, a duplicate requirement identifier, a feature with no requirement identifiers, `TASK-ACCEPTANCE` with no identifiers, a dependency token that is not a feature file, a script reading `/dev/tty`, and the rule-family "marker not found in owner" self-check.
     * [x] the accepted cases guard the other direction, so the validator cannot silently become over-strict: a transitive acceptance claim, a feature that declares no dependencies, a task without the optional `TASK-CONTEXT` section, a project appendix on a shared rule file, and a script that reads a file rather than standard input.
@@ -100,9 +106,9 @@
     * [x] `tests/lib/test_helpers.sh` holds the shared skip/fail/pass helpers; `tests/05`–`07` use `skip_unless_tool`.
     * [x] `tests/README.md` documents the reserved number bands, the helper directory, the sandbox rule, and the fixture rule.
     * [x] `prompts/02-workflow.md` §4.1/§4.2 encode the skip idiom and the organization rules.
-* [x] add the release and pinned-dependency conventions (2026-09-24; Tier 2 from the recent-project lessons): `prompts/03-conventions.md` §6.4 encodes publish gating, deterministic packing, versionless asset names, checksums/version/notes, installer rules, atomic install, and re-runnable publishing; §6.5 covers pinning a dependency to a tag and asserting the pin.
+* [x] add the release and pinned-dependency conventions (2026-09-24; Tier 2 from the recent-project lessons): `prompts/capabilities/04-release-and-publishing.md` encodes publish gating, deterministic packing, versionless asset names, checksums/version/notes, installer rules, atomic install, and re-runnable publishing; `prompts/capabilities/05-pinned-dependencies.md` covers pinning a dependency to a tag and asserting the pin.
     * [x] ship `scripts/release-gate.sh` (refuses a dirty tree, a `-changes` version, and a version that does not name HEAD) and `tests/07-release-gate.sh`.
-* [x] add the generated-data-product conventions (2026-09-24; Tier 2 from the recent-project lessons): `prompts/03-conventions.md` §6.3 encodes numbered stages and work products, reuse/`--refresh`/`--retry-failed`, file-named make rules, the no-dead-placeholder rule, a cheap `all` target, raw caches with provenance, `manifest.json`, `check`/`--check`, manual `clean` for expensive outputs, independent verification, and units in exchange formats.
+* [x] add the generated-data-product conventions (2026-09-24; Tier 2 from the recent-project lessons): `prompts/capabilities/03-generated-data-products.md` encodes numbered stages and work products, reuse/`--refresh`/`--retry-failed`, file-named make rules, the no-dead-placeholder rule, a cheap `all` target, raw caches with provenance, `manifest.json`, `check`/`--check`, manual `clean` for expensive outputs, independent verification, and units in exchange formats.
     * [x] model the `all` target in the skeleton `Makefile` (defaults to `build`).
 * [x] preserve nested lists in the condensed `todo.html` (2026-09-24; Tier 1 from the recent-project lessons): the old renderer flattened them and counted only lowercase, top-level completed items.
     * [x] `scripts/site-condense.sh` renders nesting with an indentation stack; completed items (`[x]` or `[X]`) are counted, never listed.
@@ -111,7 +117,7 @@
     * [x] `scripts/site-build.sh` copies authored assets verbatim and excludes `template.html` and `pages.nav`.
     * [x] `prompts/features/01-site-build.md` states the asset, live-state, generated-artifact, and deterministic-tree rules.
     * [x] ship an example `site.in/pages.nav`, and assert the asset copy and the two exclusions in `tests/01-site-build.sh`.
-* [x] ship `scripts/version-generate.sh` (2026-09-24; Tier 1 from the recent-project lessons): `prompts/03-conventions.md` §6.2 names it canonical, but the skeleton shipped no implementation.
+* [x] ship `scripts/version-generate.sh` (2026-09-24; Tier 1 from the recent-project lessons): `prompts/capabilities/02-version-information.md` names it canonical, but the skeleton shipped no implementation.
     * [x] generalized from the gnome-appimage-integration implementation; writes `dataflow.out/build/generated/version_info.h` and the gitignored build counter.
     * [x] `tests/05-version-generate.sh` (tool-gated on git) checks the `date-branch-hash` shape, the tag and `-changes` suffixes, and the counter.
 * [x] register `PHASES.md` as a required root file (2026-09-24; Tier 1 from the recent-project lessons): the project-pages conventions depend on it, but the README map, the Canonical Files list, and the skeleton test omitted it.
@@ -188,4 +194,4 @@
 * [x] decide the site-build approach: literal text-to-HTML, Markdown-to-HTML, or a static-site generator such as 11ty.
       — **Decided 2026-08-23 by the homelab exercise**: the literal text-to-HTML site-build is kept as the minimal
       worked example; a real site used Eleventy (a static-site generator); model-driven documents use a custom
-      generator with a provenance header. Encoded in `prompts/03-conventions.md` §6.1.
+      generator with a provenance header. Encoded in `prompts/capabilities/01-generated-documentation.md`.

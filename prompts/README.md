@@ -13,6 +13,7 @@
 - `common/03-glossary.md` defines project terminology and protocol concepts.
 - `flavors/01-semantic-sort-naming.md` defines the canonical semantic-sort naming rules.
 - `flavors/02-cpp-conventions.md` applies naming and compilation rules when project targets C++.
+- `capabilities/` contains the optional capability conventions, loaded only for a task that touches one.
 - `features/` contains feature-specific requirements.
 - `tasks/` contains task-specific prompt definitions.
 - `episodes/` contains episode work orders.
@@ -40,3 +41,8 @@ The following filenames are canonical and must not be renamed or duplicated with
 - `common/03-glossary.md`
 - `flavors/01-semantic-sort-naming.md`
 - `flavors/02-cpp-conventions.md`
+- `capabilities/01-generated-documentation.md`
+- `capabilities/02-version-information.md`
+- `capabilities/03-generated-data-products.md`
+- `capabilities/04-release-and-publishing.md`
+- `capabilities/05-pinned-dependencies.md`

@@ -53,6 +53,7 @@ Every project rule has exactly one authoritative file, listed here. A rule resta
 | `prompts/03-conventions.md` | conventions | formatting, naming, repository structure, generated artifacts | always |
 | `prompts/flavors/01-semantic-sort-naming.md` | conventions | semantic-sort naming | always |
 | `prompts/flavors/02-cpp-conventions.md` | conventions | C++ naming and compilation | only when the task targets C++ |
+| `prompts/capabilities/*.md` | conventions | one optional capability's conventions | only when the task touches that capability |
 | `prompts/how-to-write-tasks.md` | conventions | the format of a task file | when a task is written, interpreted, or validated |
 | `prompts/how-to-write-features.md` | conventions | the format of a feature file | when a feature file is written or validated |
 | `prompts/how-to-write-episodes.md` | conventions | the format of an episode file | when an episode is written, dispatched, or validated |
@@ -166,6 +167,18 @@ All new files must be placed in the correct directory:
 - Place every new file in a directory listed here or in the permitted root set.
 - The project structure is the canonical root-level files, any declared tool-specific root files or directories, and the directories listed here.
 - Generated directories and files must follow the generated-file rules in `prompts/03-conventions.md`.
+
+Protected paths are never a task target:
+
+- `.git/` — version-control internals.
+- `.venv/`, `venv/`, `node_modules/`, `__pycache__/` — dependency and bytecode trees.
+- `logs/`, `site.out/`, and `dataflow.out/` — generated output.
+
+Also:
+
+- A task may not authorize an operation on a protected path; the prompt validator refuses it.
+- A tracked placeholder such as `logs/.gitkeep`, which exists to keep a generated directory in the repository, is not a protected path.
+- Generated output is produced by the script or workflow step that owns it, never edited in place.
 
 ## 8. Safety Rules
 

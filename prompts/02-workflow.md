@@ -15,10 +15,13 @@ Always load the mandatory baseline in this order before executing a task:
 - `prompts/common/03-glossary.md`
 - `prompts/flavors/01-semantic-sort-naming.md`
 
+Always-loaded context budget: 48128 bytes (47 KiB) — the entry point plus this baseline.
+
 After the baseline, load only the task-relevant files:
 
 - Load the feature files the task references, and the feature files those depend on.
 - Load a language-specific flavor file only when the task targets that language.
+- Load one capability file from `prompts/capabilities/` only when the task touches that capability.
 - Load a tool rule file only when the task uses that tool.
 - Load no other prompt files.
 
