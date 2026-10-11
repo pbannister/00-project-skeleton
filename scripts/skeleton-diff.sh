@@ -45,8 +45,6 @@ prompts/01-contract.md
 prompts/02-workflow.md
 prompts/03-conventions.md
 prompts/README.md
-prompts/common/00-overview.md
-prompts/common/01-requirements.md
 prompts/common/02-universal-rules.md
 prompts/flavors/01-semantic-sort-naming.md
 prompts/flavors/02-cpp-conventions.md

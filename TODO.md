@@ -12,6 +12,14 @@
 
 ## Recently Completed
 
+* [x] make the always-loaded context smaller and harder to grow (2026-10-11):
+    * [x] audit by measurement, not by feel: the baseline was 46,212 bytes across nine files, and the profile showed navigation overhead, paraphrased duplication, and two rule files carrying no unique rule.
+    * [x] remove the contract's `## Contents` table (1,021 bytes) — a navigation aid for a file that is always loaded whole, and a drift source nothing checked; no rule lost, and nothing referenced it.
+    * [x] restore one home per rule: the record-commit paragraph in workflow §7.1 now points at `records/README.md`, which already owned those rules; workflow §8 is a pointer at contract §4–§5, which already owned the response form; the two stubs `common/00-overview.md` (no rule) and `common/01-requirements.md` (three placement rules contract §7 already states) are deleted.
+    * [x] compress the contract's section 2 registry to `Rule file | Precedence | Applies`; what each file defines now lives only in `prompts/README.md` and the directory READMEs, so the registry records authority and the index records meaning.
+    * [x] make the glossary a reference instead of a baseline file: workflow §1 loads `prompts/common/03-glossary.md` only when a term's meaning decides the work, and `evals/05-acceptance-remains-human.md` guards the distinction the glossary defines, so the change is eval-gated rather than assumed safe. `.aider.conf.yml` reads it still, with a comment, because Aider has no lazy loading.
+    * [x] the baseline is now 39,477 bytes across six files — 14.6% smaller — and the declared budget is 41,984 bytes, lowered with it; `make test` is 15 PASS and `make maturity` is 28/30.
+    * [x] `documents/07-prompt-maturity.md` gains the Context Audit procedure and the "name the task that fails without the new rule" rule, so the next addition starts from the same question.
 * [x] raise the two scoreable ceilings of the prompt-maturity rubric (2026-09-28):
     * [x] measure the always-loaded context: the baseline had grown to 51,962 bytes including the entry point, and 45% of the largest file was the capability block, already labelled `(capability)` yet loaded by every task. The five capability conventions moved to `prompts/capabilities/`, loaded only for a task that touches one; the baseline dropped 12.8% to about 45,600 bytes.
     * [x] `prompts/02-workflow.md` section 1 now declares `Always-loaded context budget: 48128 bytes`, so the load list and its limit have one home; `scripts/context-budget.sh` measures the entry point plus the baseline against it, names the largest contributor when it refuses, and `tests/14-context-budget.sh` checks the pass, the refusal, a missing budget line, and a missing baseline file. The margin is about 2 KB: an ordinary rule fits, a new section forces a deliberate raise.

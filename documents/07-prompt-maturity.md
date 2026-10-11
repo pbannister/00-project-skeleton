@@ -66,3 +66,26 @@ The manual remainder is judgment:
   stronger model needs less of it.
 - Add a rule only after a task fails without it; then add the check that would
   have caught the failure.
+- Audit the baseline before adding to it: name the task that fails without the
+  new rule.
+
+## Context Audit
+
+The budget makes growth visible; this procedure decides what stays.
+
+- Run `make context` and take the largest section in the report.
+- For that section's rules, name the task that fails without them.
+- A rule with no such task is deleted, not kept for comfort.
+- A rule that only some tasks need moves to `prompts/capabilities/`, or to the
+  task-relevant load in `prompts/02-workflow.md` section 1.
+- Lower the declared budget when the baseline shrinks; raise it only
+  deliberately, in the same change that adds the rule.
+
+An audit is judgment, so let the evals arbitrate: remove a candidate rule, run
+the cases, and see whether any behavior degrades.
+
+Worked example, 2026-10-11: the capability block was 45% of the largest
+always-loaded file and already labelled `(capability)`, so it moved to
+`prompts/capabilities/`. A table of contents, two rule files with no unique
+rule, and three restated rules went with it. The baseline fell from 46,212 to
+39,477 bytes with no rule lost.
