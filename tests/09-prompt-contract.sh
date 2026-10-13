@@ -17,7 +17,6 @@
 #     TASK-FILES is an operation/path table that agrees with them;
 #   * every feature has Purpose, Requirements, Behavior, and Dependencies;
 #   * every episode has a goal and at least one acceptance criterion;
-#   * PHASES.md has a parsable Current line with an allowed state;
 #   * every universal rule file is listed in the section 2 registry;
 #   * every tracked root-level file is permitted by contract section 7;
 #   * AGENTS.md exists and points at the authoritative files;
@@ -232,18 +231,6 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/episodes/[0-9][0-9]-*.m
     match = re.search(r"^## EPISODE-ACCEPTANCE\s*$(.*?)(?=^## |\Z)", text, re.S | re.M)
     if match and not re.search(r"^\s*[-*] ", match.group(1), re.M):
         failures.append(f"{rel}: EPISODE-ACCEPTANCE has no criteria")
-
-# 7. PHASES.md has a parsable current phase.
-if not exists("PHASES.md"):
-    failures.append("PHASES.md is missing")
-else:
-    match = re.search(r"^Current: phase (\d+) — (.+)$", read("PHASES.md"), re.M)
-    if not match:
-        failures.append("PHASES.md: no 'Current: phase N — ...' line")
-    else:
-        state = match.group(2).split("—")[-1].strip()
-        if state not in ("not-started", "started", "complete"):
-            failures.append(f"PHASES.md: invalid phase state: {state}")
 
 # 8. Every universal rule file is in the registry.
 universal = []

@@ -22,18 +22,12 @@ fail() {
     exit 1
 }
 
-cat > "$DIRECTORY_ROOT/PHASES.md" <<'EOF'
-# Phases
-
-Current: phase 3 — build the skeleton — started
-EOF
-
 cat > "$DIRECTORY_ROOT/TODO.md" <<'EOF'
 # TODO
 
 ## Open Questions
 
-* [ ] decide the phase boundary.
+* [ ] decide the next episode.
 
 ## Recently Completed
 
@@ -42,9 +36,7 @@ EOF
 
 # 1. A scratch project without logs or git still orients and exits zero.
 output_status=$(cd "$DIRECTORY_ROOT" && sh "$SCRIPT_STATUS" "$DIRECTORY_ROOT" </dev/null)
-printf '%s\n' "$output_status" | grep -qF 'Current: phase 3' \
-    || fail "the phase line is missing: $output_status"
-printf '%s\n' "$output_status" | grep -qF 'decide the phase boundary' \
+printf '%s\n' "$output_status" | grep -qF 'decide the next episode' \
     || fail "the next TODO item is missing: $output_status"
 printf '%s\n' "$output_status" | grep -qF 'none recorded' \
     || fail "an empty log directory was not reported: $output_status"
@@ -75,8 +67,8 @@ fi
 
 # 4. This repository orients.
 output_status=$(cd "$REPOSITORY_ROOT" && sh "$SCRIPT_STATUS" </dev/null)
-printf '%s\n' "$output_status" | grep -qF '== phase:' \
-    || fail "this repository did not report a phase: $output_status"
+printf '%s\n' "$output_status" | grep -qF '== project:' \
+    || fail "this repository did not report its project path: $output_status"
 
 echo '12-status: ok'
 exit 0

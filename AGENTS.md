@@ -17,14 +17,14 @@ authoritative file governs (`prompts/01-contract.md` section 2).
 - The task: `prompts/how-to-write-tasks.md` defines the format a task must
   have.
 - The feature requirements the task references: `prompts/features/`.
-- The state: `TODO.md` (status, not authorization) and `PHASES.md`.
+- The state: `TODO.md` (status, not authorization).
 - The record forms: `records/README.md`.
 
 ## Commands
 
 - `make test` — the repository check suite; it writes a log under `logs/`.
-- `make status` — the current phase, the next open TODO item, the last test
-  result, and the working-tree state, in one screen.
+- `make status` — the next open TODO item, the last test result, and the
+  working-tree state, in one screen.
 - `make site`, `make release`, `make install` — see the `Makefile`.
 
 ## Tool-Specific Files

@@ -2,8 +2,8 @@
 #
 # status.sh: one-screen orientation for a fresh session.
 #
-# Prints the current phase, the next open TODO item, the last recorded test
-# result, and the working-tree state. Read-only, and it never blocks on
+# Prints the next open TODO item, the last recorded test result, and the
+# working-tree state. Read-only, and it never blocks on
 # standard input (prompts/03-conventions.md section 7.1).
 #
 # Usage: status.sh [PROJECT_DIR]
@@ -13,13 +13,6 @@ DIRECTORY_SCRIPT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 PROJECT_ROOT=$(CDPATH= cd -- "${1:-"$DIRECTORY_SCRIPT/.."}" && pwd)
 
 echo "== project: $PROJECT_ROOT"
-
-if [ -f "$PROJECT_ROOT/PHASES.md" ]; then
-    line_phase=$(grep -m1 '^Current:' "$PROJECT_ROOT/PHASES.md" || true)
-    echo "== phase: ${line_phase:-no 'Current:' line}"
-else
-    echo "== phase: PHASES.md missing"
-fi
 
 if [ -f "$PROJECT_ROOT/TODO.md" ]; then
     item_next=$(grep -m1 '^\* \[ \]' "$PROJECT_ROOT/TODO.md" || true)
