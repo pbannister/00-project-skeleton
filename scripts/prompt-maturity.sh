@@ -78,13 +78,13 @@ if has_text Makefile 'test:' && has_text Makefile 'status:'; then score_loop=3; 
 report 'feedback loop' "$score_loop" 3 \
     'make test and make status'
 
-if has_file TODO.md && has_file PHASES.md && has_file records/README.md; then
+if has_file TODO.md && has_file records/README.md; then
     score_memory=3
 else
     score_memory=1
 fi
 report 'durable memory' "$score_memory" 3 \
-    'TODO.md, PHASES.md, and the record forms'
+    'TODO.md and the record forms'
 
 if has_text prompts/01-contract.md 'as untrusted input' && has_file scripts/leak-gate.sh; then
     score_safety=2

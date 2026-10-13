@@ -76,7 +76,7 @@ When more than one writer may change the repository at the same time:
 - Tests for source code belong in `tests/`.
 - Tests for scripts belong in `tests/` and should validate the script behavior without placing generated output in source directories.
 - Prompt validation belongs in `tests/` when a prompt validation mechanism exists or the task requests prompt validation.
-- The prompt-contract test, `tests/09-prompt-contract.sh`, is that mechanism: it validates the registry, references, numbering, task and feature sections, and phase state.
+- The prompt-contract test, `tests/09-prompt-contract.sh`, is that mechanism: it validates the registry, references, numbering, task and feature sections, and episode structure.
 - The project's existing test runner is sufficient; create one only when the task requests it.
 
 ### 4.1 Test Tiers

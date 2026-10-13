@@ -52,7 +52,6 @@ FILE_CONTRACT="$DIRECTORY_ROOT/prompts/01-contract.md"
 FILE_FEATURE="$DIRECTORY_ROOT/prompts/features/01-site-build.md"
 FILE_FEATURE_02="$DIRECTORY_ROOT/prompts/features/02-project-pages.md"
 FILE_EPISODE="$DIRECTORY_ROOT/prompts/episodes/01-episode-template.md"
-FILE_PHASES="$DIRECTORY_ROOT/PHASES.md"
 
 count_case=0
 count_accept=0
@@ -200,7 +199,7 @@ expect_reject 11 'duplicated authoritative rule' 'duplicated in'
 reset; sed -i '/Change only what the task requires/d' "$DIRECTORY_ROOT/prompts/common/02-universal-rules.md"
 expect_reject 11 'a rule-family marker removed from its owner' 'marker not found in'
 
-# --- checks 6, 6.1, 7: features, episodes, phases ---
+# --- checks 6, 6.1: features, episodes ---
 reset; sed -i '/^## Purpose$/d' "$FILE_FEATURE"
 expect_reject 6 'feature missing a required section' 'missing ## Purpose'
 
@@ -212,17 +211,6 @@ expect_reject 6.1 'episode missing acceptance' 'missing ## EPISODE-ACCEPTANCE'
 
 reset; sed -i '/^## EPISODE-ACCEPTANCE$/,/^## EPISODE-RISKS$/{/^- /d}' "$FILE_EPISODE"
 expect_reject 6.1 'episode acceptance without criteria' 'EPISODE-ACCEPTANCE has no criteria'
-
-reset; rm "$FILE_PHASES"
-expect_reject 7 'missing PHASES.md' 'PHASES.md is missing'
-
-reset; sed -i '/^Current:/d' "$FILE_PHASES"
-expect_reject 7 'PHASES.md without a Current line' "no 'Current: phase N"
-
-# The fixture rewrites whatever the current phase line is, so it works in a
-# project at any phase rather than only in one that has not started.
-reset; sed -i 's/^Current: .*/Current: phase 1 — in-progress/' "$FILE_PHASES"
-expect_reject 7 'invalid phase state' 'invalid phase state'
 
 # --- check 9: root structure and portable tool configuration ---
 reset; printf '%s\n' 'x' > "$DIRECTORY_ROOT/NOTES.md"

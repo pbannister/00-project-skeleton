@@ -114,7 +114,6 @@ Generated output directories are not version-controlled.
 - Run the publish sanitization gate (`scripts/leak-gate.sh`) over generated output before publishing.
 - Keep the sanitization patterns in one source (`scripts/sensitive-patterns.sh`) and never inline them in another script or test.
 - A served static asset is requested under a URL that changes when its bytes change: derive one content token from the interdependent asset set and append it to every URL, including transitive module imports; fail the build when the stamp does not land.
-- Keep `PHASES.md` current: it names the project's phases and the current phase, one `Current: phase N — [description —] state` line; change the current phase only when committing the project.
 - Committed tool configuration uses workspace-relative paths (for example `${workspaceFolder}`), never an absolute home path; an absolute path is both a leak and a portability bug.
 
 ## 7. File Operations

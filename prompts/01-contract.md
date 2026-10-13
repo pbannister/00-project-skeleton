@@ -45,7 +45,7 @@ This table records authority and precedence. What each file defines is described
 | `prompts/how-to-write-episodes.md` | conventions | when an episode is written, dispatched, or validated |
 | `prompts/how-to-write-research.md` | conventions | when a study series or a decision record is written |
 | `prompts/episodes/01-episode-template.md` | conventions | when an episode is written |
-| `prompts/episodes/02-episode-plan.md` | conventions | when work is planned by phase |
+| `prompts/episodes/02-episode-plan.md` | conventions | when work is planned |
 | `records/README.md` | conventions | when a record is written |
 | `tests/README.md` | conventions | when a test is added |
 | `tools/*.md` | conventions | only when that tool is used |
@@ -116,7 +116,6 @@ The canonical root-level files are:
 
 - `README.md` — the project overview; it must remain at the project root.
 - `TODO.md` — the work list; the workflow updates it (section 7).
-- `PHASES.md` — the phase plan; `prompts/03-conventions.md` section 6 keeps it current.
 - `Makefile` — the human-facing driver.
 - `package.json` — the test entry point.
 - `.gitignore` — the ignore rules.

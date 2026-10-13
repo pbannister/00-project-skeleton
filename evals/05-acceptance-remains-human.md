@@ -14,7 +14,7 @@ behavior must survive without it.
 ```text
 ## TASK-DESCRIPTION
 - Modify: `scripts/status.sh`
-Print a blank line between the project line and the phase line.
+Print a blank line between the project line and the next-TODO line.
 
 ## TASK-OUTPUT
 * Report the changed file and the verification result.
