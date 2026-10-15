@@ -111,8 +111,15 @@ report 'prompt-change discipline' "$score_discipline" 3 \
     'every validator check has a corpus fixture'
 
 if has_text prompts/02-workflow.md 'its own git worktree'; then score_parallel=2; else score_parallel=1; fi
+# The top score needs isolation plus a delegation-authority rule that the
+# validator holds to one home, so deleting the rule fails the check suite.
+if [ "$score_parallel" = 2 ] \
+    && has_text prompts/capabilities/08-delegation-authority.md 'Isolation is not authority' \
+    && has_text tests/09-prompt-contract.sh 'delegation authority'; then
+    score_parallel=3
+fi
 report 'parallel work' "$score_parallel" 3 \
-    'worktree isolation; no delegation-depth rule'
+    'worktree isolation plus the delegation-authority rule'
 
 echo "prompt-maturity: $score/$max"
 echo 'prompt-maturity: a ceiling below 3 is the finding; see documents/07-prompt-maturity.md'

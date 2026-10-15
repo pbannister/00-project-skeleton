@@ -53,6 +53,10 @@ prompts/capabilities/02-version-information.md
 prompts/capabilities/03-generated-data-products.md
 prompts/capabilities/04-release-and-publishing.md
 prompts/capabilities/05-pinned-dependencies.md
+prompts/capabilities/06-execution-boundary.md
+prompts/capabilities/07-session-log.md
+prompts/capabilities/08-delegation-authority.md
+prompts/capabilities/09-failure-attribution.md
 prompts/how-to-write-tasks.md
 prompts/how-to-write-features.md
 prompts/how-to-write-episodes.md

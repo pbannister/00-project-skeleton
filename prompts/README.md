@@ -43,3 +43,7 @@ The following filenames are canonical and must not be renamed or duplicated with
 - `capabilities/03-generated-data-products.md`
 - `capabilities/04-release-and-publishing.md`
 - `capabilities/05-pinned-dependencies.md`
+- `capabilities/06-execution-boundary.md`
+- `capabilities/07-session-log.md`
+- `capabilities/08-delegation-authority.md`
+- `capabilities/09-failure-attribution.md`

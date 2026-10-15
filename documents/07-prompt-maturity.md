@@ -34,9 +34,9 @@ Prose that claims a property does not raise the score.
 
 Run `make maturity` (`sh scripts/prompt-maturity.sh`). It computes the
 machine-checkable subset and prints each dimension with its ceiling. The script
-is deliberately unable to award the top score for behavioral evals and parallel
-work, because this project has no measurement or rule for them. The ceilings are
-the finding.
+is deliberately unable to award the top score for behavioral evals, because a
+scored model run is not measured automatically. A ceiling below 3 is the
+finding.
 
 Two dimensions earned the top score by acquiring evidence rather than prose:
 
@@ -89,3 +89,15 @@ always-loaded file and already labelled `(capability)`, so it moved to
 `prompts/capabilities/`. A table of contents, two rule files with no unique
 rule, and three restated rules went with it. The baseline fell from 46,212 to
 39,477 bytes with no rule lost.
+
+Worked example, 2026-10-15: a review against Anthropic's *Scaling Managed
+Agents: Decoupling the brain from the hands*
+(https://www.anthropic.com/engineering/managed-agents) found that the corpus
+governed what the agent is told and what it writes, and almost nothing about
+what it can reach. Four capability files joined the corpus
+(`06-execution-boundary.md`, `07-session-log.md`, `08-delegation-authority.md`,
+`09-failure-attribution.md`), and the parallel-work dimension reached 3 because
+the delegation rule now has a registered home that the validator holds.
+Capability scoping kept the always-loaded baseline flat except for the four
+Applicability lines, which is the pattern to repeat: new axes of concern enter
+as capability files, not as baseline.

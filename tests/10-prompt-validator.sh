@@ -250,6 +250,10 @@ expect_reject 12 'a task authorizing a version-control path' 'authorizes a prote
 reset; sed -i 's#`scripts/site-build.sh`#`logs/session.log`#' "$FILE_TASK"
 expect_reject 12 'a task authorizing generated output' 'authorizes a protected path'
 
+# --- check 13: capability registry ---
+reset; sed -i '/^    - `06-execution-boundary.md`$/d' "$DIRECTORY_ROOT/prompts/03-conventions.md"
+expect_reject 13 'capability convention missing from Applicability' 'not listed in the Applicability section'
+
 # --- acceptance cases: the validator must not reject a valid variation ---
 # Feature 02 depends on feature 01, so a task that lists 02 may claim a
 # requirement owned by 01: dependencies apply transitively.

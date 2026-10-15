@@ -11,6 +11,10 @@ These conventions define formatting, naming, and repository structure.
     - `03-generated-data-products.md`
     - `04-release-and-publishing.md`
     - `05-pinned-dependencies.md`
+    - `06-execution-boundary.md`
+    - `07-session-log.md`
+    - `08-delegation-authority.md`
+    - `09-failure-attribution.md`
 
 ## 1. Formatting
 
