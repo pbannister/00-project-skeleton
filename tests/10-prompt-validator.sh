@@ -254,6 +254,11 @@ expect_reject 12 'a task authorizing generated output' 'authorizes a protected p
 reset; sed -i '/^    - `06-execution-boundary.md`$/d' "$DIRECTORY_ROOT/prompts/03-conventions.md"
 expect_reject 13 'capability convention missing from Applicability' 'not listed in the Applicability section'
 
+# --- check 14: undeclared top-level directories ---
+reset; mkdir -p "$DIRECTORY_ROOT/llama.cpp"
+printf '%s\n' 'A third-party checkout inside the working tree.' > "$DIRECTORY_ROOT/llama.cpp/README.md"
+expect_reject 14 'a third-party checkout inside the working tree' 'top-level directory is not permitted'
+
 # --- acceptance cases: the validator must not reject a valid variation ---
 # Feature 02 depends on feature 01, so a task that lists 02 may claim a
 # requirement owned by 01: dependencies apply transitively.

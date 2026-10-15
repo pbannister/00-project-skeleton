@@ -227,3 +227,8 @@ authoritative file; the glossary never states a rule.
 
 - The durable store of session events, outside the harness and outside the context window.
 - Rules: `prompts/capabilities/07-session-log.md`.
+
+## Host checkout root
+
+- The host directory where cloned third-party repositories live, outside the project working tree.
+- Rules: `prompts/03-conventions.md` section 6.1.

@@ -32,4 +32,5 @@ Instruction-layer injection resistance is `prompts/01-contract.md` section 8; th
 - Network egress defaults to denied; a task that needs a host names it.
 - The test sandbox is a separate concern: `prompts/02-workflow.md` section 4.2 rules that a test is hermetic, which is a property of the test, not of the execution boundary.
 - Confinement belongs to the platform that runs the sandbox; when the platform does not provide one, the project states that rather than assuming it.
+- A hand's third-party checkouts follow `prompts/03-conventions.md` section 6.1.
 - A project records which boundary its platform provides, so a checkout moved to a host without one is a known change and not a silent loss.

@@ -465,6 +465,8 @@ RULE_FAMILIES = (
      r"A script must not block on standard input"),
     ("capability applicability", "prompts/03-conventions.md",
      r"The capability conventions live in"),
+    ("third-party checkouts", "prompts/03-conventions.md",
+     r"Clone a third-party repository under the host checkout root"),
     ("execution boundary", "prompts/capabilities/06-execution-boundary.md",
      r"Credentials are never reachable from the sandbox"),
     ("session log", "prompts/capabilities/07-session-log.md",
@@ -514,6 +516,20 @@ for path in sorted(glob.glob(os.path.join(root, "prompts/capabilities/*.md"))):
     rel = os.path.relpath(path, root)
     if f"`{os.path.basename(rel)}`" not in applicability:
         failures.append(f"capability convention is not listed in the Applicability section: {rel}")
+
+# 14. Every tracked top-level directory is one the contract names, so a
+#     third-party checkout inside the working tree is caught rather than
+#     passing as an undeclared directory
+#     (prompts/01-contract.md section 7, prompts/03-conventions.md section 6.1).
+if section7:
+    for rel in tracked:
+        if "/" not in rel:
+            continue
+        top = rel.split("/")[0]
+        if top.startswith("."):
+            continue
+        if f"`{top}/`" not in body7 and f"`{top}`" not in body7:
+            failures.append(f"top-level directory is not permitted by contract section 7: {top}/")
 
 if failures:
     for failure in failures:
