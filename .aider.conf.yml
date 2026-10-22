@@ -11,7 +11,7 @@ read:
   - prompts/01-contract.md
   - prompts/02-workflow.md
   - prompts/03-conventions.md
-  - prompts/common/02-universal-rules.md
+  - prompts/common/01-universal-rules.md
   - prompts/common/03-glossary.md
   - prompts/flavors/01-semantic-sort-naming.md
   - tools/aider-rules.md

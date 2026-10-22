@@ -28,7 +28,7 @@ flowchart TD
   end
 
   subgraph GLOBAL["Global requirements"]
-    UNIV["common/02-universal-rules"]
+    UNIV["common/01-universal-rules"]
   end
 
   subgraph FEAT["Feature requirements"]

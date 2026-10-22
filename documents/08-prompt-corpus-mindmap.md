@@ -13,7 +13,7 @@ mindmap
       01-contract.md
       02-workflow.md
       03-conventions.md
-      common/02-universal-rules.md
+      common/01-universal-rules.md
       flavors/01-semantic-sort-naming.md
     Capabilities (load only when touched)
       capabilities/01-generated-documentation
