@@ -87,11 +87,19 @@ The repository includes one worked example that exercises the whole workflow:
 - Delete this "Starting a New Project from this Skeleton" section from the derived project; it does not apply there.
 - See `documents/04-lessons-from-homelab.md` for the lessons that shaped these rules.
 
-## Keeping Current with this Skeleton
+## Keeping Current with these Rules
 
-- A derived project keeps its own copy of the shared rule files (`prompts/`, the directory READMEs, the reference scripts, and the template); those copies drift as the skeleton evolves.
-- `scripts/skeleton-diff.sh <project-dir>` reports how a project's shared files differ from this skeleton. Rule-file drift is a failure; drift in the reference scripts and template is expected when a project adapts them.
-- Customize a shared rule document by appending a project section (for example `## How this project does it`) and leaving the shared text intact. Do not fork it, so the next re-sync stays a small diff.
+- A project pins the shared rules with `rules.lock` and verifies them with
+  `scripts/rules-check.sh`, which runs in `make test`. The vendored files are
+  byte-identical to the tagged version; editing one is drift, not customization.
+- Customize by extending: a project-specific rule goes in a local prompt file
+  numbered after the shared ones, and an override quotes the rule it replaces so a
+  later version can tell when the override has gone stale.
+- Adopting a new version is a task: run `00-project-rules/tools/rules-vendor.sh`,
+  review what changed, and record the outcome under `records/`.
+- `scripts/skeleton-diff.sh` is retired. `rules-check` answers the same question
+  and runs where the drift happens, rather than from a sibling checkout on
+  request.
 
 ## Canonical Files
 
