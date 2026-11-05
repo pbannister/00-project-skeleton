@@ -2,27 +2,42 @@
 #
 # Skeleton sanity test.
 # Verifies that every required repository directory and canonical root file
-# exists, as defined in prompts/01-contract.md section 7 and README.md.
+# exists. The directory list is read from prompts/01-contract.md section 7, not
+# copied here, so the two cannot drift apart.
 set -eu
 
 REPOSITORY_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 
-DIRECTORIES_REQUIRED='
-prompts
-sources
-scripts
-tests
-evals
-dataflow.in
-dataflow.out
-logs
-site.in
-site.out
-documents
-records
-'
+# The required list is the run of "- `name/` — purpose" bullets that follows the
+# marker comment "<!-- MARKER_DIRECTORIES_REQUIRED ... -->" in section 7 of the
+# contract. The run ends at the first line that is not a bullet.
+DIRECTORIES_REQUIRED=$(awk '
+    /^<!-- MARKER_DIRECTORIES_REQUIRED/ { inside = 1; next }
+    inside && /^- `[^`]*\/` — / {
+        name = $0
+        sub(/^- `/, "", name)
+        sub(/\/`.*/, "", name)
+        print name
+        next
+    }
+    inside && NF > 0 { exit }
+' "$REPOSITORY_ROOT/prompts/01-contract.md")
 
-FILES_REQUIRED='README.md AGENTS.md TODO.md Makefile package.json .gitignore rules.lock LICENSE'
+if [ -z "$DIRECTORIES_REQUIRED" ]; then
+    echo "00-skeleton: no required directories found in prompts/01-contract.md section 7" >&2
+    exit 1
+fi
+
+FILES_REQUIRED='
+.gitignore
+AGENTS.md
+LICENSE
+Makefile
+package.json
+README.md
+rules.lock
+TODO.md
+'
 
 for dir in $DIRECTORIES_REQUIRED; do
     if [ ! -d "$REPOSITORY_ROOT/$dir" ]; then

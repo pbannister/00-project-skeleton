@@ -25,13 +25,15 @@ fail() {
     exit 1
 }
 
-DIRECTORY_TEST=$(mktemp -d)
+. "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
+DIRECTORY_TEST=$(test_output_directory)
 PID_SERVER=
+# The server is always stopped. The working directory is removed only on success
+# (see the end of this file), so a failure leaves its files under tests.out/.
 cleanup() {
     if [ -n "$PID_SERVER" ]; then
         kill "$PID_SERVER" 2>/dev/null || true
     fi
-    rm -rf "$DIRECTORY_TEST"
 }
 trap cleanup EXIT HUP INT TERM
 
@@ -84,10 +86,19 @@ PREFIX="$DIRECTORY_TEST/prefix-local" TARBALL="$FILE_TARBALL" \
 [ -f "$DIRECTORY_TEST/prefix-local/share/demo.txt" ] || fail 'the local install produced no share file'
 
 echo '=== the installer fetches over loopback HTTP ==='
-PORT=$((8000 + ($$ % 1000)))
+# Ask the kernel for an unused loopback port rather than deriving one from the PID,
+# which two runs can share. A bind-then-release leaves a small window, so the
+# server must come up on that port or the test fails with a clear message.
+PORT=$(python3 -c 'import socket; s = socket.socket(); s.bind(("127.0.0.1", 0)); print(s.getsockname()[1]); s.close()')
 (cd "$DIRECTORY_RELEASE" && python3 -m http.server "$PORT" --bind 127.0.0.1 >/dev/null 2>&1) &
 PID_SERVER=$!
-sleep 1
+# Poll for readiness instead of sleeping a fixed time.
+attempt_port=0
+until python3 -c "import urllib.request,sys; urllib.request.urlopen('http://127.0.0.1:$PORT/', timeout=1)" 2>/dev/null; do
+    attempt_port=$((attempt_port + 1))
+    [ "$attempt_port" -lt 50 ] || fail "the loopback server did not start on port $PORT"
+    sleep 0.1
+done
 PREFIX="$DIRECTORY_TEST/prefix-http" RELEASE_URL="http://127.0.0.1:$PORT" PROJECT_NAME=demo \
     sh "$REPOSITORY_ROOT/scripts/install.sh" >/dev/null \
     || fail 'the HTTP install failed'
@@ -119,5 +130,6 @@ PREFIX="$DIRECTORY_TEST/prefix-skip" TARBALL="$DIRECTORY_NOSUM/$(basename "$FILE
     || fail 'SKIP_VERIFY did not permit the install'
 [ -x "$DIRECTORY_TEST/prefix-skip/bin/demo" ] || fail 'the SKIP_VERIFY install produced no program'
 
+test_output_cleanup "$DIRECTORY_TEST"
 echo '11-release-install: ok'
 exit 0

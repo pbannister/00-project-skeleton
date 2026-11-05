@@ -14,8 +14,8 @@ if grep -q '<html>' "$SCRIPT_BUILD"; then
     exit 1
 fi
 
-DIRECTORY_TEMPORARY=$(mktemp -d)
-trap 'rm -rf "$DIRECTORY_TEMPORARY"' EXIT HUP INT TERM
+. "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
+DIRECTORY_TEMPORARY=$(test_output_directory)
 
 mkdir -p "$DIRECTORY_TEMPORARY/in"
 printf '%s\n' 'Hello from the site-build test.' > "$DIRECTORY_TEMPORARY/in/hello.txt"
@@ -114,5 +114,6 @@ grep -q 'Fetched unavailable on unavailable; unset is unavailable.' \
     exit 1
 }
 
+test_output_cleanup "$DIRECTORY_TEMPORARY"
 echo '01-site-build: ok'
 exit 0

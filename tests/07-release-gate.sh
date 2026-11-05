@@ -16,8 +16,8 @@ REPOSITORY_ROOT=$(CDPATH= cd -- "$DIRECTORY_SCRIPT/.." && pwd)
 . "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
 skip_unless_tool git
 
-DIRECTORY_TEST=$(mktemp -d)
-trap 'rm -rf "$DIRECTORY_TEST"' EXIT HUP INT TERM
+. "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
+DIRECTORY_TEST=$(test_output_directory)
 
 fail() {
     echo "07-release-gate: $1" >&2
@@ -54,5 +54,6 @@ if sh scripts/release-gate.sh "$VERSION_GOOD" >/dev/null 2>&1; then
     fail 'a dirty tree was accepted'
 fi
 
+test_output_cleanup "$DIRECTORY_TEST"
 echo '07-release-gate: ok'
 exit 0

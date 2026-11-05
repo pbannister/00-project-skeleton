@@ -32,8 +32,26 @@ for file_test in "$REPOSITORY_ROOT"/tests/*.sh; do
     fi
     if [ "$status_test" -eq 0 ]; then
         echo "PASS $name_test" | tee -a "$FILE_LOG"
+        # A passing test removes its working directory (prompts/01-contract.md section 7).
+        name_stem=$(basename "$file_test" .sh)
+        if [ -e "$REPOSITORY_ROOT/tests.out/$name_stem" ]; then
+            echo "tests-run: $name_test passed but left tests.out/$name_stem" | tee -a "$FILE_LOG" >&2
+            status_run=1
+        fi
     else
         echo "FAIL $name_test" | tee -a "$FILE_LOG"
+        status_run=1
+    fi
+done
+
+# Working directories: tests.out/ may hold only one subdirectory per test, named
+# after that test (prompts/01-contract.md section 7). Anything else is a test
+# that wrote outside its own directory, or a stale one left by a renamed test.
+for entry_output in "$REPOSITORY_ROOT"/tests.out/*/; do
+    [ -d "$entry_output" ] || continue
+    name_output=$(basename "$entry_output")
+    if [ ! -f "$REPOSITORY_ROOT/tests/$name_output.sh" ]; then
+        echo "tests-run: tests.out/$name_output has no test tests/$name_output.sh" | tee -a "$FILE_LOG" >&2
         status_run=1
     fi
 done

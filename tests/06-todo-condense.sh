@@ -18,8 +18,8 @@ REPOSITORY_ROOT=$(CDPATH= cd -- "$DIRECTORY_SCRIPT/.." && pwd)
 . "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
 skip_unless_tool python3
 
-DIRECTORY_TEST=$(mktemp -d)
-trap 'rm -rf "$DIRECTORY_TEST"' EXIT HUP INT TERM
+. "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
+DIRECTORY_TEST=$(test_output_directory)
 
 fail() {
     echo "06-todo-condense: $1" >&2
@@ -93,5 +93,6 @@ for text_item in ("first open item", "parent item", "nested item one",
     assert 1 == body.count(text_item), f"{text_item} appears {body.count(text_item)} times"
 PYTHON_CHECK
 
+test_output_cleanup "$DIRECTORY_TEST"
 echo '06-todo-condense: ok'
 exit 0

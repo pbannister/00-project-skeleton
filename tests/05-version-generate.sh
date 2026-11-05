@@ -16,8 +16,8 @@ REPOSITORY_ROOT=$(CDPATH= cd -- "$DIRECTORY_SCRIPT/.." && pwd)
 . "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
 skip_unless_tool git
 
-DIRECTORY_TEST=$(mktemp -d)
-trap 'rm -rf "$DIRECTORY_TEST"' EXIT HUP INT TERM
+. "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
+DIRECTORY_TEST=$(test_output_directory)
 
 fail() {
     echo "05-version-generate: $1" >&2
@@ -60,5 +60,6 @@ sh scripts/version-generate.sh >/dev/null
 grep -q "^#define VERSION_STRING_VALUE \"[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-${BRANCH_TEST}-v1\.0\.0-${HASH_TEST}-changes\"$" "$FILE_HEADER" \
     || fail "the tag/changes suffix is wrong: $(grep VERSION_STRING_VALUE "$FILE_HEADER")"
 
+test_output_cleanup "$DIRECTORY_TEST"
 echo '05-version-generate: ok'
 exit 0

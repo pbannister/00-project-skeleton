@@ -15,8 +15,8 @@ DIRECTORY_SCRIPT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 REPOSITORY_ROOT=$(CDPATH= cd -- "$DIRECTORY_SCRIPT/.." && pwd)
 SCRIPT_GATE="$REPOSITORY_ROOT/scripts/leak-gate.sh"
 
-DIRECTORY_TEST=$(mktemp -d)
-trap 'rm -rf "$DIRECTORY_TEST"' EXIT HUP INT TERM
+. "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
+DIRECTORY_TEST=$(test_output_directory)
 
 fail() {
     echo "03-leak-gate: $1" >&2
@@ -69,5 +69,6 @@ if sh "$SCRIPT_GATE" "$DIRECTORY_TEST/absent" >/dev/null 2>&1; then
     fail 'a missing path was accepted'
 fi
 
+test_output_cleanup "$DIRECTORY_TEST"
 echo '03-leak-gate: ok'
 exit 0

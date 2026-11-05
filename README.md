@@ -25,23 +25,13 @@ All project features are defined in `prompts/features/` and implemented in `sour
 
 ## Top-Level Map
 
+The directories and their purposes are listed in `prompts/01-contract.md` section 7; this map names only the root files and the points that need explaining.
+
 - `README.md` is the project overview.
 - `AGENTS.md` is the coding-agent entry point; it points at `prompts/` and defines no rule.
 - `TODO.md` tracks pending and completed project tasks.
-- `prompts/` contains LLM interaction rules, common requirements, feature requirements, task definitions, and episode work orders.
-- `documents/` contains human-consumption documents: the interaction pattern, worked examples, and tool notes.
-- `records/` contains version-controlled outcome, incident, and handoff records.
-- `tools/` contains tool-specific rules.
+- `evals/README.md` describes the behavioral evaluation cases, scored by hand.
 - `tools/aider-rules.md` is used only with Aider.
-- `sources/` contains implementations.
-- `scripts/` contains project scripts.
-- `tests/` contains tests and validation code.
-- `evals/` contains behavioral evaluation cases for a real agent, scored by hand; see `evals/README.md`.
-- `dataflow.in/` contains input data.
-- `dataflow.out/` contains generated data output (not version-controlled).
-- `logs/` contains generated logs (not version-controlled).
-- `site.in/` contains static-site input.
-- `site.out/` contains generated static-site output (not version-controlled).
 - `Makefile` drives the build (`make build`), the tests (`make test`), and cleanup (`make clean`).
 
 ## Project Settings

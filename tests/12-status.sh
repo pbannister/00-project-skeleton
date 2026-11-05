@@ -12,8 +12,8 @@ SCRIPT_STATUS="$REPOSITORY_ROOT/scripts/status.sh"
 
 . "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
 
-DIRECTORY_TEST=$(mktemp -d)
-trap 'rm -rf "$DIRECTORY_TEST"' EXIT HUP INT TERM
+. "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
+DIRECTORY_TEST=$(test_output_directory)
 DIRECTORY_ROOT="$DIRECTORY_TEST/root"
 mkdir -p "$DIRECTORY_ROOT/logs"
 
@@ -70,5 +70,6 @@ output_status=$(cd "$REPOSITORY_ROOT" && sh "$SCRIPT_STATUS" </dev/null)
 printf '%s\n' "$output_status" | grep -qF '== project:' \
     || fail "this repository did not report its project path: $output_status"
 
+test_output_cleanup "$DIRECTORY_TEST"
 echo '12-status: ok'
 exit 0

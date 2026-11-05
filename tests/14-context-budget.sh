@@ -13,8 +13,8 @@ SCRIPT_BUDGET="$REPOSITORY_ROOT/scripts/context-budget.sh"
 
 . "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
 
-DIRECTORY_TEST=$(mktemp -d)
-trap 'rm -rf "$DIRECTORY_TEST"' EXIT HUP INT TERM
+. "$DIRECTORY_SCRIPT/lib/test_helpers.sh"
+DIRECTORY_TEST=$(test_output_directory)
 DIRECTORY_ROOT="$DIRECTORY_TEST/root"
 
 fail() {
@@ -102,5 +102,6 @@ output_budget=$(cd "$REPOSITORY_ROOT" && sh "$SCRIPT_BUDGET" </dev/null)
 printf '%s\n' "$output_budget" | grep -qF 'context-budget: ok' \
     || fail "this repository is over budget: $output_budget"
 
+test_output_cleanup "$DIRECTORY_TEST"
 echo '14-context-budget: ok'
 exit 0
