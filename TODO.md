@@ -10,6 +10,12 @@
 * [ ] improve the human-oriented documents in `documents/`.
 * [ ] read the tool-universe sources in `documents/02-tool-universe.md`.
 
+## Deferred
+
+* [ ] split `prompts/capabilities/` into `capabilities/artifacts/` and `capabilities/execution/` (deferred 2026-11-06):
+      — the object model (`00-project-rules/documents/object-index.md`) groups `01`–`05` as artifacts and pipeline, and `06`–`09` as execution;
+      it is a major-version migration, not a rename: `MANIFEST`, the contract authority table, the loader list, every reference, and each project's `rules.lock` must change in one release, and the skeleton and every project must re-vendor.
+
 ## Recently Completed
 
 * [x] make the always-loaded context smaller and harder to grow (2026-10-11):
