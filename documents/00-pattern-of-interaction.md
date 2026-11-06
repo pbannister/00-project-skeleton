@@ -16,6 +16,15 @@ The analogies are strong.
 - The human reviews the results.
 - This is the email pattern applied to machines.
 
+## Intent, exactness, iteration
+
+- The LLM's value here is natural-language comprehension, not code generation.
+- Capture the human's intent in prose first.
+- Render that prose into a more rigorous, exact form: a schema, a rule set, a plan.
+- The rigorous form is checkable; the prose is not.
+- Iterate with the human to verify and elaborate the captured intent before acting on it.
+- The human confirms that the meaning survived the translation, not just that the form is valid.
+
 ## Human Documents versus Prompts
 
 - Human documents persuade, justify, and record.
