@@ -10,14 +10,9 @@
 * [ ] improve the human-oriented documents in `documents/`.
 * [ ] read the tool-universe sources in `documents/02-tool-universe.md`.
 
-## Deferred
-
-* [ ] split `prompts/capabilities/` into `capabilities/artifacts/` and `capabilities/execution/` (deferred 2026-11-06):
-      — the object model (`00-project-rules/documents/object-index.md`) groups `01`–`05` as artifacts and pipeline, and `06`–`09` as execution;
-      it is a major-version migration, not a rename: `MANIFEST`, the contract authority table, the loader list, every reference, and each project's `rules.lock` must change in one release, and the skeleton and every project must re-vendor.
-
 ## Recently Completed
 
+* [x] split `prompts/capabilities/` into `capabilities/artifacts/` and `capabilities/execution/` (2026-11-06; `v2026-11-06.1`, breaking): `01`–`05` are artifacts and pipeline, `06`–`09` are execution; `MANIFEST`, the authority table, the loader line, the Applicability list, every reference, and each project's `rules.lock` were updated, and the skeleton re-vendored.
 * [x] make the always-loaded context smaller and harder to grow (2026-10-11):
     * [x] audit by measurement, not by feel: the baseline was 46,212 bytes across nine files, and the profile showed navigation overhead, paraphrased duplication, and two rule files carrying no unique rule.
     * [x] remove the contract's `## Contents` table (1,021 bytes) — a navigation aid for a file that is always loaded whole, and a drift source nothing checked; no rule lost, and nothing referenced it.
@@ -120,9 +115,9 @@
     * [x] `tests/lib/test_helpers.sh` holds the shared skip/fail/pass helpers; `tests/05`–`07` use `skip_unless_tool`.
     * [x] `tests/README.md` documents the reserved number bands, the helper directory, the sandbox rule, and the fixture rule.
     * [x] `prompts/02-workflow.md` §4.1/§4.2 encode the skip idiom and the organization rules.
-* [x] add the release and pinned-dependency conventions (2026-09-24; Tier 2 from the recent-project lessons): `prompts/capabilities/04-release-and-publishing.md` encodes publish gating, deterministic packing, versionless asset names, checksums/version/notes, installer rules, atomic install, and re-runnable publishing; `prompts/capabilities/05-pinned-dependencies.md` covers pinning a dependency to a tag and asserting the pin.
+* [x] add the release and pinned-dependency conventions (2026-09-24; Tier 2 from the recent-project lessons): `prompts/capabilities/artifacts/04-release-and-publishing.md` encodes publish gating, deterministic packing, versionless asset names, checksums/version/notes, installer rules, atomic install, and re-runnable publishing; `prompts/capabilities/artifacts/05-pinned-dependencies.md` covers pinning a dependency to a tag and asserting the pin.
     * [x] ship `scripts/release-gate.sh` (refuses a dirty tree, a `-changes` version, and a version that does not name HEAD) and `tests/07-release-gate.sh`.
-* [x] add the generated-data-product conventions (2026-09-24; Tier 2 from the recent-project lessons): `prompts/capabilities/03-generated-data-products.md` encodes numbered stages and work products, reuse/`--refresh`/`--retry-failed`, file-named make rules, the no-dead-placeholder rule, a cheap `all` target, raw caches with provenance, `manifest.json`, `check`/`--check`, manual `clean` for expensive outputs, independent verification, and units in exchange formats.
+* [x] add the generated-data-product conventions (2026-09-24; Tier 2 from the recent-project lessons): `prompts/capabilities/artifacts/03-generated-data-products.md` encodes numbered stages and work products, reuse/`--refresh`/`--retry-failed`, file-named make rules, the no-dead-placeholder rule, a cheap `all` target, raw caches with provenance, `manifest.json`, `check`/`--check`, manual `clean` for expensive outputs, independent verification, and units in exchange formats.
     * [x] model the `all` target in the skeleton `Makefile` (defaults to `build`).
 * [x] preserve nested lists in the condensed `todo.html` (2026-09-24; Tier 1 from the recent-project lessons): the old renderer flattened them and counted only lowercase, top-level completed items.
     * [x] `scripts/site-condense.sh` renders nesting with an indentation stack; completed items (`[x]` or `[X]`) are counted, never listed.
@@ -131,7 +126,7 @@
     * [x] `scripts/site-build.sh` copies authored assets verbatim and excludes `template.html` and `pages.nav`.
     * [x] `prompts/features/01-site-build.md` states the asset, live-state, generated-artifact, and deterministic-tree rules.
     * [x] ship an example `site.in/pages.nav`, and assert the asset copy and the two exclusions in `tests/01-site-build.sh`.
-* [x] ship `scripts/version-generate.sh` (2026-09-24; Tier 1 from the recent-project lessons): `prompts/capabilities/02-version-information.md` names it canonical, but the skeleton shipped no implementation.
+* [x] ship `scripts/version-generate.sh` (2026-09-24; Tier 1 from the recent-project lessons): `prompts/capabilities/artifacts/02-version-information.md` names it canonical, but the skeleton shipped no implementation.
     * [x] generalized from the gnome-appimage-integration implementation; writes `dataflow.out/build/generated/version_info.h` and the gitignored build counter.
     * [x] `tests/05-version-generate.sh` (tool-gated on git) checks the `date-branch-hash` shape, the tag and `-changes` suffixes, and the counter.
 * [x] register `PHASES.md` as a required root file (2026-09-24; Tier 1 from the recent-project lessons): the project-pages conventions depend on it, but the README map, the Canonical Files list, and the skeleton test omitted it.
@@ -208,4 +203,4 @@
 * [x] decide the site-build approach: literal text-to-HTML, Markdown-to-HTML, or a static-site generator such as 11ty.
       — **Decided 2026-08-23 by the homelab exercise**: the literal text-to-HTML site-build is kept as the minimal
       worked example; a real site used Eleventy (a static-site generator); model-driven documents use a custom
-      generator with a provenance header. Encoded in `prompts/capabilities/01-generated-documentation.md`.
+      generator with a provenance header. Encoded in `prompts/capabilities/artifacts/01-generated-documentation.md`.
