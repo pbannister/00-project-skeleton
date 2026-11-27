@@ -2,6 +2,8 @@
 
 This document records the process lessons from the MI25 fan-service project.
 
+MI25 is a fan-service project that used the skeleton for its build and test process.
+
 The MI25 work surfaced three lessons: a record must track the live state, generated build trees are path-bound, and test runs deserve a timestamped log.
 
 Each lesson names where the skeleton now encodes it.
@@ -9,7 +11,8 @@ Each lesson names where the skeleton now encodes it.
 ## 1. A record must track the live state
 
 - The record `09-project-site.md` said "not yet implemented" after the deployment was already live.
-- When a task changes a status, update the referenced record's status in the work commit; the outcome record itself is written after review and committed separately.
+- When a task changes a status, update the referenced record's status in the work commit.
+- The outcome record itself is written after review and committed separately.
 - Encoded in: `prompts/02-workflow.md` §7.1, `records/README.md`.
 
 ## 2. Generated build trees are path-bound
@@ -23,3 +26,5 @@ Each lesson names where the skeleton now encodes it.
 - The MI25 project writes `logs/YYYY-MM-DD-HH-MM-SS-test-run.log`.
 - The test runner mirrors its transcript into the same timestamped pattern.
 - Encoded in: `scripts/tests-run.sh`.
+
+The common thread is that state which is not refreshed or recorded goes stale.

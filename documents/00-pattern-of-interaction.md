@@ -1,22 +1,25 @@
 # Pattern of Interaction with an LLM
 
-This document captures a conversation about how to interact with an LLM.
+This document states the pattern for working with an LLM.
+It is for a developer or technical reader new to the project who will apply the pattern.
 
-The conversation compared old patterns of human work with LLM work.
-
-The analogies are strong.
+The old pattern: a person writes a request, sends it, and reads the reply later.
+The LLM pattern: a person writes a work item, dispatches it, and reviews the artifact later.
+The same three roles survive: the author, the worker, and the reviewer.
 
 ## The Core Idea
 
 - The unit of work is a work item, not a conversation.
 - A conversation is ephemeral.
 - A work item is durable: goal, constraints, deliverable, and acceptance.
+- A work order is the work item's prompt.
 - The human writes work items.
 - The LLM executes them.
 - The human reviews the results.
 - This is the email pattern applied to machines.
+- An email gives the recipient a durable request, a channel, and a reply; a work item does the same for the model.
 
-## Intent, exactness, iteration
+## Intent, Exactness, Iteration
 
 - The LLM's value here is natural-language comprehension, not code generation.
 - Capture the human's intent in prose first.
@@ -24,6 +27,10 @@ The analogies are strong.
 - The rigorous form is checkable; the prose is not.
 - Iterate with the human to verify and elaborate the captured intent before acting on it.
 - The human confirms that the meaning survived the translation, not just that the form is valid.
+
+For example, a human can say "the report must show last month's totals".
+The model can render that sentence as a report schema, a query, or a test.
+The human then checks that the rendering means the same thing.
 
 ## Human Documents versus Prompts
 
@@ -36,16 +43,16 @@ The analogies are strong.
 - The document habit that does not carry over is narrative persuasion.
 - Keep the human-shaped document as durable memory.
 - Let prompts reference the document instead of restating it.
+- The document carries the why and the history; the prompt carries the what and the constraints.
 
 ## Episodes
 
-- An episode is a bounded unit of strongly related work with one goal and one acceptance.
-- Group strongly related items into one episode.
-- One episode pays dispatch overhead once.
-- Dispatch overhead is prompt setup, context loading, and human attention per handoff.
-- One episode also preserves coherence.
-- A model that handles the whole episode keeps the episode's context.
-- A model that handles fragments loses context between fragments.
+An episode is a bounded unit of strongly related work with one goal and one acceptance.
+Group strongly related items into one episode, so the episode pays dispatch overhead once and preserves coherence.
+Dispatch overhead is prompt setup, context loading, and human attention per handoff.
+A model that handles the whole episode keeps the episode's context.
+A model that handles fragments loses context between fragments.
+
 - The queue holds episodes.
 - Sub-tasks live inside the episode.
 - Sub-tasks are the execution plan, drafted by the model and ratified by the human.
@@ -76,7 +83,7 @@ The analogies are strong.
 ## Noise
 
 - Watching a model think is a waste of human attention.
-- The model thinking is where the value is produced.
+- The model's thinking is where the value is produced.
 - The problem is attention, not thinking.
 - Ask for artifacts, not transcripts.
 - An artifact is a summary, a diff, or test results.
@@ -93,12 +100,14 @@ The analogies are strong.
 
 ## Review
 
+- The review surface is the commit, the diff, or the report the human reads.
 - The review surface makes async trust possible.
 - Review the artifact, not the process.
 - The human is the synthesis point and the final authority.
 - The model proposes; the human disposes.
 - A model reviewing its own output in the same context is weak.
 - A fresh-context review pass finds misses, like fresh human eyes.
+- A small review surface is the point: one commit, one file, one decision.
 
 ## Consensus Ritual
 
@@ -122,7 +131,8 @@ The analogies are strong.
 - They suit general development: parallel features, independent files, several LLM sessions at once.
 - Checkpoint records suit serial work against one shared live system.
 - Hardware and operations work is single-threaded by nature; concurrent changes against physical devices are usually bad.
-- The homelab exercise ran that way: every change touched the same switches, hosts, and cables, so the pattern that worked was a checkpoint or handoff record per session, not parallel worktrees.
+- The homelab exercise ran that way: every change touched the same switches, hosts, and cables.
+- The pattern that worked was a checkpoint or handoff record per session, not parallel worktrees.
 
 Choose by the work, not by habit:
 
@@ -149,6 +159,12 @@ Choose by the work, not by habit:
 ## Open Question: the DELTA Protocol
 
 - The DELTA correction protocol was suggested in a prior LLM conversation.
+- DELTA is a correction protocol: the human names the portions to change, and the model changes only those portions.
 - It is defined in `prompts/01-contract.md` and `prompts/common/01-universal-rules.md`.
 - Its merit is not yet established.
 - Whether to keep, change, or remove it is open.
+
+## Provenance
+
+This document captures a conversation about how to interact with an LLM.
+The conversation compared old patterns of human work with LLM work.

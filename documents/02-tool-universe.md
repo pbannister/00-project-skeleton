@@ -9,13 +9,19 @@ The lens asks four questions about a tool:
 - What is the review surface?
 - How does it integrate with git?
 
+Each section groups tools by where they run.
+The comparison table at the end applies the four questions to every tool.
+Cells marked "not stated" are gaps in the source material, not judgments about
+the tool.
+
 ## Terminal Code Agents
 
 - Aider is a terminal code agent that edits files and commits with git.
 - Aider is git-native.
 - Every Aider change is a diff to review.
 - Aider refreshes its repo map and warns about externally edited files.
-- Aider mitigates stale context but does not isolate it.
+- Aider refreshes its view of the files, but it does not give the agent a
+  separate working tree.
 - Claude Code is a terminal agent with background modes.
 - Background agents run and notify on completion.
 
@@ -31,19 +37,21 @@ Copilot has a background-agents pattern built on git worktrees.
 - gwt runs AI coding sessions per worktree.
 - gtr is a git worktree runner.
 - rove runs coding agents on parallel tasks with isolated worktrees.
-- These tools exist because the worktree pattern is real practice.
+- Each tool solves the same problem: several agents writing at once without
+  sharing a working tree.
 
 ## Harness Environments
 
 - Agent harnesses orchestrate LLM work at scale.
 - Harnesses dispatch work to subagents and notify on completion.
-- Harnesses can serialize access so the human and the model never write concurrently.
-- The environment hosting this conversation is such a harness.
+- Harnesses can serialize access so the human and the model never write
+  concurrently.
 
 ## CI and PR-Based Agents
 
 - OpenHands and similar agents take an issue and produce a pull request.
-- The PR is the envelope.
+- The pull request is the review surface: it carries the diff, the discussion,
+  and the merge decision.
 - The platform review and merge queue are the async mechanics.
 
 ## Notebooks
@@ -59,12 +67,35 @@ Copilot has a background-agents pattern built on git worktrees.
 - Results land in files for later review.
 - This is the email pattern with minimal tooling.
 
+## Comparison
+
+| Tool | Sync or async | Human attention | Review surface | Git integration |
+|---|---|---|---|---|
+| Aider | sync, in the terminal | a diff review per change | the diff | commits with git; refreshes the repo map |
+| Claude Code | interactive; background modes | a completion notification | not stated | not stated |
+| Cursor | interactive; in the editor | editor review | the editor diff | not stated |
+| GitHub Copilot | background agents; otherwise in the editor | a completion notification | the editor or worktree diff | background agents use worktrees |
+| dmux | parallel | per-worktree review | the worktree diff | one worktree per agent |
+| gwt | parallel | per-session review | the worktree diff | one worktree per session |
+| gtr | parallel | per-worktree review | the worktree diff | a worktree runner |
+| rove | parallel | per-task review | the worktree diff | isolated worktrees |
+| Agent harness | async at scale | dispatch and notification | not stated | not stated |
+| OpenHands | async | PR review | the pull request | produces a PR |
+| Jupyter | sync, interactive | cell-by-cell attention | a noisy diff | poor; hidden state |
+| Plain API | batch | low; review files later | output files | not stated |
+
 ## Mapping to This Project
 
-- Aider fits the review-surface pattern.
+- Aider fits the review-surface pattern: every change is a diff.
 - A worktree gives Aider isolation.
 - An episode file is the work order.
 - A record file is the outcome.
+
+## What to use when
+
+- Use Aider in a worktree when you want a git-native diff you can review.
+- Use a harness when you need several agents and async notification.
+- Use the plain API when the work is a batch and the output is files.
 
 ## Sources
 

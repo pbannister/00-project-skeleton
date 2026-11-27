@@ -9,7 +9,7 @@ Each lesson names where the skeleton now encodes it.
 ## 1. Bundled features are examples, not requirements
 
 - The homelab built its public site with Eleventy, not the skeleton's site-build.
-- The literal text-to-HTML site-build was too small for a real site.
+- The literal text-to-HTML build covered too little for a real site: no navigation, no generated pages, no styling.
 - A real project must consciously keep, trim, or repurpose the bundled feature.
 - Encoded in: `README.md` ("Starting a New Project from this Skeleton"), `prompts/features/00-features.md`.
 
@@ -47,12 +47,18 @@ Each lesson names where the skeleton now encodes it.
 ## 7. Risky operations need change discipline
 
 - Two incidents (an L2 loop, a broadcast storm) shared the same pattern: changes to a live network without staged verification.
-- The lessons: stage a fallback, verify device behavior empirically, apply in small verified increments, agree an emergency brake, record the incident with lessons.
+- The lessons:
+    - Stage a fallback.
+    - Verify device behavior empirically.
+    - Apply in small verified increments.
+    - Agree an emergency brake.
+    - Record the incident with lessons.
 - Encoded in: `prompts/common/01-universal-rules.md` (Risky-Operations Rules).
 
 ## 8. Owner privacy boundaries need a first-class mechanism
 
 - The homelab declared old work files off-limits; the directive held.
+- A privacy boundary needs a rule the agent must follow, not a note it may read.
 - Encoded in: `prompts/common/01-universal-rules.md` (Privacy-Boundary Rules), `README.md`.
 
 ## 9. Worktrees and records serve different concurrency

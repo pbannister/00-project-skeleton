@@ -24,18 +24,18 @@ It ended with changes to this skeleton.
 
 ## The Skeleton Changes
 
-- Captured the interaction pattern in `00-pattern-of-interaction.md`.
-- Added the async-worktree worked example in `01-async-worktree.md`.
-- Added the tool-universe survey in `02-tool-universe.md`.
-- Added `prompts/how-to-write-episodes.md` and `prompts/episodes/01-episode-template.md`.
-- Established the record convention in `records/README.md`.
-- Registered `documents/` and `records/` in the contract, conventions, README map, and skeleton test.
-- Renamed `docs/` to `documents/`.
-- Codified whole-word naming in `prompts/03-conventions.md`.
-- Codified one-item-per-line shell lists in `prompts/03-conventions.md`.
-- Reformatted episode rules as Markdown lists.
-- Noted the DELTA provenance as an open question.
-- Added open questions to `TODO.md`.
+- The interaction pattern was captured in `00-pattern-of-interaction.md`.
+  The async-worktree worked example was added in `01-async-worktree.md`, and the tool-universe survey was added in `02-tool-universe.md`.
+- `docs/` was renamed to `documents/`.
+  `documents/` and `records/` were registered in the contract, conventions, README map, and skeleton test.
+- The record convention was established in `records/README.md`.
+  Episode authoring gained `prompts/how-to-write-episodes.md` and `prompts/episodes/01-episode-template.md`, and the episode rules were reformatted as Markdown lists.
+
+### Supporting Changes
+
+- Whole-word naming and one-item-per-line shell lists were codified in `prompts/03-conventions.md`.
+- Open questions were added to `TODO.md`; the Open Questions section below records the four the conversation named.
+- The DELTA provenance was noted as an open question.
 
 ## Preferences
 
@@ -47,23 +47,21 @@ It ended with changes to this skeleton.
 
 ## Static-Site Discussion
 
-- The skeleton demonstrates static-site generation without an SSG.
-- `scripts/site-build.sh` already wraps `site.in/*.txt` in literal HTML pages.
-- A minimal Markdown-to-HTML transformation is tempting.
-- It cuts close to replicating an SSG.
-- A hand-rolled transformer owns escaping, code fences, and Mermaid blocks.
-- Mermaid can render client-side in the browser, keeping the host rsync-only.
-- The client-side Mermaid rendering choice is accepted.
-- A Markdown-to-HTML transformation still needs a parser, which is a build-time dependency.
-- Near-literal output serves developer readers.
-- Non-developer readers want styling and navigation, which is SSG territory.
-- The decision is open and tracked in `TODO.md`.
+The skeleton demonstrates static-site generation without an SSG.
+`scripts/site-build.sh` already wraps `site.in/*.txt` in literal HTML pages.
+A minimal Markdown-to-HTML transformation is tempting, but it cuts close to replicating an SSG.
+A hand-rolled transformer owns escaping, code fences, and Mermaid blocks.
+Mermaid can render client-side in the browser, keeping the host rsync-only, and the client-side rendering choice is accepted.
+The Markdown-to-HTML transformation still needs a parser, and a parser is a build-time dependency.
+Near-literal output serves developer readers.
+Non-developer readers want styling and navigation, which is SSG territory.
+The Markdown-to-HTML change is open, the conversation tracked it in `TODO.md`, and the current build is still the literal text-to-HTML version.
 
 ## Open Questions
 
-The open questions live in `TODO.md`.
-
-They include Jupyter, static-site generation, the DELTA protocol, and the tool universe.
+The conversation named four open questions: Jupyter, static-site generation, the DELTA protocol, and the tool universe.
+`TODO.md` holds the current list.
+The static-site question has the most detail; the other three are named but not yet scoped.
 
 ## Related Documents
 

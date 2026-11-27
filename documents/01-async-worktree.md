@@ -2,9 +2,7 @@
 
 This document is the worked example for running an LLM asynchronously.
 
-The LLM works in its own worktree on its own branch.
-
-The human works in the main checkout.
+The LLM works in its own worktree on its own branch, while the human works in the main checkout.
 
 Git is the message channel.
 
@@ -30,9 +28,7 @@ The binding rule is `prompts/02-workflow.md` section 3.1; this document is the w
 
 ## The Worked Example
 
-This transcript is verified.
-
-It was executed against git 2.x on a scratch repository.
+The outputs below were captured from git 2.x on a scratch repository.
 
 ### 1. Baseline
 
@@ -88,7 +84,7 @@ Verified output:
  1 file changed, 2 insertions(+)
 ```
 
-The review surface is one commit and one file.
+The review surface, the diff the human reads, is one commit and one file.
 
 This is the size of a one-sitting review.
 
@@ -130,7 +126,7 @@ Two safe designs:
 - Automation merges into a staging branch; the human flips staging to main.
 - Some episode classes are declared auto-mergeable and the risk is accepted.
 
-A conflict is a feature.
+Treat a conflict as useful information.
 
 A conflict forces a human decision where the two streams intersect.
 
@@ -143,5 +139,7 @@ A conflict forces a human decision where the two streams intersect.
 ## Practice
 
 - This pattern is used in practice.
+- Use it when the work is file-isolated.
+- Use a checkpoint record when several writers touch one live system.
 - Tools built on it include dmux, gwt, gtr, and rove.
 - Sources are listed in `02-tool-universe.md`.

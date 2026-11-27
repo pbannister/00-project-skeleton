@@ -41,14 +41,15 @@ finding.
 Two dimensions earned the top score by acquiring evidence rather than prose:
 
 - Context budget: `prompts/02-workflow.md` section 1 declares
-  `Always-loaded context budget: <N> bytes`, and `make context`
-  (`sh scripts/context-budget.sh`) measures the entry point plus the mandatory
-  baseline against it. The optional capability conventions live in
-  `prompts/capabilities/` and are loaded only for a task that touches one, so
-  they no longer sit in the always-loaded path.
-- Safety: the contract denies a task any operation on a protected path and the
-  validator refuses such a task, while `evals/04-prompt-injection.md` covers the
-  behavioral half.
+  `Always-loaded context budget: <N> bytes`.
+  `make context` (`sh scripts/context-budget.sh`) measures the entry point plus
+  the mandatory baseline against it.
+  The optional capability conventions live in `prompts/capabilities/` and load
+  only for a task that touches one, so they no longer sit in the always-loaded
+  path.
+- Safety: the contract denies a task any operation on a protected path, and the
+  validator refuses such a task.
+  `evals/04-prompt-injection.md` covers the behavioral half.
 
 The manual remainder is judgment:
 
@@ -60,8 +61,8 @@ The manual remainder is judgment:
 ## Rules
 
 - Raise a dimension by adding the missing evidence; never by editing a score.
-- An eval pass raises confidence; it does not prove correctness. Prompts
-  constrain probability, not behavior.
+- An eval pass raises confidence; it does not prove correctness, because
+  prompts constrain probability, not behavior.
 - Delete a rule that no longer changes behavior. Context cost is real, and a
   stronger model needs less of it.
 - Add a rule only after a task fails without it; then add the check that would
@@ -94,10 +95,15 @@ Worked example, 2026-10-15: a review against Anthropic's *Scaling Managed
 Agents: Decoupling the brain from the hands*
 (https://www.anthropic.com/engineering/managed-agents) found that the corpus
 governed what the agent is told and what it writes, and almost nothing about
-what it can reach. Four capability files joined the corpus
+what it can reach.
+
+Four capability files joined the corpus
 (`06-execution-boundary.md`, `07-session-log.md`, `08-delegation-authority.md`,
-`09-failure-attribution.md`), and the parallel-work dimension reached 3 because
-the delegation rule now has a registered home that the validator holds.
+`09-failure-attribution.md`).
+The parallel-work dimension reached 3 because the delegation rule now has a
+registered home that the validator holds.
+
 Capability scoping kept the always-loaded baseline flat except for the four
-Applicability lines, which is the pattern to repeat: new axes of concern enter
-as capability files, not as baseline.
+Applicability lines.
+That is the pattern to repeat: new axes of concern enter as capability files,
+not as baseline.
