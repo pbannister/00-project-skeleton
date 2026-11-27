@@ -23,7 +23,8 @@ super-agent -> scoring agent -> (bad score?) -> improvement agents (concurrent, 
 Each agent gets a disjoint chunk of the targets, and one fresh scoring agent re-scores the merged result.
 
 These are operational prompts for a separate pipeline.
-They are not project rules, and they are not in the contract section 2 registry.
+They are shared, and the contract registers them as conditional conventions.
+An ordinary task does not load them; load one only when running that stage of the pipeline.
 
 The `documents/` corpus uses short declarative sentences, one sentence per line, and lists for parallel points.
 The rubric treats that style as house style and does not penalize it.

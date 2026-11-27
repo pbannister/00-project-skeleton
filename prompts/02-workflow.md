@@ -12,7 +12,7 @@ Always load the mandatory baseline in this order before executing a task:
 - `prompts/common/01-universal-rules.md`
 - `prompts/flavors/01-semantic-sort-naming.md`
 
-Always-loaded context budget: 43008 bytes (42 KiB) — the entry point plus this baseline.
+Always-loaded context budget: 44032 bytes (43 KiB) — the entry point plus this baseline.
 
 After the baseline, load only the task-relevant files:
 
@@ -21,6 +21,7 @@ After the baseline, load only the task-relevant files:
 - Load one capability file from `prompts/capabilities/artifacts/` or `prompts/capabilities/execution/` only when the task touches that capability.
 - Load `prompts/common/03-glossary.md` as a reference when a term's meaning decides the work; it defines terms and states no rule.
 - Load a tool rule file only when the task uses that tool.
+- Load one `prompts/prose/*.md` file only when running that stage of the prose pipeline; the supervision prompt dispatches the stage agents.
 - Load no other prompt files.
 
 Also:

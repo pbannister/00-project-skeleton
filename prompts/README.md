@@ -15,6 +15,7 @@
 - `features/` contains feature-specific requirements.
 - `tasks/` contains task-specific prompt definitions.
 - `episodes/` contains episode work orders.
+- `prose/` contains the operational prompts for the prose pipeline; they load only when that pipeline runs.
 
 ## Loading Rules
 
@@ -22,6 +23,7 @@
 - The numeric prefixes in the filenames mark the load order defined there.
 - Load only feature or task files explicitly referenced by the current task or by a directly referenced dependency.
 - Load the capability conventions, the glossary, and tool rules only when the task needs them.
+- Load a `prose/` prompt only when running that stage of the prose pipeline.
 
 ## Canonical Files
 
@@ -47,3 +49,7 @@ The following filenames are canonical and must not be renamed or duplicated with
 - `capabilities/execution/07-session-log.md`
 - `capabilities/execution/08-delegation-authority.md`
 - `capabilities/execution/09-failure-attribution.md`
+- `prose/README.md`
+- `prose/01-prose-scoring.md`
+- `prose/02-prose-improvement.md`
+- `prose/03-prose-supervision.md`

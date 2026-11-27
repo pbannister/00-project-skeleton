@@ -2,6 +2,7 @@
 
 - `01-site-build.md` — Site Build: generates `site.out/` from `site.in/`.
 - `02-project-pages.md` — Project Pages: the standard published page set (status, dashboard, condensed todo/prompts/documents).
+- `03-formal-rules-cycle.md` — Formal Rules Cycle: turn prose into an approved object model, formal rules, and reduced prose.
 
 - The bundled features are worked examples, not requirements.
 - A new project keeps, trims, or repurposes them.

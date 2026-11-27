@@ -46,6 +46,7 @@ This table records authority and precedence. What each file defines is described
 | `prompts/how-to-write-features.md` | conventions | when a feature file is written or validated |
 | `prompts/how-to-write-episodes.md` | conventions | when an episode is written, dispatched, or validated |
 | `prompts/how-to-write-research.md` | conventions | when a study series or a decision record is written |
+| `prompts/prose/*.md` | conventions | only when the prose pipeline stage that names the file is invoked |
 | `prompts/episodes/01-episode-template.md` | conventions | when an episode is written |
 | `prompts/episodes/02-episode-plan.md` | conventions | when work is planned |
 | `records/README.md` | conventions | when a record is written |
@@ -56,6 +57,8 @@ This table records authority and precedence. What each file defines is described
 | `README.md`, `AGENTS.md`, `documents/*.md` | descriptive | as context |
 
 - A `how-to-write-*` file is addressed to the human who writes the artifact; the LLM reads it to interpret and validate that artifact. It is not a source of task requirements.
+- The prose prompts are self-contained stage instructions.
+  A stage agent loads only its file, not the project rule set; the supervision prompt dispatches the stage agents.
 - The glossary defines terms. Where it restates a rule, the file named in this table governs, and the restatement is a defect to correct.
 - A dispatched task file or episode file is an explicit human instruction (precedence 3), not an authoritative rule file.
 - Only feature files explicitly referenced by the task or by a directly referenced feature dependency apply.
